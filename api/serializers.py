@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserExtensionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.UserExtends
+        model = models.UserExtension
 
 
 class UserRelationSerializer(serializers.ModelSerializer):
