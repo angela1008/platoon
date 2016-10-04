@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{% block head_title %}{% endblock %} | Platoon</title>
+    <!-- 最新編譯和最佳化的 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- 選擇性佈景主題 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
     {% block css_extends %}
     {% endblock %}
@@ -14,12 +19,10 @@
     {% endblock %}
 </head>
 
-<body>
+<body style="padding-top:50px;">
     {% block body_base %}
-        <div class="container">
             {% block body %}
             {% endblock %}
-        </div>
     {% endblock %}
 
     {% block footer_base %}
@@ -30,6 +33,9 @@
             </div>
         </footer>
     {% endblock %}
+
+    <!-- 最新編譯和最佳化的 JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
     {% block end_js_extends %}
     {% endblock %}
