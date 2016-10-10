@@ -13,16 +13,25 @@
     <!-- 選擇性佈景主題 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
+    <style type="text/css">
+        .my-body {
+            padding-top: 50px;
+        }
+    </style>
+
     {% block css_extends %}
     {% endblock %}
     {% block extra_head %}
     {% endblock %}
+
 </head>
 
-<body style="padding-top:50px;">
+<body class="my-body">
     {% block body_base %}
+        <div class="container">
             {% block body %}
             {% endblock %}
+        </div>
     {% endblock %}
 
     {% block footer_base %}
@@ -34,8 +43,9 @@
         </footer>
     {% endblock %}
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- 最新編譯和最佳化的 JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
     {% block end_js_extends %}
     {% endblock %}

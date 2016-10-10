@@ -3,101 +3,147 @@
 {% block head_title %}Platoon{% endblock %}
 
 {% block css_extends %}
+	<style type="text/css">
+		.section{
+			margin-top: 15em;
+		}
+		.area{
+			margin-top: 15em;
+		}
+		.footer-custom{
+			padding: 1.5em;
+			background: #404040;
+		}
+		.footer-text-custom{
+			color: white;
+		}
+
+	</style>
 {% endblock %}
+
 {% block extra_head %}
 {% endblock %}
 
 {% block body %}
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container-fluid">
-		<button type="button" class="btn btn-default navbar-btn" aria-label="Left Align">
-			<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-		</button>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<button type="button" class="btn btn-default navbar-btn" aria-label="Left Align">
+				<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+			</button>
 
-		<div class="nav pull-right">
-			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default navbar-btn">Sign up</type>
-				<button type="button" class="btn btn-default navbar-btn">Sign in</type>
+			<div class="nav pull-right">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default navbar-btn">Sign up</button>
+					<button type="button" class="btn btn-default navbar-btn">Sign in</button>
+				</div>
 			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
 
-
-
-<section>
-	<div class="container-fluid">
-		<div class="page-header">
-			<h1>Title <small>Subtext</small></h1>
+	<section>
+		<div class="container-fluid">
+			<div class="page-header">
+				<h1>Title <small>Subtext</small></h1>
+			</div>
+			<h3>Subtitle</h3>
 		</div>
-		<h3>blablablablablablablablablablablablablablablablablablablablablablablabla</h3>
+	</section>
+
+	<div class="area">
 		<div class="row">
 			<div class="col-xs-3"></div>
-			<div class="col-xs-6 btn btn-info" style="margin-top: 200px;">Exchange Card</div>
+			<div class="col-xs-6 btn btn-info">Exchange Card</div>
 			<div class="col-xs-3"></div>
 		</div>
 	</div>
-</section>
 
-<section style="margin-top: 100px">
-	<div align="center">
-		<h1>Platoon Feature</h1><p></p>
-		<h3>PPAP Pen Pineapple Apple Pen</h3><p></p>
-		<h3>PPAP Pen Pineapple Apple Pen</h3><p></p>
-		<h3>PPAP Pen Pineapple Apple Pen</h3>
-	</div>
-</section>
-
-<section style="margin-top: 100px">
-	<div class="container-fluid">
- 		<div class="row">
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10">
-				<img class="img-responsive img-full" src="http://a0.att.hudong.com/23/92/300001362038132643922121438_950.jpg" alt>
-				<h1>Feature1</h1>
-				<h3>This is the description of Feature1</h3>
-			</div>
-			<div class="col-xs-1"></div>
-		</div>
-
-		
-	</div>
-</section>
-
-<section style="margin-top: 100px">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10">
-				<img class="img-responsive img-full" src="http://www.akiraclub.com/wp-content/uploads/2015/10/DymyOne-Punch-Man01BIG51280X72002-07-10.jpg" alt>
-				<h1>Feature2</h1>
-				<h3>This is the description of Feature2</h3>
-			</div>
-			<div class="col-xs-1"></div>
-		</div>
-		
-</section>
-
-<section style="margin-top: 100px">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10">
-				<img class="img-responsive img-full" src="http://i.imgur.com/JyRXxlH.jpg" alt>
-				<h1>Feature3</h1>
-				<h3>This is the description of Feature3</h3>
-			</div>
-			<div class="col-xs-1"></div>
+	<div class="area">
+		<div align="center">
+			<h1>Platoon Feature</h1><br>
+			<h3>Pen Pineapple Apple Pen</h3><br>
+			<h3>Pen Pineapple Apple Pen</h3><br>
+			<h3>Pen Pineapple Apple Pen</h3>
 		</div>
 	</div>
-</section>
 
+	<div class="area">
+		<div class="container-fluid">
+	 		<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">
+					<img class="img-responsive img-full center-block" src="http://a0.att.hudong.com/23/92/300001362038132643922121438_950.jpg" alt />
+					<h1>Feature1</h1>
+					<h3>This is the description of Feature1</h3>
+				</div>
+				<div class="col-xs-1"></div>
+			</div>
+		</div>
+	</div>
 
+	<div class="area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">
+					<img class="img-responsive img-full center-block" src="http://www.akiraclub.com/wp-content/uploads/2015/10/DymyOne-Punch-Man01BIG51280X72002-07-10.jpg" alt>
+					<h1>Feature2</h1>
+					<h3>This is the description of Feature2</h3>
+				</div>
+				<div class="col-xs-1"></div>
+			</div>
+		</div>
+	</div>
 
+	<div class="area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">
+					<img class="img-responsive img-full center-block" src="http://i.imgur.com/JyRXxlH.jpg" alt>
+					<h1>Feature3</h1>
+					<h3>This is the description of Feature3</h3>
+				</div>
+				<div class="col-xs-1"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="area row">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-10">
+			<!-- 16:9 aspect ratio -->
+			<div class="embed-responsive embed-responsive-16by9">
+			  <iframe class="embed-responsive-item" src="//www.youtube.com/v/CmHHTfuuwEo" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="col-xs-1"></div>
+	</div>
+
+	<div class="area" align="center">
+		<h1>Get Started</h1><br>
+		<h2>Subtitle</h2><br>
+	</div>
+
+	<div class="area row" align="center">
+		<div class="col-xs-5"></div>
+		<button class="col-xs-2 btn btn-default">Sign up</button>
+		<div class="col-xs-5">
+			<h5 align="left"><a href="https://www.facebook.com/Cheng.Ko.tw">Need more help?</a></h5>
+		</div>
+	</div>
 {% endblock %}
-{% block footer %}
 
+{% block footer_base %}
+	<div class="area row">
+		<div class="footer-custom col-xs-12">
+			<div class="footer-text-custom">
+				About us<br>
+				Contact us<br>
+				Fuck KOKO
+			</div>
+		</div>
+	</div>
 {% endblock %}
 
 {% block end_js_extends %}
