@@ -23,45 +23,53 @@ class UserExtensionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserExtension
+        url_field_name = 'user'
 
 
 class UserRelationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserRelation
+        url_field_name = 'user'
 
 
 class SkillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Skill
+        url_field_name = 'user'
 
 
 class ExperienceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Experience
+        url_field_name = 'user'
 
 
 class CollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Collection
+        url_field_name = 'user'
 
 
 class CertificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Certification
+        url_field_name = 'user'
 
 
 class LanguageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Language
+        url_field_name = 'user'
 
 
 class WantToDoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.WantToDo
+        url_field_name = 'user'
