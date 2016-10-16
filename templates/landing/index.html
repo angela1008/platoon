@@ -4,30 +4,72 @@
 
 {% block css_extends %}
 	<style type="text/css">
-		.section{
+		.section {
 			margin-top: 15em;
 		}
-		.area{
+		.area {
 			margin-top: 15em;
 		}
-		.footer-custom{
-			padding: 1.5em;
-			background: #404040;
+		.footer-custom-left {
+			padding-top: 8em;
+			padding-bottom: 8em;
+			background: #4d4d4d;
 		}
-		.footer-text-custom{
+		.footer-custom-right {
+			padding-top: 8em;
+			padding-bottom: 8em;
+			background: #999999;
+		}
+		.footer-text-custom {
 			color: white;
 		}
-
+		.unity-bg {
+			margin-top: 1.5em;
+			padding-bottom: 25em;
+			background: #f2f2f2;
+		}
+		.find-team-bg {
+			padding-top: 5em;
+			padding-bottom: 5em;
+			background: #bfbfbf;
+		}
+		.find-support-bg {
+			padding-top: 5em;
+			padding-bottom: 5em;
+			background: #d9d9d9;
+		}
+		.inner {
+			display: inline-block;
+		}
+		.find-team-button {
+			padding-left: 1.5em;
+			padding-right: 1.5em;
+		}
+		.about-find-team-text {
+			margin-left: 1.5em;
+		}
+		.stylish-input-group .input-group-addon {
+			background: white; 
+		}
+		.stylish-input-group .form-control {
+			border-right:0; 
+			box-shadow:0 0 0; 
+			border-color:#ccc;
+		}
+		.stylish-input-group button {
+			border:0;
+			background:transparent;
+		}
 	</style>
 {% endblock %}
 
 {% block extra_head %}
 {% endblock %}
 
-{% block body %}
+{% block body_base %}
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
+		<div class="container">
 			<button type="button" class="btn btn-default navbar-btn" aria-label="Left Align">
 				<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
 			</button>
@@ -41,108 +83,96 @@
 		</div>
 	</nav>
 
-	<section>
-		<div class="container-fluid">
-			<div class="page-header">
-				<h1>Title <small>Subtext</small></h1>
+	<div class="row">
+		<div class="col-xs-1"></div>
+			<div class="col-xs-10 text-center">
+				<h3>Start to build your network!</h3>
+				<h5>>如何幫助交換名片？</h5>
 			</div>
-			<h3>Subtitle</h3>
-		</div>
-	</section>
-
-	<div class="area">
-		<div class="row">
-			<div class="col-xs-3"></div>
-			<div class="col-xs-6 btn btn-info">Exchange Card</div>
-			<div class="col-xs-3"></div>
-		</div>
+		<div class="col-xs-1"></div>
 	</div>
 
-	<div class="area">
-		<div align="center">
-			<h1>Platoon Feature</h1><br>
-			<h3>Pen Pineapple Apple Pen</h3><br>
-			<h3>Pen Pineapple Apple Pen</h3><br>
-			<h3>Pen Pineapple Apple Pen</h3>
-		</div>
+	<div class="row" >
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 btn btn-default">Exchange Business Card</div>
+		<div class="col-xs-2"></div>
 	</div>
 
-	<div class="area">
-		<div class="container-fluid">
-	 		<div class="row">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<img class="img-responsive img-full center-block" src="http://a0.att.hudong.com/23/92/300001362038132643922121438_950.jpg" alt />
-					<h1>Feature1</h1>
-					<h3>This is the description of Feature1</h3>
-				</div>
-				<div class="col-xs-1"></div>
+
+	<div class="row unity-bg">
+		<div class="col-xs-1"></div>
+			<div class="col-xs-10"">
+				<h3>Unity is strength</h3><br>
+				<h4>提供你的專業大腦，一加一大於二</h4>
+				<h4>透過跨領域的團隊合作認識世界！</h4>
 			</div>
-		</div>
+		<div class="col-xs-1"></div>
 	</div>
 
-	<div class="area">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<img class="img-responsive img-full center-block" src="http://www.akiraclub.com/wp-content/uploads/2015/10/DymyOne-Punch-Man01BIG51280X72002-07-10.jpg" alt>
-					<h1>Feature2</h1>
-					<h3>This is the description of Feature2</h3>
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-		</div>
-	</div>
-
-	<div class="area">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<img class="img-responsive img-full center-block" src="http://i.imgur.com/JyRXxlH.jpg" alt>
-					<h1>Feature3</h1>
-					<h3>This is the description of Feature3</h3>
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-		</div>
-	</div>
-
-	<div class="area row">
+	<div class="row find-team-bg">
 		<div class="col-xs-1"></div>
 		<div class="col-xs-10">
-			<!-- 16:9 aspect ratio -->
-			<div class="embed-responsive embed-responsive-16by9">
-			  <iframe class="embed-responsive-item" src="//www.youtube.com/v/CmHHTfuuwEo" allowfullscreen></iframe>
+			<div class="row">
+				<h2 class="col-xs-12">Find Team</h2>
 			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<h4>尋找你有興趣的主題或競賽，</h4>
+					<h4>加入那些志同道合，共同目標的團隊！</h4>
+				</div>
+			</div>
+
+			<div class="outer">
+				<div class="inner btn btn-default find-team-button">Enter</div>
+				<div class="inner about-find-team-text"><h5>about find team?</h5></div>
+			</div>
+
 		</div>
 		<div class="col-xs-1"></div>
 	</div>
 
-	<div class="area" align="center">
-		<h1>Get Started</h1><br>
-		<h2>Subtitle</h2><br>
+	<div class="row find-support-bg">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-10">
+			<div class="row">
+				<h2 class="col-xs-12">Find Supporters</h2>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h4>腦袋裡塞滿想法，卻找不到同伴嗎？</h4>
+					<h4>找找你需要的專業和人才，現在啟航合作！</h4>
+				</div>
+			</div>
+
+			<div class="input-group stylish-input-group">
+				<input type="text" class="form-control"  placeholder="skills..." >
+				<span class="input-group-addon">
+					<button type="submit">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>  
+				</span>
+			</div><br>
+			<div align="center">about find support?</div>
+
+		</div>
+		<div class="col-xs-1"></div>
+
 	</div>
 
-	<div class="area row" align="center">
-		<div class="col-xs-5"></div>
-		<button class="col-xs-2 btn btn-default">Sign up</button>
-		<div class="col-xs-5">
-			<h5 align="left"><a href="https://www.facebook.com/Cheng.Ko.tw">Need more help?</a></h5>
+	<div class="row">
+		<div class="embed-responsive embed-responsive-16by9 col-xs-12">
+		  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/CmHHTfuuwEo" allowfullscreen ></iframe>
 		</div>
 	</div>
+	
+
 {% endblock %}
 
 {% block footer_base %}
-	<div class="area row">
-		<div class="footer-custom col-xs-12">
-			<div class="footer-text-custom">
-				About us<br>
-				Contact us<br>
-				Fuck KOKO
-			</div>
-		</div>
+	<div class="row">
+		<div class="footer-custom-left col-xs-6"></div>
+		<div class="footer-custom-right col-xs-6"></div>
 	</div>
 {% endblock %}
 
