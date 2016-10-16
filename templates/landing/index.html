@@ -52,15 +52,37 @@
 			background: white; 
 		}
 		.stylish-input-group .form-control {
-			border-right:0; 
-			box-shadow:0 0 0; 
-			border-color:#ccc;
+			border-right: 0; 
+			box-shadow: 0 0 0; 
+			border-color: #ccc;
 		}
 		.stylish-input-group button {
-			border:0;
-			background:transparent;
+			border: 0;
+			background: transparent;
 		}
-	</style>
+		.skills-input-descrpiption {
+			color: #b3b3b3;
+		}
+		.signup-button-text {
+			color: #737373;
+		}
+		.signin-button-text {
+			color: #737373;
+		}
+		.signup-button{
+			width: 100%;
+		}
+		.signin-button {
+			width: 100%;
+		}
+		.hr-line {
+			border-color: #b3b3b3;
+		}
+		.create-new-account-text {
+			margin-bottom: 6em;
+		}
+
+		</style>
 {% endblock %}
 
 {% block extra_head %}
@@ -76,12 +98,67 @@
 
 			<div class="nav pull-right">
 				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default navbar-btn">Sign up</button>
-					<button type="button" class="btn btn-default navbar-btn">Sign in</button>
+					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
 				</div>
 			</div>
 		</div>
 	</nav>
+
+	<!-- Sign up modal -->
+	<div class="modal fade" id="signup-modal" role="dialog">
+		<div class="modal-dialog modal-xs">
+
+			<div class="modal-content">
+				<div class="modal-body row">
+					<div class="col-xs-1"></div>
+					<form class="col-xs-10">
+						<h3 align="center">Platoon<br>Sign Up</h3><br>
+						<div class="form-group" >
+							<input type="text" class="form-control" id="input-name" placeholder="Name"><br>
+							<input type="text" class="form-control" id="input-email" placeholder="Email"><br>
+							<input type="text" class="form-control" id="input-skill" placeholder="Skills (at least one)">
+							<h5 class="skills-input-descrpiption" align="center">skills可以是你的專業，或者是你的興趣。代表的是你想要別人看到你擁有的能力。</h5>
+							<div class="row">
+								<div class="col-xs-1"></div>
+								<div class="col-xs-10"><hr class="hr-line"></div><br>
+								<div class="col-xs-1"></div>
+							</div>
+							<input type="text" class="form-control" id="input-password" placeholder="Password"><br>
+
+							<div class="btn btn-default signup-button" data-dismiss="modal"><h3 class="signup-button-text">SIGN UP</h3>
+							</div>
+						</div>	
+					</form>
+					<div class="col-xs-1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- sign in modal -->
+	<div class="modal fade" id="signin-modal" role="dialog">
+		<div class="modal-dialog modal-xs">
+			<div class="modal-content">
+				<div class="modal-body row">
+					<div class="col-xs-1"></div>
+					<form class="col-xs-10">
+						<h3 align="center">Platoon<br>Sign In</h3><br>
+						<div class="form-group" >
+							<input type="text" class="form-control" id="input-name" placeholder="Name"><br>
+							<input type="text" class="form-control" id="input-email" placeholder="Email"><br>
+							<input type="text" class="form-control" id="input-skill" placeholder="Password">
+							<h5 align="center">forget password?</h5>
+							<h5  class="create-new-account-text" align="center">Creat New Account!</h5>
+							<div class="btn btn-default signin-button" data-dismiss="modal"><h3 class="signin-button-text">SIGN IN</h3>
+							</div>
+						</div>	
+					</form>
+					<div class="col-xs-1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-xs-1"></div>
