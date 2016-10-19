@@ -45,7 +45,6 @@ class UserRelationDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.UserRelation.objects.all()
     serializer_class = serializers.UserRelationSerializer
-    lookup_field = 'user'
 
 class UserSkillList(generics.ListCreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -58,7 +57,6 @@ class UserSkillDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.Skill.objects.all()
     serializer_class = serializers.SkillSerializer
-    lookup_field = 'user'
 
 class UserExperienceList(generics.ListCreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -71,7 +69,6 @@ class UserExperienceDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.Experience.objects.all()
     serializer_class = serializers.ExperienceSerializer
-    lookup_field = 'user'
 
 class UserCollectionList(generics.ListCreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -84,7 +81,6 @@ class UserCollectionDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.Collection.objects.all()
     serializer_class = serializers.CollectionSerializer
-    lookup_field = 'user'
 
 class UserCertificationList(generics.ListCreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -97,7 +93,6 @@ class UserCertificationDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.Certification.objects.all()
     serializer_class = serializers.CertificationSerializer
-    lookup_field = 'user'
 
 class UserLanguageList(generics.ListCreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -110,7 +105,6 @@ class UserLanguageDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.Language.objects.all()
     serializer_class = serializers.LanguageSerializer
-    lookup_field = 'user'
 
 class UserWantToDoList(generics.ListCreateAPIView):
     # authentication_classes = (TokenAuthentication,)
@@ -123,7 +117,6 @@ class UserWantToDoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.WantToDo.objects.all()
     serializer_class = serializers.WantToDoSerializer
-    lookup_field = 'user'
 
 
 

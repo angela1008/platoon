@@ -34,7 +34,7 @@ urlpatterns = [
       views.UserRelationList.as_view(), 
       name='user-relation-list'),
     
-    url(r'^userrelation/(?P<user>[0-9]+)/$', 
+    url(r'^userrelation/(?P<pk>[0-9]+)/$', 
       views.UserRelationDetail.as_view(), 
       name='user-relation-detail'),
 
@@ -42,7 +42,7 @@ urlpatterns = [
       views.UserSkillList.as_view(), 
       name='user-skill-list'),
     
-    url(r'^userskill/(?P<user>[0-9]+)/$', 
+    url(r'^userskill/(?P<pk>[0-9]+)/$', 
       views.UserSkillDetail.as_view(), 
       name='user-skill-detail'),
 
@@ -50,7 +50,7 @@ urlpatterns = [
       views.UserExperienceList.as_view(), 
       name='user-experience-list'),
     
-    url(r'^userexperience/(?P<user>[0-9]+)/$', 
+    url(r'^userexperience/(?P<pk>[0-9]+)/$', 
       views.UserExperienceDetail.as_view(), 
       name='user-experience-detail'),
 
@@ -58,7 +58,7 @@ urlpatterns = [
       views.UserCollectionList.as_view(), 
       name='user-collection-list'),
     
-    url(r'^usercollection/(?P<user>[0-9]+)/$', 
+    url(r'^usercollection/(?P<pk>[0-9]+)/$', 
       views.UserCollectionDetail.as_view(), 
       name='user-collection-detail'),
 
@@ -66,7 +66,7 @@ urlpatterns = [
       views.UserCertificationList.as_view(), 
       name='user-certification-list'),
     
-    url(r'^usercertification/(?P<user>[0-9]+)/$', 
+    url(r'^usercertification/(?P<pk>[0-9]+)/$', 
       views.UserCertificationDetail.as_view(), 
       name='user-certification-detail'),
 
@@ -74,7 +74,7 @@ urlpatterns = [
       views.UserLanguageList.as_view(), 
       name='user-language-list'),
     
-    url(r'^userlanguage/(?P<user>[0-9]+)/$', 
+    url(r'^userlanguage/(?P<pk>[0-9]+)/$', 
       views.UserLanguageDetail.as_view(), 
       name='user-language-detail'),
 
@@ -82,7 +82,7 @@ urlpatterns = [
       views.UserWantToDoList.as_view(), 
       name='user-wanttodo-list'),
     
-    url(r'^userwanttodo/(?P<user>[0-9]+)/$', 
+    url(r'^userwanttodo/(?P<pk>[0-9]+)/$', 
       views.UserWantToDoDetail.as_view(), 
       name='user-wanttodo-detail'),
 ]
