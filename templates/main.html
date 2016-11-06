@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <!-- If you delete this meta tag World War Z will become a reality -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta charset="utf-8"> -->
+        <!-- If you delete this meta tag World War Z will become a reality -->
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
-    <title>{% block head_title %}{% endblock %} | Platoon</title>
-    <!-- 最新編譯和最佳化的 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- 選擇性佈景主題 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    
-    <style type="text/css">
-        .my-body {
-            padding-top: 50px;
-        }
-    </style>
+        <title>{% block head_title %}{% endblock %} | Platoon</title>
+        <!-- 最新編譯和最佳化的 CSS -->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+     -->
+        <!-- 選擇性佈景主題 -->
+    <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
 
-    {% block css_extends %}
-    {% endblock %}
-    {% block extra_head %}
-    {% endblock %}
+     <!-- Material Design fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-</head>
+        <!-- Bootstrap Material Design -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
+            
+        <style type="text/css">
+            .my-body {
+                padding-top: 0px;
+            }
+        </style>
 
-<body class="my-body">
-    {% block body_base %}
-        <div class="container">
-            {% block body %}
-            {% endblock %}
-        </div>
-    {% endblock %}
+        {% block css_extends %}
+        {% endblock %}
+        {% block extra_head %}
+        {% endblock %}
 
-    {% block footer_base %}
-        <footer>
+    </head>
+
+    <body class="my-body">
+        {% block body_base %}
             <div class="container">
-                {% block footer %}
+                {% block body %}
                 {% endblock %}
             </div>
-        </footer>
-    {% endblock %}
+        {% endblock %}
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- 最新編譯和最佳化的 JavaScript -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        {% block footer_base %}
+            <footer>
+                <div class="container">
+                    {% block footer %}
+                    {% endblock %}
+                </div>
+            </footer>
+        {% endblock %}
 
-    {% block end_js_extends %}
-    {% endblock %}
-</body>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
+        <script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+        <script>
+          $('body').bootstrapMaterialDesign();
+        </script>
+
+        {% block end_js_extends %}
+        {% endblock %}
+    </body>
 </html>

@@ -3,255 +3,223 @@
 {% block head_title %}Platoon{% endblock %}
 
 {% block css_extends %}
-	<style type="text/css">
-		.section {
-			margin-top: 15em;
-		}
-		.area {
-			margin-top: 15em;
-		}
-		.footer-custom-left {
-			padding-top: 8em;
-			padding-bottom: 8em;
-			background: #4d4d4d;
-		}
-		.footer-custom-right {
-			padding-top: 8em;
-			padding-bottom: 8em;
-			background: #999999;
-		}
-		.footer-text-custom {
-			color: white;
-		}
-		.unity-bg {
-			margin-top: 1.5em;
-			padding-bottom: 25em;
-			background: #f2f2f2;
-		}
-		.find-team-bg {
-			padding-top: 5em;
-			padding-bottom: 5em;
-			background: #bfbfbf;
-		}
-		.find-support-bg {
-			padding-top: 5em;
-			padding-bottom: 5em;
-			background: #d9d9d9;
-		}
-		.inner {
-			display: inline-block;
-		}
-		.find-team-button {
-			padding-left: 1.5em;
-			padding-right: 1.5em;
-		}
-		.about-find-team-text {
-			margin-left: 1.5em;
-		}
-		.stylish-input-group .input-group-addon {
-			background: white; 
-		}
-		.stylish-input-group .form-control {
-			border-right: 0; 
-			box-shadow: 0 0 0; 
-			border-color: #ccc;
-		}
-		.stylish-input-group button {
-			border: 0;
-			background: transparent;
-		}
-		.skills-input-descrpiption {
-			color: #b3b3b3;
-		}
-		.signup-button-text {
-			color: #737373;
-		}
-		.signin-button-text {
-			color: #737373;
-		}
-		.signup-button{
-			width: 100%;
-		}
-		.signin-button {
-			width: 100%;
-		}
-		.hr-line {
-			border-color: #b3b3b3;
-		}
-		.create-new-account-text {
-			margin-bottom: 6em;
-		}
+<style type="text/css">
+	.section {
+		margin-top: 15em;
+	}
+	.area {
+		margin-top: 15em;
+	}
+	.footer-custom-left {
+		padding-top: 8em;
+		padding-bottom: 8em;
+		background: #4d4d4d;
+	}
+	.footer-custom-right {
+		padding-top: 8em;
+		padding-bottom: 8em;
+		background: #999999;
+	}
+	.footer-text-custom {
+		color: white;
+	}
+	.start-build-network-bg {
+		margin-top: 1.5em;
+	}
+	.unity-bg {
+		margin-top: 1.5em;
+		padding-bottom: 25em;
+		background: #f2f2f2;
+	}
+	.find-team-bg {
+		padding-top: 5em;
+		padding-bottom: 5em;
+		background: #bfbfbf;
+	}
+	.find-support-bg {
+		padding-top: 5em;
+		padding-bottom: 5em;
+		background: #d9d9d9;
+	}
+	.inner {
+		display: inline-block;
+	}
+	.find-team-button {
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+	}
+	.about-find-team-text {
+		margin-left: 1.5em;
+	}
+	.stylish-input-group .input-group-addon {
+		background: white; 
+	}
+	.stylish-input-group .form-control {
+		border-right: 0; 
+		box-shadow: 0 0 0; 
+		border-color: #ccc;
+	}
+	.stylish-input-group button {
+		border: 0;
+		background: transparent;
+	}
+	.skills-input-descrpiption {
+		color: #b3b3b3;
+	}
+	.forgot-passsword-text {
+		color: #b3b3b3;
+	}
+	.create-new-account-text {
+		color: #b3b3b3;	
+	}
+	.signup-button-text {
+		color: #737373;
+	}
+	.signin-button-text {
+		color: #737373;
+	}
+	.signup-button{
+		width: 100%;
+	}
+	.signin-button {
+		width: 100%;
+	}
+	.hr-line {
+		border-color: #b3b3b3;
+	}
+	.create-new-account-text {
+		margin-bottom: 6em;
+	}
+	.drawer-item-line {
+		color: #b3b3b3;
+	}
 
-		</style>
+</style>
 {% endblock %}
 
-{% block extra_head %}
-{% endblock %}platoon/templates/landing/
+{% block extra_head %}{% endblock %}platoon/templates/landing/
 
 {% block body_base %}
 
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<button type="button" class="btn btn-default navbar-btn" aria-label="Left Align">
-				<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-			</button>
+<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+	<!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
 
-			<div class="nav pull-right">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
-					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
+		<header class="bmd-layout-header">
+			<div class="navbar navbar-light bg-faded">
+				<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
+					<span class="sr-only">Toggle drawer</span>
+					<i class="material-icons">menu</i>
+				</button>
+				<div class="nav pull-xs-right">
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+						<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
+		</header>
 
-	<!-- Sign up modal -->
-	<div class="modal fade" id="signup-modal" role="dialog">
-		<div class="modal-dialog modal-xs">
+		{% include 'tools/drawer_unsigned.html' %}		
 
-			<div class="modal-content">
-				<div class="modal-body row">
+		{% include 'tools/sign_in.html' %}
+		{% include 'tools/sign_up.html' %}
+
+		<main class="bmd-layout-content">
+			<div class="container">
+				<div class="row start-build-network-bg" >
 					<div class="col-xs-1"></div>
-					<form class="col-xs-10">
-						<h3 align="center">Platoon<br>Sign Up</h3><br>
-						<div class="form-group" >
-							<input type="text" class="form-control" id="input-name" placeholder="Name"><br>
-							<input type="text" class="form-control" id="input-email" placeholder="Email"><br>
-							<input type="text" class="form-control" id="input-skill" placeholder="Skills (at least one)">
-							<h5 class="skills-input-descrpiption" align="center">skills可以是你的專業，或者是你的興趣。代表的是你想要別人看到你擁有的能力。</h5>
-							<div class="row">
-								<div class="col-xs-1"></div>
-								<div class="col-xs-10"><hr class="hr-line"></div><br>
-								<div class="col-xs-1"></div>
+					<div class="col-xs-10 text-center">
+						<h3>Start to build your network!</h3>
+						<h6>>如何幫助交換名片？</h6>
+						<br>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="row" >
+					<div class="col-xs-2"></div>
+					<div class="col-xs-8 btn btn-raised btn-sm">Exchange Business Card</div>
+					<div class="col-xs-2"></div>
+				</div>
+
+				<div class="row unity-bg">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-10" style="padding-top: 1.5em;">
+						<h3>Unity is strength</h3><br>
+						<h5>提供你的專業大腦，一加一大於二</h5>
+						<h5>透過跨領域的團隊合作認識世界！</h5>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="row find-team-bg">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-10">
+						<div class="row">
+							<h2 class="col-xs-12">Find Team</h2>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<h5>尋找你有興趣的主題或競賽，</h5>
+								<h5>加入那些志同道合，共同目標的團隊！</h5>
 							</div>
-							<input type="text" class="form-control" id="input-password" placeholder="Password"><br>
+						</div>
 
-							<div class="btn btn-default signup-button" data-dismiss="modal"><h3 class="signup-button-text">SIGN UP</h3>
+						<div class="outer">
+							<div class="inner btn btn-raised btn-sm find-team-button">Enter</div>
+							<div class="inner about-find-team-text"><h5>about find team?</h5></div>
+						</div>
+
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="row find-support-bg">
+					<div class="col-xs-1"></div>
+					<div class="col-xs-10">
+						<div class="row">
+							<h2 class="col-xs-12">Find Supporters</h2>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<h5>腦袋裡塞滿想法，卻找不到同伴嗎？</h5>
+								<h5>找找你需要的專業和人才，現在啟航合作！</h5>
 							</div>
-						</div>	
-					</form>
+						</div>
+
+						<div class="input-group stylish-input-group">
+							<input type="text" class="form-control"  placeholder="skills..." >
+							<i class="material-icons">search</i>
+						</div><br>
+						<div align="center">about find support?</div>
+
+					</div>
 					<div class="col-xs-1"></div>
+
 				</div>
-			</div>
-		</div>
-	</div>
 
-		<!-- sign in modal -->
-	<div class="modal fade" id="signin-modal" role="dialog">
-		<div class="modal-dialog modal-xs">
-			<div class="modal-content">
-				<div class="modal-body row">
-					<div class="col-xs-1"></div>
-					<form class="col-xs-10">
-						<h3 align="center">Platoon<br>Sign In</h3><br>
-						<div class="form-group" >
-							<input type="text" class="form-control" id="input-name" placeholder="Name"><br>
-							<input type="text" class="form-control" id="input-email" placeholder="Email"><br>
-							<input type="text" class="form-control" id="input-skill" placeholder="Password">
-							<h5 align="center">forget password?</h5>
-							<h5  class="create-new-account-text" align="center">Creat New Account!</h5>
-							<div class="btn btn-default signin-button" data-dismiss="modal"><h3 class="signin-button-text">SIGN IN</h3>
-							</div>
-						</div>	
-					</form>
-					<div class="col-xs-1"></div>
+				<div class="row">
+					<div class="embed-responsive embed-responsive-16by9 col-xs-12">
+						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rzc3_b_KnHc" allowfullscreen ></iframe>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-1"></div>
-			<div class="col-xs-10 text-center">
-				<h3>Start to build your network!</h3>
-				<h5>>如何幫助交換名片？</h5>
-			</div>
-		<div class="col-xs-1"></div>
-	</div>
-
-	<div class="row" >
-		<div class="col-xs-2"></div>
-		<div class="col-xs-8 btn btn-default">Exchange Business Card</div>
-		<div class="col-xs-2"></div>
-	</div>
 
 
-	<div class="row unity-bg">
-		<div class="col-xs-1"></div>
-			<div class="col-xs-10"">
-				<h3>Unity is strength</h3><br>
-				<h4>提供你的專業大腦，一加一大於二</h4>
-				<h4>透過跨領域的團隊合作認識世界！</h4>
-			</div>
-		<div class="col-xs-1"></div>
-	</div>
+				{% endblock %}
 
-	<div class="row find-team-bg">
-		<div class="col-xs-1"></div>
-		<div class="col-xs-10">
-			<div class="row">
-				<h2 class="col-xs-12">Find Team</h2>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-xs-12">
-					<h4>尋找你有興趣的主題或競賽，</h4>
-					<h4>加入那些志同道合，共同目標的團隊！</h4>
+				{% block footer_base %}
+				<div class="row">
+					<div class="footer-custom-left col-xs-6"></div>
+					<div class="footer-custom-right col-xs-6"></div>
 				</div>
+				{% endblock %}
 			</div>
+		</main>
+</div>
 
-			<div class="outer">
-				<div class="inner btn btn-default find-team-button">Enter</div>
-				<div class="inner about-find-team-text"><h5>about find team?</h5></div>
-			</div>
 
-		</div>
-		<div class="col-xs-1"></div>
-	</div>
 
-	<div class="row find-support-bg">
-		<div class="col-xs-1"></div>
-		<div class="col-xs-10">
-			<div class="row">
-				<h2 class="col-xs-12">Find Supporters</h2>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<h4>腦袋裡塞滿想法，卻找不到同伴嗎？</h4>
-					<h4>找找你需要的專業和人才，現在啟航合作！</h4>
-				</div>
-			</div>
-
-			<div class="input-group stylish-input-group">
-				<input type="text" class="form-control"  placeholder="skills..." >
-				<span class="input-group-addon">
-					<button type="submit">
-						<span class="glyphicon glyphicon-search"></span>
-					</button>  
-				</span>
-			</div><br>
-			<div align="center">about find support?</div>
-
-		</div>
-		<div class="col-xs-1"></div>
-
-	</div>
-
-	<div class="row">
-		<div class="embed-responsive embed-responsive-16by9 col-xs-12">
-		  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/CmHHTfuuwEo" allowfullscreen ></iframe>
-		</div>
-	</div>
-	
-
-{% endblock %}
-
-{% block footer_base %}
-	<div class="row">
-		<div class="footer-custom-left col-xs-6"></div>
-		<div class="footer-custom-right col-xs-6"></div>
-	</div>
-{% endblock %}
-
-{% block end_js_extends %}
-{% endblock %}
+	{% block end_js_extends %}
+	{% endblock %}
