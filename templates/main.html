@@ -23,12 +23,9 @@
 
         <!-- Bootstrap Material Design -->
         <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
-            
-        <style type="text/css">
-            .my-body {
-                padding-top: 0px;
-            }
-        </style>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static "main.css" %}">
 
         {% block css_extends %}
         {% endblock %}

@@ -1,0 +1,89 @@
+.section {
+	margin-top: 15em;
+}
+.area {
+	margin-top: 15em;
+}
+.footer-custom-left {
+	padding-top: 8em;
+	padding-bottom: 8em;
+	background: #4d4d4d;
+}
+.footer-custom-right {
+	padding-top: 8em;
+	padding-bottom: 8em;
+	background: #999999;
+}
+.footer-text-custom {
+	color: white;
+}
+.start-build-network-bg {
+	margin-top: 1.5em;
+}
+.unity-bg {
+	margin-top: 1.5em;
+	padding-bottom: 25em;
+	background: #f2f2f2;
+}
+.find-team-bg {
+	padding-top: 5em;
+	padding-bottom: 5em;
+	background: #bfbfbf;
+}
+.find-support-bg {
+	padding-top: 5em;
+	padding-bottom: 5em;
+	background: #d9d9d9;
+}
+.inner {
+	display: inline-block;
+}
+.find-team-button {
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+}
+.about-find-team-text {
+	margin-left: 1.5em;
+}
+.stylish-input-group .input-group-addon {
+	background: white; 
+}
+.stylish-input-group .form-control {
+	border-right: 0; 
+	box-shadow: 0 0 0; 
+	border-color: #ccc;
+}
+.stylish-input-group button {
+	border: 0;
+	background: transparent;
+}
+.skills-input-descrpiption {
+	color: #b3b3b3;
+}
+.forgot-passsword-text {
+	color: #b3b3b3;
+}
+.create-new-account-text {
+	color: #b3b3b3;	
+}
+.signup-button-text {
+	color: #737373;
+}
+.signin-button-text {
+	color: #737373;
+}
+.signup-button{
+	width: 100%;
+}
+.signin-button {
+	width: 100%;
+}
+.hr-line {
+	border-color: #b3b3b3;
+}
+.create-new-account-text {
+	margin-bottom: 6em;
+}
+.drawer-item-line {
+	color: #b3b3b3;
+}
