@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load render_bundle from webpack_loader %}
 <html>
     <head>
 
@@ -13,11 +14,11 @@
         <title>{% block head_title %}{% endblock %} | Platoon</title>
         <!-- 最新編譯和最佳化的 CSS -->
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-     -->
+        -->
         <!-- 選擇性佈景主題 -->
-    <!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
 
-     <!-- Material Design fonts -->
+        <!-- Material Design fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -25,7 +26,7 @@
         <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
 
         {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}"> -->
 
         {% block css_extends %}
         {% endblock %}
@@ -35,6 +36,10 @@
     </head>
 
     <body class="my-body">
+
+        <!-- Test react qr code exchange function -->
+        <div id="react-qr-code"></div>
+
         {% block body_base %}
             <div class="container">
                 {% block body %}
@@ -56,6 +61,7 @@
         <script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+        {% render_bundle 'main' %}
         <script>
           $('body').bootstrapMaterialDesign();
         </script>
