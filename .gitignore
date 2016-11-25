@@ -54,3 +54,10 @@ nosetests.xml
 [Ii]nclude
 [Ll]ib
 [Ss]cripts
+
+# NPM
+node_modules
+
+# Webpack
+webpack-stats.json
+# webpack_bundles
