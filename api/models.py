@@ -11,6 +11,13 @@ def collection_pic_name(instance, filename):
     # ext = filename.split(".")[-1]
     return 'collection_pic/' + filename
 
+# User who only interested before production online
+class InterestedUser(models.Model):
+    from_ip = models.CharField(max_length=254)
+    email = models.CharField(max_length=254)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
 # User's extension fields
 class UserExtension(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -74,7 +81,7 @@ class Certification(models.Model):
     start_year = models.CharField(max_length=5, null=True, blank=True)
     end_year = models.CharField(max_length=5, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)    
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 # Languages, provide mother language
 class Language(models.Model):
