@@ -1,0 +1,104 @@
+{% extends "main.html" %}
+
+{% block head_title %}Platoon{% endblock %}
+
+{% block css_extends %}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/business_card_page/business_card_main_page.css" %}">
+{% endblock %}
+
+{% block extra_head %}{% endblock %}platoon/templates/landing/
+
+{% block body_base %}
+
+<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+
+	<header class="bmd-layout-header">
+		<div class="navbar navbar-light bg-faded">
+			<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
+				<span class="sr-only">Toggle drawer</span>
+				<i class="material-icons">menu</i>
+			</button>
+			<div class="nav pull-xs-right">
+				<div class="btn-group" role="group">
+					<button type="button" class="navbar-btn">
+						<i class="material-icons">email</i>
+					</button>
+					<button type="button" class="navbar-btn">
+						<i class="material-icons">account_circle</i>
+					</button>
+					<button type="button" class="navbar-btn">
+						<i class="material-icons">Settings</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	{% include 'tools/drawer_unsigned.html' %}
+
+	<main class="bmd-layout-content">
+
+		<div class="business-card-head">
+			<div class="business-card-text" align="center">
+				<i class="material-icons">account_circle</i>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10" align="center">
+				<a class="outer" href="" >
+			      	<div class="inner">
+				      	<i class="material-icons">contact_mail</i>
+			      	</div>
+			      	<h2 class="inner">Show Card View</h2>
+			    </a>
+				<div><hr class="hr-line"></div>
+
+			    <a class="outer" href="" >
+			      	<div class="inner">
+				      	<i class="material-icons">mode_edit</i>
+			      	</div>
+			      	<h2 class="inner">Edit Business Card</h2>
+			    </a>
+				<div><hr class="hr-line"></div>
+
+				<a class="outer" href="" >
+			      	<div class="inner">
+				      	<i class="material-icons">view_comfy</i>
+			      	</div>
+			      	<h2 class="inner">Change Card Design</h2>
+			    </a>
+				<div><hr class="hr-line"></div>
+
+				<a class="outer" href="" >
+			      	<div class="inner">
+				      	<i class="material-icons">drafts</i>
+			      	</div>
+			      	<h2 class="inner">Card Box</h2>
+			    </a>
+				<div><hr class="hr-line"></div>
+
+				<div class="outer">
+			      	<h2 class="inner">   </h2>
+			    </div>
+				<div><hr class="hr-line"></div>
+
+				<a class="outer" href="" >
+			      	<div class="inner">
+				      	<i class="material-icons">delete</i>
+			      	</div>
+			      	<h2 class="inner">Delete Account</h2>
+			    </a>
+			    <div><hr class="hr-line"></div>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+	</main>
+</div>
+
+
+{% block end_js_extends %}
+{% endblock %}
+{% endblock %}
