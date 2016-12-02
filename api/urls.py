@@ -15,9 +15,14 @@ urlpatterns = [
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # InterestedUser
+    url(r'^interested-user/$',
+        viewCus.InterestedUser.as_view(),
+        name='interested-user'),
+
+    # InterestedUserList
     url(r'^interested-users/$',
-        viewCus.InterestedList.as_view(),
-        name='interested-users-list'),
+        viewCus.InterestedUserList.as_view(),
+        name='interested-user-list'),
 
     # User
     url(r'^users/$',

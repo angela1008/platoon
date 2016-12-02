@@ -5,11 +5,11 @@ from django.db import models
 
 def content_file_name(instance, filename):
     ext = filename.split(".")[-1]
-    return 'user_pic/' + str(instance.user.username) + '.' + ext
+    return 'media/user_pic/' + str(instance.user.username) + '.' + ext
 
 def collection_pic_name(instance, filename):
     # ext = filename.split(".")[-1]
-    return 'collection_pic/' + filename
+    return 'media/collection_pic/' + filename
 
 # User who only interested before production online
 class InterestedUser(models.Model):
