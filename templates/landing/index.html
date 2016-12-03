@@ -1,13 +1,12 @@
 {% extends "main.html" %}
 
 {% block head_title %}Platoon{% endblock %}
-	
+
 {% block css_extends %}
 {% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static "css/landing/index.css" %}">
-{% endblock %}
-
 {% block extra_head %}{% endblock %}
+{% endblock %}
 
 {% block body_base %}
 
@@ -29,85 +28,62 @@
 			</div>
 		</header>
 
-		{% include 'tools/drawer_unsigned.html' %}		
+		{% include 'tools/drawer_unsigned.html' %}
 
 		{% include 'tools/sign_in.html' %}
 		{% include 'tools/sign_up.html' %}
 
 		<main class="bmd-layout-content">
 			<div class="container">
-				<div class="row start-build-network-bg" >
+				<div class="row start-build-card-bg text-center" >
+						<div class="col-xs-1"></div>
+						<div class="col-xs-10">
+							<h2>Platoon</h2>
+							<h4>現在就開始交換名片吧</h4>
+							<br>
+						</div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-8 btn btn-raised btn-sm">
+							Exchange Business Card
+						</div>
+						<div class="col-xs-2"></div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-10">
+							<h6>>遇到困難? 立即聯絡我們!</h6>
+						</div>
+						<div class="col-xs-1"></div>
+				</div>
+
+				<div class="row slogan-easy-bg">
 					<div class="col-xs-1"></div>
-					<div class="col-xs-10 text-center">
-						<h3>Start to build your network!</h3>
-						<h6>>如何幫助交換名片？</h6>
-						<br>
+					<div class="col-xs-10">
+						<h2>更容易攜帶的名片</h2><br>
+						<h4>只要拿出手機，就能輕鬆交換</h4>
+						<h4>再也不怕紙本不夠用</h4>
 					</div>
 					<div class="col-xs-1"></div>
-				</div>
-
-				<div class="row" >
-					<div class="col-xs-2"></div>
-					<div class="col-xs-8 btn btn-raised btn-sm">Exchange Business Card</div>
-					<div class="col-xs-2"></div>
-				</div>
-
-				<div class="row unity-bg">
-					<div class="col-xs-1"></div>
-					<div class="col-xs-10" style="padding-top: 1.5em;">
-						<h3>Unity is strength</h3><br>
-						<h5>提供你的專業大腦，一加一大於二</h5>
-						<h5>透過跨領域的團隊合作認識世界！</h5>
+					<div>
+						<img src="http://i.cdn.cnn.com/cnn/.e/img/3.0/branding/backgrounds/on-the-road-japan/ontheroadjapan-background-full.jpg" class="img-fluid" alt="" >
 					</div>
-					<div class="col-xs-1"></div>
 				</div>
 
-				<div class="row find-team-bg">
+				<div class="row slogan-synchronize-bg">
 					<div class="col-xs-1"></div>
 					<div class="col-xs-10">
 						<div class="row">
-							<h2 class="col-xs-12">Find Team</h2>
-						</div>
-						<br>
-						<div class="row">
 							<div class="col-xs-12">
-								<h5>尋找你有興趣的主題或競賽，</h5>
-								<h5>加入那些志同道合，共同目標的團隊！</h5>
+								<h2>與紙本合作，輕鬆整合</h2>
+								<h4>紙本和電子同步設計</h4>
+								<h4>任何情況，都游刃有餘的交換</h4>
 							</div>
 						</div>
-
-						<div class="outer">
-							<div class="inner btn btn-raised btn-sm find-team-button">Enter</div>
-							<div class="inner about-find-team-text"><h5>about find team?</h5></div>
-						</div>
-
+					</div>
+					<div>
+						<img src="http://i.cdn.cnn.com/cnn/.e/img/3.0/branding/backgrounds/on-the-road-japan/ontheroadjapan-background-full.jpg" class="img-fluid" alt="" >
 					</div>
 					<div class="col-xs-1"></div>
 				</div>
-
-				<div class="row find-support-bg">
-					<div class="col-xs-1"></div>
-					<div class="col-xs-10">
-						<div class="row">
-							<h2 class="col-xs-12">Find Supporters</h2>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<h5>腦袋裡塞滿想法，卻找不到同伴嗎？</h5>
-								<h5>找找你需要的專業和人才，現在啟航合作！</h5>
-							</div>
-						</div>
-
-						<div class="input-group stylish-input-group">
-							<input type="text" class="form-control"  placeholder="skills..." >
-							<i class="material-icons">search</i>
-						</div><br>
-						<div align="center">about find support?</div>
-
-					</div>
-					<div class="col-xs-1"></div>
-
 				</div>
 
 				<div class="row">

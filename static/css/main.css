@@ -1,7 +1,28 @@
-.my-body {
-    padding-top: 0px;
+html {
+  font-size: 12px;
 }
 
-.text-supre-color {
-    color: red;
+body {
+  line-height: 0;
+  background-color: #ffffff;
+}
+
+/* 36,30,24,18,14,12px */
+h1 {
+  3rem;
+}
+h2 {
+  2.5rem;
+}
+h3 {
+  2rem;
+}
+h4 {
+  1.5rem;
+}
+h5 {
+  1.166rem;
+}
+h6{
+  1rem;
 }

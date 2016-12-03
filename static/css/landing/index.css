@@ -1,56 +1,49 @@
-.section {
-	margin-top: 15em;
+.text-center {
+	text-align: center;
 }
-.area {
-	margin-top: 15em;
-}
+
+/* footer */
 .footer-custom-left {
-	padding-top: 8em;
-	padding-bottom: 8em;
+	padding-top: 8rem;
+	padding-bottom: 8rem;
 	background: #4d4d4d;
 }
 .footer-custom-right {
-	padding-top: 8em;
-	padding-bottom: 8em;
+	padding-top: 8rem;
+	padding-bottom: 8rem;
 	background: #999999;
 }
 .footer-text-custom {
 	color: white;
 }
-.start-build-network-bg {
-	margin-top: 1.5em;
+
+/* block 'start to exchange card' */
+.start-build-card-bg {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	background-image: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRxBnuszarS7lPfyAfmRCRfqO-9pzR9orY78AZNbX5nST0OaXij');
+	background-size: 1000px 800px;
 }
-.unity-bg {
-	margin-top: 1.5em;
-	padding-bottom: 25em;
+
+/* slogan block 'easy to use' */
+.slogan-easy-bg {
+	padding-top: 2.5rem;
+	padding-bottom: 0rem;
 	background: #f2f2f2;
 }
-.find-team-bg {
-	padding-top: 5em;
-	padding-bottom: 5em;
+
+/* slogan block 'virtual and paper synchronize' */
+.slogan-synchronize-bg {
+	padding-top: 2.5rem;
+	padding-bottom: 0rem;
 	background: #bfbfbf;
 }
-.find-support-bg {
-	padding-top: 5em;
-	padding-bottom: 5em;
-	background: #d9d9d9;
-}
-.inner {
-	display: inline-block;
-}
-.find-team-button {
-	padding-left: 1.5em;
-	padding-right: 1.5em;
-}
-.about-find-team-text {
-	margin-left: 1.5em;
-}
 .stylish-input-group .input-group-addon {
-	background: white; 
+	background: white;
 }
 .stylish-input-group .form-control {
-	border-right: 0; 
-	box-shadow: 0 0 0; 
+	border-right: 0;
+	box-shadow: 0 0 0;
 	border-color: #ccc;
 }
 .stylish-input-group button {
@@ -64,7 +57,7 @@
 	color: #b3b3b3;
 }
 .create-new-account-text {
-	color: #b3b3b3;	
+	color: #b3b3b3;
 }
 .signup-button-text {
 	color: #737373;
@@ -82,7 +75,7 @@
 	border-color: #b3b3b3;
 }
 .create-new-account-text {
-	margin-bottom: 6em;
+	margin-bottom: 6rem;
 }
 .drawer-item-line {
 	color: #b3b3b3;
