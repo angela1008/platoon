@@ -61,3 +61,7 @@ node_modules
 # Webpack
 webpack-stats.json
 # webpack_bundles
+
+#ssh
+ankao_gitlab_ssh_key
+ankao_gitlab_ssh_key.pub

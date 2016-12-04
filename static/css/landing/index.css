@@ -1,3 +1,18 @@
+a:link {
+    color: #202020;
+    text-decoration: none !important;
+}
+
+/* mouse over link */
+a:hover {
+    color: green;
+}
+
+/* selected link */
+a:active {
+    color: color: #202020;
+}
+
 .section {
 	margin-top: 15em;
 }
@@ -86,4 +101,7 @@
 }
 .drawer-item-line {
 	color: #b3b3b3;
+}
+.drawer-item {
+	color: #202020;
 }

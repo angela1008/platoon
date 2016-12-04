@@ -1,8 +1,46 @@
-.business-card-head {
-	padding-top: 5em;
-	padding-bottom: 5em;
-	background: #d9d9d9;
+.exchange-card-head {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	background: #3e3e3e;
 }
-.business-card-text {
-	color: #00000;
+.exchange-card-text {
+	color: #FFFFFF;
 }
+.exchange-card-content {
+	margin-top: 2.5rem;
+}
+.exchange-card-text-or {
+	color: #202020;
+	margin-top: 1rem;
+}
+.exchange-card-show-id-button {
+	background-color: #3e3e3e;
+}
+.exchange-card-show-id-button-text {
+	color: #FFFFFF;
+}
+.exchange-card-dialog-title {
+	color: #202020;
+}
+.exchange-card-dialog-description {
+	color: #c3c3c3;
+	margin-bottom: 8rem;
+}
+.exchange-card-show-id-text {
+	color: #202020;
+}
+.exchange-card-show-id-count-down-timer {
+	color: #202020;
+	margin-bottom: 1.5rem;
+}
+.exchange-card-finish-text {
+	color: #c3c3c3;
+}
+.exchange_carg_enter_id_text {
+	color: #202020;
+	margin-bottom: 1.5rem;
+} 
+.exchange-card-finish-content {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+ }

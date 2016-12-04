@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webpack_loader',
     'apps.landing',
+    'apps.exchange_card',
 ]
 
 MIDDLEWARE = [

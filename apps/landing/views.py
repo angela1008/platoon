@@ -4,6 +4,3 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request, 'landing/index.html')
-
-def exchange_page(request):
-	return render(request, 'exchange_card_page')
