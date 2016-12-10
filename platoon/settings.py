@@ -81,6 +81,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
+          'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
           'read_default_file': os.path.join(BASE_DIR, 'platoon/config/mysql.cnf'),
         }
     }

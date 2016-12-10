@@ -1,1 +1,0 @@
-/home/u10216026/django/myvenv/platoon/manage.py

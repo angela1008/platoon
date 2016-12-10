@@ -66,3 +66,8 @@ class WantToDoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.WantToDo
+
+class GenExgQrSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.GenExgQr

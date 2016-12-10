@@ -74,7 +74,7 @@ class Certification(models.Model):
     start_year = models.CharField(max_length=5, null=True, blank=True)
     end_year = models.CharField(max_length=5, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)    
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 # Languages, provide mother language
 class Language(models.Model):
@@ -92,3 +92,10 @@ class WantToDo(models.Model):
     order = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+# Generate Exchange Qrcode
+class GenExgQr(models.Model):
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="from_user", null=True, blank=True)
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="to_user", null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    expired_at = models.DateTimeField(null=True, blank=True)
