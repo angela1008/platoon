@@ -1,8 +1,12 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
-var GenQrCode = require('./qr_exchange/genQrCode')
+var GenQrCodeButton = require('./qr_exchange/buttonGenQr')
 
 ReactDOM.render(
-	<GenQrCode dataUrl="http://localhost:8000/platoon-api/genexgqr/?user=1" />,
-	document.getElementById('react-qr-code')
+	<GenQrCodeButton />,
+	document.getElementById('show-id-button')
 );
+
+$('#show-id-modal').on('hidden.bs.modal', function () {
+    ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+});
