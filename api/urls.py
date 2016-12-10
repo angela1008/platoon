@@ -1,7 +1,9 @@
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+
 from api import views,qrcode
+from api import views_customer as viewCus
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -11,7 +13,17 @@ from api import views,qrcode
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     # url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # InterestedUser
+    url(r'^interested-user/$',
+        viewCus.InterestedUser.as_view(),
+        name='interested-user'),
+
+    # InterestedUserList
+    url(r'^interested-users/$',
+        viewCus.InterestedUserList.as_view(),
+        name='interested-user-list'),
 
     # User
     url(r'^users/$',

@@ -5,11 +5,18 @@ from django.db import models
 
 def content_file_name(instance, filename):
     ext = filename.split(".")[-1]
-    return 'user_pic/' + str(instance.user.username) + '.' + ext
+    return 'media/user_pic/' + str(instance.user.username) + '.' + ext
 
 def collection_pic_name(instance, filename):
     # ext = filename.split(".")[-1]
-    return 'collection_pic/' + filename
+    return 'media/collection_pic/' + filename
+
+# User who only interested before production online
+class InterestedUser(models.Model):
+    from_ip = models.CharField(max_length=254)
+    email = models.CharField(max_length=254)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 # User's extension fields
 class UserExtension(models.Model):
