@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'webpack_loader',
+    'api',
     'apps.landing',
     'apps.exchange_card',
 ]
@@ -82,6 +84,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
+          'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
           'read_default_file': os.path.join(BASE_DIR, 'platoon/config/mysql.cnf'),
         }
     }
@@ -129,7 +132,6 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
-
 # Webpack
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -140,4 +142,11 @@ WEBPACK_LOADER = {
         'TIMEOUT': None,
         'IGNORE': ['.+\.hot-update.js', '.+\.map']
     }
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
