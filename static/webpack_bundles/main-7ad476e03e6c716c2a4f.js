@@ -21460,7 +21460,7 @@
 	    }
 
 	    onGenQrClick() {
-	        ReactDOM.render(React.createElement(GenQrCodePage, { dataUrl: 'http://localhost:8000/platoon-api/genexgqr/?user=1' }), document.getElementById('exchange-card-modal'));
+	        ReactDOM.render(React.createElement(GenQrCodePage, { dataUrl: 'http://127.0.0.1:8000/platoon-api/genexgqr/?from_user=1' }), document.getElementById('exchange-card-modal'));
 	    }
 
 	    render() {
@@ -21494,7 +21494,7 @@
 	    componentWillUnmount() {
 	        // This method is called immediately before the component is removed
 	        // from the page and destroyed. We can send cancel request here:
-	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-platoon-timer'));
+	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-platoon-counter'));
 	        // TODO Send cancel request
 	        // $.ajax({
 	        //     url: this.props.dataURL,
@@ -21511,12 +21511,22 @@
 
 	    // Get exchange id and action url for user to do the card exchange
 	    componentDidMount() {
+	        console.log(this.props.dataUrl);
 	        $.ajax({
-	            url: this.props.dataURL,
+	            url: this.props.dataUrl,
 	            dataType: 'json',
-	            cache: false,
 	            success: function (data) {
 	                this.exchange_code = data;
+	                // TODO render id and start countdown
+	                const element = React.createElement(
+	                    'div',
+	                    null,
+	                    this.exchange_code.id
+	                );
+
+	                ReactDOM.render(element, document.getElementById('exchange-platoon-id'));
+
+	                ReactDOM.render(React.createElement(ExpireCounter, { start: '300', countCallback: this.handleRequestCallback }), document.getElementById('exchange-platoon-counter'));
 	            }.bind(this),
 	            error: function (xhr, status, err) {
 	                console.error(xhr, status, err);
@@ -21541,10 +21551,10 @@
 	            React.createElement(
 	                'h2',
 	                { id: 'exchange-platoon-id', className: 'exchange-card-show-id-text' },
-	                'this.exchange_code.exchange_code'
+	                'Generating ID...'
 	            ),
 	            React.createElement('hr', null),
-	            React.createElement(ExpireCounter, { start: '300', countCallback: this.handleRequestCallback }),
+	            React.createElement('div', { id: 'exchange-platoon-counter' }),
 	            React.createElement(
 	                'h5',
 	                { className: 'exchange-card-dialog-description' },

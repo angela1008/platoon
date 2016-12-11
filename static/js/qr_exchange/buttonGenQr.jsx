@@ -15,7 +15,7 @@ class GenQrCodeButton extends React.Component {
 
     onGenQrClick() {
         ReactDOM.render(
-    		<GenQrCodePage dataUrl="http://localhost:8000/platoon-api/genexgqr/?user=1" />,
+    		<GenQrCodePage dataUrl="http://127.0.0.1:8000/platoon-api/genexgqr/?from_user=1" />,
     		document.getElementById('exchange-card-modal')
     	);
     }
