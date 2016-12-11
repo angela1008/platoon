@@ -1,6 +1,15 @@
+/*.btn {
+	background-color: rgb(255, 255, 255);
+}*/
+
+/* About content & text */
 .text-center {
 	text-align: center;
 }
+h2.title {
+	/*padding-top: 2rem;*/
+}
+
 
 /* footer */
 .footer-custom-left {
@@ -18,12 +27,23 @@
 }
 
 /* block 'start to exchange card' */
-.start-build-card-bg {
-	padding-top: 1.5rem;
+.start-exchange-card-bg {
+	width: auto;
+	height: 450px;
+	padding-top: 5rem;
 	padding-bottom: 1.5rem;
-	background-image: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRxBnuszarS7lPfyAfmRCRfqO-9pzR9orY78AZNbX5nST0OaXij');
-	background-size: 1000px 800px;
+	background-image: url('http://sistemas.cesmac.edu.br/sic-web/assets/admin/pages/media/bg/1.jpg');
+	background-size: 100% 100%
 }
+.start-exchange-card-bg .btn {
+	background-color: rgba(255, 255, 255, 0.7);
+	width: auto;
+	padding: 2rem 0rem;
+	font-size: 1.166rem;
+	line-height: 0;
+	max-height: 1px;
+}
+
 
 /* slogan block 'easy to use' */
 .slogan-easy-bg {

@@ -5,8 +5,8 @@
 {% block css_extends %}
 {% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static "css/landing/index.css" %}">
-{% block extra_head %}{% endblock %}
 {% endblock %}
+{% block extra_head %}{% endblock %}
 
 {% block body_base %}
 
@@ -35,22 +35,21 @@
 
 		<main class="bmd-layout-content">
 			<div class="container">
-				<div class="row start-build-card-bg text-center" >
+				<div class="row start-exchange-card-bg text-center" >
 						<div class="col-xs-1"></div>
-						<div class="col-xs-10">
-							<h2>Platoon</h2>
-							<h4>現在就開始交換名片吧</h4>
-							<br>
+						<div class="col-xs-10 slogan-exchange-now">
+							<h2 class="title">Platoon</h2>
+							<h5 class="subtitle">現在就開始交換名片吧</h4>
 						</div>
 						<div class="col-xs-1"></div>
 						<div class="col-xs-2"></div>
-						<div class="col-xs-8 btn btn-raised btn-sm">
+						<button class="col-xs-8 btn btn-outline-primary waves-effect">
 							Exchange Business Card
-						</div>
+						</button>
 						<div class="col-xs-2"></div>
 						<div class="col-xs-1"></div>
 						<div class="col-xs-10">
-							<h6>>遇到困難? 立即聯絡我們!</h6>
+							<h6 class="help-text">>遇到困難? 立即聯絡我們!</h6>
 						</div>
 						<div class="col-xs-1"></div>
 				</div>
@@ -58,9 +57,9 @@
 				<div class="row slogan-easy-bg">
 					<div class="col-xs-1"></div>
 					<div class="col-xs-10">
-						<h2>更容易攜帶的名片</h2><br>
-						<h4>只要拿出手機，就能輕鬆交換</h4>
-						<h4>再也不怕紙本不夠用</h4>
+						<h2 class="title">更容易攜帶的名片</h2><br>
+						<h4 class="content-text">只要拿出手機，就能輕鬆交換</h4>
+						<h4 class="content-text">再也不怕紙本不夠用</h4>
 					</div>
 					<div class="col-xs-1"></div>
 					<div>
@@ -71,18 +70,14 @@
 				<div class="row slogan-synchronize-bg">
 					<div class="col-xs-1"></div>
 					<div class="col-xs-10">
-						<div class="row">
-							<div class="col-xs-12">
-								<h2>與紙本合作，輕鬆整合</h2>
-								<h4>紙本和電子同步設計</h4>
-								<h4>任何情況，都游刃有餘的交換</h4>
-							</div>
-						</div>
+								<h2 class="subtitle">與紙本合作，輕鬆整合</h2>
+								<h4 class="content-text">紙本和電子同步設計</h4>
+								<h4 class="content-text">任何情況，都游刃有餘的交換</h4>
 					</div>
+					<div class="col-xs-1"></div>
 					<div>
 						<img src="http://i.cdn.cnn.com/cnn/.e/img/3.0/branding/backgrounds/on-the-road-japan/ontheroadjapan-background-full.jpg" class="img-fluid" alt="" >
 					</div>
-					<div class="col-xs-1"></div>
 				</div>
 				</div>
 
