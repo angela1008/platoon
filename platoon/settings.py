@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'apps.landing',
     'apps.exchange_card',
+    'apps.personal_card',
 ]
 
 MIDDLEWARE = [

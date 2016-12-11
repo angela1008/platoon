@@ -1,0 +1,24 @@
+.card-box-head {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	background: #3e3e3e;
+}
+.card-box-text {
+	color: #FFFFFF;
+}
+.search-card-box {
+	margin-top: 2.5rem;
+}
+.card-list {
+	margin-top: 1.5rem;
+}
+.name {
+	color: #202020;
+}
+.nickname {
+	color: #202020;	
+}
+.receive-date {
+	float: right;
+	color: #c3c3c3;
+}

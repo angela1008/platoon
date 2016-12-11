@@ -1,0 +1,17 @@
+.personal_card {
+	margin-top: 2rem;
+}
+.table {
+	margin-top: 2rem;
+}
+.exchange-card-finish-text{
+	color: #c3c3c3;
+}
+
+.description-column {
+	word-wrap: break-word;
+	color: #c3c3c3;
+}
+.title-column {
+	color: #202020;
+}

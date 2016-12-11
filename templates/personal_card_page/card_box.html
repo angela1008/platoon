@@ -4,7 +4,7 @@
 
 {% block css_extends %}
 	{% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static "css/exchange_card_page/exchange_card_page.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "css/personal_card_page/card_box.css" %}">
 {% endblock %}
 
 {% block extra_head %}{% endblock %}platoon/templates/landing/
@@ -44,36 +44,51 @@
 
 	<main class="bmd-layout-content">
 
-		<div class="exchange-card-head">
-			<div class="exchange-card-text" align="center">
-				<h2>Business Card</h2>
-				<h6>face to face, exchange easily!</h6>	
+		<div class="card-box-head">
+			<div class="card-box-text" align="center">
+				<h2>Card Box</h2>
+				<h6>search and manage your card</h6>	
 			</div>
 		</div>
-
-		<div class="exchange-card-content row">
+		
+		<div class="row">
 			<div class="col-xs-1"></div>
-			<div class="col-xs-10" align="center">
-				<h2 class="exchange_carg_enter_id_text">Enter Other's Platoon ID</h2> 
-				<!-- Enter other's ID-->
-				<input type="number" class="form-control">
-				<h3 class="exchange-card-text-or">or</h3>
-				<hr> 
-				<!-- show ID dialog-->
-				<div class="btn btn-raised btn-lg exchange-card-show-id-button" data-toggle="modal" data-target="#show-id-modal" id="show-id-button">
-					<h5 class="exchange-card-show-id-button-text">Show Platoon ID</h5>
+			<div class="col-xs-10">
+				<!-- search box for searching card list -->
+				<div class="input-group stylish-input-group search-card-box">
+					<input type="text" class="form-control">
+					<!-- search button for card list -->
+					<button type="button" class="btn btn-default navbar-btn">
+						<i class="material-icons">search</i>
+					</button>
 				</div>
 			</div>
 			<div class="col-xs-1"></div>
 		</div>
+
+		<table class="table table-bordered card-list">
+			<tbody>
+				<!-- personal card list -->
+				<tr data-toggle="modal" data-target="#personal_card-dialog">
+					<td class="card-list-item">
+						<!-- personal image -->
+						<span class="material-icons">account_circle</span>
+						<!-- personal name -->
+						<span class="name">柯柯</span>
+						<!-- personal nickname -->
+						<span class="nickname">Ko Ko</span>
+						<!-- receive date -->
+						<span class="receive-date">2016/11/10</span>
+					</td>						
+				</tr>
+			</tbody>
+		</table>
+		
 	</main>
 </div>
 
-<!-- Show ID dialog modal -->
-{% include 'exchange_card_page/exchange_dialog.html' %} 
- 
- <!-- Exchange card finish modal-->
-{% include 'exchange_card_page/exchange_dialog_finish.html' %}
+ <!-- personal card modal-->
+{% include 'personal_card_page/personal_card.html' %}
 
 {% block end_js_extends %}
 {% endblock %}
