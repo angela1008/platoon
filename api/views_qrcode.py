@@ -44,6 +44,27 @@ class GenExgQrList(APIView):
         # TODO deal with errors
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # genexgqr = apiModels.GenExgQr.objects.all()
-        # serializer = serializers.GenExgQrSerializer(genexgqr, many=True)
-        # return Response(serializer.data)
+
+    def post(self, request):
+        """
+        save exchange code, to_user id
+        create user relation*2 (because is_favorie)
+        """
+        # save
+        to_user = request.data['user']
+        user = User.objects.get(pk=to_user)
+        exchange_code = request.data['exchange_code']
+        genexgqr = apiModels.GenExgQr.objects.get(id=exchange_code)
+        genexgqr.to_user = user
+        genexgqr.save()
+
+        # create relation
+        # userrelation = apiModels.UserRelation.objects.create()
+        userrelation = apiModels.UserRelation(user=user, card_user=genexgqr.from_user, is_favorite=False)
+        userrelation_otherside = apiModels.UserRelation(user=genexgqr.from_user, card_user=user, is_favorite=False)
+        userrelation.save()
+        userrelation_otherside.save()
+
+        user_otherside = User.objects.get(pk=genexgqr.from_user.id)
+        serializer_user_otherside = serializers.UserSerializer(user_otherside)
+        return Response(serializer_user_otherside.data)

@@ -117,6 +117,3 @@ class UserWantToDoDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsStaffOrTargetUser,)
     queryset = apiModels.WantToDo.objects.all()
     serializer_class = serializers.WantToDoSerializer
-
-
-
