@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
-from api import views,qrcode
+from api import views, views_qrcode
 from api import views_customer as viewCus
 
 
@@ -99,6 +99,10 @@ urlpatterns = [
       name='user-wanttodo-detail'),
 
     url(r'^genexgqr/$',
-      qrcode.GenExgQrList.as_view(),
+      views_qrcode.GenExgQrList.as_view(),
       name='user-genexgqr-list'),
+
+      url(r'^scanqr/$',
+        views_qrcode.GenExgQrList.as_view(),
+        name='user-scanqr-list'),
 ]
