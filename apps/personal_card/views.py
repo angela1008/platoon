@@ -9,3 +9,6 @@ def personal_card_detail(request):
 
 def personal_card_box(request):
 	return render(request, 'personal_card_page/card_box.html')
+
+def edit_personal_card(request):
+	return render(request, 'personal_card_page/edit_personal_card.html')

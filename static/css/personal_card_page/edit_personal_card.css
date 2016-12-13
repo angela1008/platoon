@@ -1,0 +1,31 @@
+.edit-card-head {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	background: #3e3e3e;
+}
+.edit-card-text {
+	color: #FFFFFF;
+}
+.borderless td, .borderless th {
+    border: none;
+}
+.table {
+	margin-top: 2rem;
+}
+.description-column {
+	word-wrap: break-word;
+	color: #c3c3c3;
+}
+.title-column {
+	color: #202020;
+	text-align: right;
+}
+.save-button-row {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+.save-button {
+	background: #3e3e3e;
+	color: #FFFFFF;
+	width: 100% ;
+}

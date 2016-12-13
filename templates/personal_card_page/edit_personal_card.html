@@ -1,0 +1,237 @@
+{% extends "main.html" %}
+
+{% block head_title %}Platoon{% endblock %}
+
+{% block css_extends %}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/personal_card_page/edit_personal_card.css" %}">
+{% endblock %}
+
+{% block extra_head %}{% endblock %}platoon/templates/landing/
+
+{% block body_base %}
+
+<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+	<!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
+
+	{% include 'tools/drawer_unsigned.html' %}
+
+	<header class="bmd-layout-header">
+		<div class="navbar navbar-light bg-faded">
+			<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
+				<span class="sr-only">Toggle drawer</span>
+				<i class="material-icons">menu</i>
+			</button>
+			<div class="nav pull-xs-right">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default navbar-btn">
+						<i class="material-icons">email</i>
+					</button>
+					<!-- TODO a little problem with btn-group oder -->
+					<a href="{% url "personal_card" %}" >
+						<button type="button" class="btn btn-default navbar-btn">
+							<i class="material-icons">account_circle</i>
+						</button>	
+					</a>					
+					<button type="button" class="btn btn-default navbar-btn">
+						<i class="material-icons">settings</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="bmd-layout-content">
+		<div class="edit-card-head">
+			<div class="edit-card-text" align="center">
+				<h2>Edit Business Card</h2>
+				<h6>Click to edit your information</h6>	
+			</div>
+		</div>
+		
+		<table class="table borderless">
+			<tbody>
+				<tr>
+					<td class="title-column">Nickname</td>
+					<td class="description-column">
+						<!-- the content of nickname -->
+						<input value="Nickname" type="text" class="form-control">
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Phone</td>
+					<td class="description-column">
+						<!-- the content of phone number -->
+						<input value="0935168296" type="number" class="form-control">
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Skills</td>
+					<td class="description-column">
+						<!-- the content of skills -->
+						<input value="Skills" type="text" class="form-control">
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Languages</td>
+					<td class="description-column">
+						<!-- the textarea content of languages -->
+						<textarea type="text" class="md-textarea form-control"></textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Company</td>
+					<td class="description-column">
+						<!-- the content of company -->
+						<input value="Skywinds" type="text" class="form-control">
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Collections</td>
+					<td class="description-column">
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- the content of Collections -->
+								<input value="My Adobe" type="text" class="form-control">		
+							</div>
+							<div class="col-xs-3">
+								<!-- remove collection input button -->
+								<button type="button" class="btn btn-default navbar-btn">
+									<i class="material-icons">remove_circle</i>
+								</button>
+							</div>
+						</div>
+						<span>
+							<!-- add collection input button -->
+							<button type="button" class="btn btn-default navbar-btn">
+								<i class="material-icons">add</i>
+							</button>
+						</span>
+						<span>Add New One</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Education</td>
+					<td class="description-column">
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- the content of education -->
+								<input value="Computer Science" type="text" class="form-control">		
+							</div>
+							<div class="col-xs-3">
+								<!-- remove education input button -->
+								<button type="button" class="btn btn-default navbar-btn">
+									<i class="material-icons">remove_circle</i>
+								</button>
+							</div>
+						</div>
+						<span>
+							<!-- add education input button -->
+							<button type="button" class="btn btn-default navbar-btn">
+								<i class="material-icons">add</i>
+							</button>
+						</span>
+						<span>Add New One</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Certifications</td>
+					<td class="description-column">
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- the content of Certifications -->
+								<input value="Lolita Master" type="text" class="form-control">		
+							</div>
+							<div class="col-xs-3">
+								<!-- remove education input certification -->
+								<button type="button" class="btn btn-default navbar-btn">
+									<i class="material-icons">remove_circle</i>
+								</button>
+							</div>
+						</div>
+						<span>
+							<!-- add education input certification -->
+							<button type="button" class="btn btn-default navbar-btn">
+								<i class="material-icons">add</i>
+							</button>
+						</span>
+						<span>Add New One</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Experiences</td>
+					<td class="description-column">
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- the content of Experiences -->
+								<input value="Lolita Fire!" type="text" class="form-control">		
+							</div>
+							<div class="col-xs-3">
+								<!-- remove education input Experience -->
+								<button type="button" class="btn btn-default navbar-btn">
+									<i class="material-icons">remove_circle</i>
+								</button>
+							</div>
+						</div>
+						<span>
+							<!-- add education input Experience -->
+							<button type="button" class="btn btn-default navbar-btn">
+								<i class="material-icons">add</i>
+							</button>
+						</span>
+						<span>Add New One</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="title-column">Want to do</td>
+					<td class="description-column">
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- the title of Want to do-->
+								<input value="Lolita Master" type="text" class="form-control">
+								<!-- the textarea content of Want to do -->
+								<textarea type="text" class="md-textarea form-control"></textarea>
+							</div>
+							<div class="col-xs-3">
+								<!-- remove education input want to do -->
+								<button type="button" class="btn btn-default navbar-btn">
+									<i class="material-icons">remove_circle</i>
+								</button>
+							</div>
+						</div>
+						<span>
+							<!-- add education input want to do -->
+							<button type="button" class="btn btn-default navbar-btn">
+								<i class="material-icons">add</i>
+							</button>
+						</span>
+						<span>Add New One</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="row save-button-row">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-10">
+			<!-- Save the Edit -->
+			<button type="button" class="btn btn-default navbar-btn save-button">Save</button>	
+		</div>
+		<div class="col-xs-1"></div>
+		</div>
+		
+	</main>
+</div>
+
+{% block end_js_extends %}
+{% endblock %}
+{% endblock %}
