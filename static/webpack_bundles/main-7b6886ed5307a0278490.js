@@ -21448,11 +21448,13 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var GenQrCodePage = __webpack_require__(179);
+	var utils = __webpack_require__(181);
 
 	module.exports = class GenQrCodeButton extends React.Component {
 
 	    constructor(props) {
 	        super(props);
+	        this.handleTimeUpCallback = this.handleTimeUpCallback.bind(this);
 	    }
 
 	    componentWillUnmount() {
@@ -21460,7 +21462,22 @@
 	    }
 
 	    onGenQrClick() {
-	        ReactDOM.render(React.createElement(GenQrCodePage, { dataUrl: 'http://127.0.0.1:8000/platoon-api/genexgqr/?from_user=1' }), document.getElementById('exchange-card-modal'));
+	        ReactDOM.render(React.createElement(GenQrCodePage, {
+	            dataUrl: utils.apiGenexgqr + "?from_user=1",
+	            handleTimeUpCallback: this.handleTimeUpCallback }), document.getElementById('exchange-card-modal'));
+	    }
+
+	    handleTimeUpCallback() {
+	        console.log('timeup');
+	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+
+	        const timUpMessage = React.createElement(
+	            'h1',
+	            { className: 'alert alert-danger' },
+	            'Supreme'
+	        );
+
+	        ReactDOM.render(timUpMessage, document.getElementById('exchange-card-modal'));
 	    }
 
 	    render() {
@@ -21484,11 +21501,13 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var ExpireCounter = __webpack_require__(180);
+	var utils = __webpack_require__(181);
 
 	module.exports = class GenQrCodePage extends React.Component {
 
 	    constructor(props) {
 	        super(props);
+	        this.handleTimeUpCallback = this.props.handleTimeUpCallback.bind(this);
 	    }
 
 	    componentWillUnmount() {
@@ -21526,7 +21545,10 @@
 
 	                ReactDOM.render(element, document.getElementById('exchange-platoon-id'));
 
-	                ReactDOM.render(React.createElement(ExpireCounter, { start: '300', countCallback: this.handleRequestCallback }), document.getElementById('exchange-platoon-counter'));
+	                ReactDOM.render(React.createElement(ExpireCounter, {
+	                    start: utils.countTimeSec,
+	                    countCallback: this.handleRequestCallback,
+	                    handleTimeUpCallback: this.handleTimeUpCallback }), document.getElementById('exchange-platoon-counter'));
 	            }.bind(this),
 	            error: function (xhr, status, err) {
 	                console.error(xhr, status, err);
@@ -21537,6 +21559,7 @@
 	    // Handle the exchange request, doing request every second.
 	    handleRequestCallback() {
 	        // TODO query when timer count down
+	        console.log('countdown');
 	    }
 
 	    render() {
@@ -21617,12 +21640,18 @@
 	        ReactDOM.render(element, document.getElementById('exchange-platoon-timer'));
 
 	        this.props.countCallback();
+	        if (cur_time <= 0) {
+	            this.props.handleTimeUpCallback();
+	        }
 	    }
 
 	    secToMinAndSec() {
 	        var minutes = Math.floor(this.state.elapsed / 60);
 	        // This will give a number with one digit after the decimal dot (xx.x):
 	        var seconds = this.state.elapsed % 60;
+	        if (seconds < 10) {
+	            seconds = '0' + seconds.toString();
+	        }
 	        return minutes + ':' + seconds;
 	    }
 
@@ -21639,6 +21668,17 @@
 	            this.secToMinAndSec()
 	        );
 	    }
+	};
+
+/***/ },
+/* 181 */
+/***/ function(module, exports) {
+
+	const apiServer = 'http://127.0.0.1:8000/platoon-api/';
+
+	module.exports = utils = {
+	    apiGenexgqr: apiServer + 'genexgqr/',
+	    countTimeSec: 300
 	};
 
 /***/ }

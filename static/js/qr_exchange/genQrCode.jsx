@@ -1,12 +1,14 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ExpireCounter = require('./expireCounter')
+var utils = require('./../utils')
 
 module.exports =
 class GenQrCodePage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleTimeUpCallback = this.props.handleTimeUpCallback.bind(this);
     }
 
     componentWillUnmount() {
@@ -45,11 +47,14 @@ class GenQrCodePage extends React.Component {
 
                 ReactDOM.render(
                     element,
-            		document.getElementById('exchange-platoon-id')
-            	);
+              		document.getElementById('exchange-platoon-id')
+              	);
 
                 ReactDOM.render(
-                    <ExpireCounter start='300' countCallback={ this.handleRequestCallback } />,
+                    <ExpireCounter
+                        start = { utils.countTimeSec }
+                        countCallback = { this.handleRequestCallback }
+                        handleTimeUpCallback = { this.handleTimeUpCallback } />,
                     document.getElementById('exchange-platoon-counter')
                 );
             }.bind(this),
@@ -62,6 +67,7 @@ class GenQrCodePage extends React.Component {
     // Handle the exchange request, doing request every second.
     handleRequestCallback() {
         // TODO query when timer count down
+        console.log('countdown');
     }
 
     render() {
