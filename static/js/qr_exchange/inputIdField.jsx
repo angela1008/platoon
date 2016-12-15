@@ -1,6 +1,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var utils = require('./../utils')
+var ajaxreq = require('./../http/ajaxreq')
 
 module.exports =
 class InputIdField extends React.Component {
@@ -23,9 +24,25 @@ class InputIdField extends React.Component {
             if (!this.state.valueId
                 || this.state.valueId > 9999
                 || this.state.valueId < 0) {
-                console.log('Give it back');
+                // TODO error state for KoKo
+                console.error('Validation Fail');
+                return;
             }
-            console.log('todo ajax request:', this.state.valueId);
+            var data = {
+                user: 2,
+                exchange_code: this.state.valueId
+            }
+
+            ajaxreq.post(this.props.dataUrl, data,
+                function(data) {
+                    console.log(data);
+                    // TODO request success status
+                }, function(xhr, status, err) {
+                    console.error(xhr, status, err);
+                    // TODO error status
+                });
+
+            // TODO request sent status
         }
     }
 

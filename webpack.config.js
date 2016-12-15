@@ -16,25 +16,25 @@ module.exports = {
 
     module: {
         loaders: [
-            { 
-                test: /\.jsx?$/, 
-                exclude: /node_modules/, 
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
                     presets:['react']
                 }
             }, // to transform JSX into JS
-            { 
-                test: /\.css$/, 
-                loader: "style-loader!css-loader" 
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
             },
-            { 
-                test: /\.png$/, 
-                loader: "url-loader?limit=100000" 
+            {
+                test: /\.png$/,
+                loader: "url-loader?limit=100000"
             },
-            { 
-                test: /\.jpg$/, 
-                loader: "file-loader" 
+            {
+                test: /\.jpg$/,
+                loader: "file-loader"
             }
         ],
     },
