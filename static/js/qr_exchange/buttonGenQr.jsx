@@ -1,12 +1,14 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var GenQrCodePage = require('./genQrCode')
+var utils = require('./../utils')
 
 module.exports =
 class GenQrCodeButton extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleTimeUpCallback = this.handleTimeUpCallback.bind(this)
     }
 
     componentWillUnmount() {
@@ -15,7 +17,23 @@ class GenQrCodeButton extends React.Component {
 
     onGenQrClick() {
         ReactDOM.render(
-    		<GenQrCodePage dataUrl="http://127.0.0.1:8000/platoon-api/genexgqr/?from_user=1" />,
+    		<GenQrCodePage
+                dataUrl= { utils.apiGenexgqr + "?from_user=1" }
+                handleTimeUpCallback={ this.handleTimeUpCallback } />,
+            document.getElementById('exchange-card-modal')
+    	);
+    }
+
+    handleTimeUpCallback() {
+        console.log('timeup');
+        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+
+        const timUpMessage = (
+            <h1 className="alert alert-danger">Supreme</h1>
+        );
+
+        ReactDOM.render(
+    		timUpMessage,
     		document.getElementById('exchange-card-modal')
     	);
     }

@@ -30,7 +30,7 @@ class ExpireCounter extends React.Component {
         // this.handleRequestCallback();
         console.log(this.state);
         var cur_time = this.state.elapsed;
-        this.state = {elapsed: (cur_time-1) };
+        this.state = {elapsed: (cur_time - 1)};
 
         const element = (
             <div>
@@ -44,12 +44,18 @@ class ExpireCounter extends React.Component {
     	);
 
         this.props.countCallback();
+        if (cur_time <= 0) {
+            this.props.handleTimeUpCallback();
+        }
     }
 
     secToMinAndSec() {
         var minutes = Math.floor(this.state.elapsed / 60);
         // This will give a number with one digit after the decimal dot (xx.x):
         var seconds = (this.state.elapsed % 60);
+        if (seconds < 10) {
+            seconds = '0' + seconds.toString();
+        }
         return minutes + ':' + seconds;
     }
 
