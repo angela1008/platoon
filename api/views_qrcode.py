@@ -7,7 +7,7 @@ from rest_framework import status
 
 from api import models as apiModels
 from api import serializers
-from api.permissions import IsStaffOrTargetUser
+from api import permissions
 
 import datetime
 import random
@@ -15,7 +15,7 @@ import random
 #class-based View#
 class GenExgQrList(APIView):
     #Why must be there?# For override permission, APIView has this permission var that you can custom your own, otherwise it'll be the default at settings.py
-    permission_classes = (IsStaffOrTargetUser,)
+    permission_classes = (permissions.IsStaffOrTargetUser,)
 
     def get(self, request):
         """
@@ -33,7 +33,7 @@ class GenExgQrList(APIView):
 
         # Update data
         long_from_user=request.GET.get('from_user', None)
-        from_user = apiModels.User.objects.get(id=long_from_user)
+        from_user = User.objects.get(id=long_from_user)
         genexgqr = apiModels.GenExgQr.objects.get(pk=exchange_code)
         genexgqr.created_at = time_now
         genexgqr.expired_at = time_now + datetime.timedelta(minutes = 5)
@@ -67,4 +67,4 @@ class GenExgQrList(APIView):
 
         user_otherside = User.objects.get(pk=genexgqr.from_user.id)
         serializer_user_otherside = serializers.UserSerializer(user_otherside)
-        return Response(serializer_user_otherside.data)
+        return Response(serializer_user_otherside.data, status=status.HTTP_201_CREATED)
