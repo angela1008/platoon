@@ -84,10 +84,6 @@ class GenQrCodePage extends React.Component {
                 <div id="exchange-platoon-counter"></div>
 
                 <h5 className="exchange-card-dialog-description"> 此ID將於時限後，<br />或關閉此頁面時自動消失。</h5>
-                {/* temporary exchange card finish button */}
-                <div className="btn btn-raised btn-sm btn-success" data-toggle="modal" data-target="#exchange-card-finish-dialog">
-                    Test exchange card finish
-                </div>
             </div>
         )
     }
