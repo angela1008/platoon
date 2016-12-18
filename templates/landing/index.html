@@ -1,106 +1,98 @@
 {% extends "main.html" %}
-
-{% block head_title %}Platoon{% endblock %}
-
-{% block css_extends %}
 {% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static "css/landing/index.css" %}">
+{% block head_title %}Platoon{% endblock %}
+{% block css_extends %}
+<link rel="stylesheet" type="text/css" href="{% static "css/landing/index.css" %}">
 {% endblock %}
-{% block extra_head %}{% endblock %}
 
+{% block extra_head %}{% endblock %}
 {% block body_base %}
 
-<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
-	<!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
+{% include 'tools/sign_in.html' %}
+{% include 'tools/sign_up.html' %}
 
-		<header class="bmd-layout-header">
-			<div class="navbar navbar-light bg-faded">
-				<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-					<span class="sr-only">Toggle drawer</span>
-					<i class="material-icons">menu</i>
-				</button>
-				<div class="nav pull-xs-right">
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
-						<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
-					</div>
-				</div>
+	<div class="ex-card-bg text-center">
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10">
+				<h1 class="ex-card-title title-margin">Platoon</h1>
+				<h4 class="ex-card-subtitle subtitle-margin">現在就開始交換名片吧</h4>
+				<h4 class="ex-card-subtitle-desktop subtitle-margin">立即體驗電子名片的簡單、俐落</h4>
 			</div>
-		</header>
-
-		{% include 'tools/drawer_unsigned.html' %}
-
-		{% include 'tools/sign_in.html' %}
-		{% include 'tools/sign_up.html' %}
-
-		<main class="bmd-layout-content">
-			<div class="container">
-				<div class="row start-exchange-card-bg text-center" >
-						<div class="col-xs-1"></div>
-						<div class="col-xs-10 slogan-exchange-now">
-							<h2 class="title">Platoon</h2>
-							<h5 class="subtitle">現在就開始交換名片吧</h4>
-						</div>
-						<div class="col-xs-1"></div>
-						<div class="col-xs-2"></div>
-						<button class="col-xs-8 btn btn-outline-primary waves-effect">
-							Exchange Business Card
-						</button>
-						<div class="col-xs-2"></div>
+			<div class="col-xs-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2"></div>
+			<button class="col-xs-8 btn btn-outline-primary waves-effect">
+				Exchange Business Card
+			</button>
+			<div class="col-xs-2"></div>
+		</div>
+		<!-- <div class="row">
 						<div class="col-xs-1"></div>
 						<div class="col-xs-10">
 							<h6 class="help-text">>遇到困難? 立即聯絡我們!</h6>
 						</div>
 						<div class="col-xs-1"></div>
-				</div>
+					</div> -->
+	</div>
 
-				<div class="row slogan-easy-bg">
-					<div class="col-xs-1"></div>
-					<div class="col-xs-10">
-						<h2 class="title">更容易攜帶的名片</h2><br>
-						<h4 class="content-text">只要拿出手機，就能輕鬆交換</h4>
-						<h4 class="content-text">再也不怕紙本不夠用</h4>
-					</div>
-					<div class="col-xs-1"></div>
-					<div>
-						<img src="http://i.cdn.cnn.com/cnn/.e/img/3.0/branding/backgrounds/on-the-road-japan/ontheroadjapan-background-full.jpg" class="img-fluid" alt="" >
-					</div>
+	<div class="max-width-960 block-center">
+		<div class="row slogan-easy-bg block-margin">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 slogan-margin">
+				<h2 class="sutitle subtitle-margin">更容易攜帶的名片</h2><br>
+				<div class="content-margin">
+					<h4 class="content-text">只要拿出手機，就能輕鬆交換</h4>
+					<h4 class="content-text">再也不怕紙本不夠用</h4>
 				</div>
-
-				<div class="row slogan-synchronize-bg">
-					<div class="col-xs-1"></div>
-					<div class="col-xs-10">
-								<h2 class="subtitle">與紙本合作，輕鬆整合</h2>
-								<h4 class="content-text">紙本和電子同步設計</h4>
-								<h4 class="content-text">任何情況，都游刃有餘的交換</h4>
-					</div>
-					<div class="col-xs-1"></div>
-					<div>
-						<img src="http://i.cdn.cnn.com/cnn/.e/img/3.0/branding/backgrounds/on-the-road-japan/ontheroadjapan-background-full.jpg" class="img-fluid" alt="" >
-					</div>
-				</div>
-				</div>
-
-				<div class="row">
-					<div class="embed-responsive embed-responsive-16by9 col-xs-12">
-						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rzc3_b_KnHc" allowfullscreen ></iframe>
-					</div>
-				</div>
-
-
-				{% endblock %}
-
-				{% block footer_base %}
-				<div class="row">
-					<div class="footer-custom-left col-xs-6"></div>
-					<div class="footer-custom-right col-xs-6"></div>
-				</div>
-				{% endblock %}
 			</div>
-		</main>
+			<div class="col-xs-1"></div>
+			<div>
+				<img src="https://www.newmobilelife.com/wp-content/uploads/2016/09/iP7P_HEA_00.jpg" class="img-responsive" alt="">
+			</div>
+		</div>
+
+		<div class="row slogan-synchronize-bg block-margin">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 slogan-margin">
+				<h2 class="subtitle subtitle-margin">與紙本合作，輕鬆整合</h2>
+				<div class="content-margin">
+					<h4 class="content-text">紙本和電子同步設計</h4>
+					<h4 class="content-text">任何情況，都游刃有餘的交換</h4>
+				</div>
+			</div>
+			<div class="col-xs-1"></div>
+			<div>
+				<img src="https://www.newmobilelife.com/wp-content/uploads/2016/09/iP7P_HEA_00.jpg" class="img-responsive" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div class="embed-responsive embed-responsive-16by9">
+		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rzc3_b_KnHc" allowfullscreen></iframe>
+	</div>
+
+	<div class="row get-email">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-10">
+			<h2 class="title-margin text-center">對我們產品有興趣嗎?</h2>
+			<input type="email" class="form-control text-center" id="getMoreInformation" placeholder="Email...">
+			<button type="submit" class="btn">獲得產品第一手最新消息</button>
+		</div>
+		<div class="col-xs-1"></div>
+	</div>
+{% endblock %}
+
+{% block footer_base %}
+<div class="row">
+	<!-- <div class="footer-custom-left col-xs-6"></div>
+	<div class="footer-custom-right col-xs-6"></div> -->
+	<div class="footer text-center">
+		@platoon
+	</div>
 </div>
+{% endblock %}
 
-
-
-	{% block end_js_extends %}
-	{% endblock %}
+{% block end_js_extends %}
+{% endblock %}
