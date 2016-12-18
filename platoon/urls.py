@@ -18,6 +18,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'', include('apps.landing.urls')),
-    url(r'', include('apps.exchange_card.urls')),
+    url(r'exchange/', include('apps.exchange_card.urls')),
+    url(r'personal/', include('apps.personal_card.urls')),
+    url(r'settings/', include('apps.settings.urls')),
     url(r'^admin/', admin.site.urls),
 ]

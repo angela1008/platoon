@@ -1,0 +1,86 @@
+{% extends "main.html" %}
+
+{% block head_title %}Platoon{% endblock %}
+
+{% block css_extends %}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/personal_card_page/personal_card_detail.css" %}">
+{% endblock %}
+
+{% block extra_head %}{% endblock %}
+
+{% block body_base %}
+<div class="row personal_card">
+	<div class="col-xs-2"></div>
+		<div class="col-xs-8 exchange-card-finish-content max-layout-width-540px">
+			<div class="row">
+				<!-- personal image -->
+				<div class="col-xs-4">
+					<div class="personal-flex-img">
+						<img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" class="img-circle img-fluid">
+					</div>
+				</div>	
+				<div class="col-xs-8" vertical-align="center">
+					<div> 
+						<!-- exchange card person name-->
+						<h3 class="exchange-card-finish-text">高安，Albert</h3> 
+						<!-- exchange card person email-->
+						<h6 class="exchange-card-finish-text">albert123@gmail.com</h6><br><br> 
+						<!-- exchange card person skills-->
+						<h6 class="exchange-card-finish-text">Android, Java, GG ci me da</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="col-xs-2"></div>
+</div>
+
+<table class="table table-bordered max-layout-width-540px">
+	<tbody>
+		<tr>
+			<td class="title-column">Languages</td>
+			<!-- the content of Languages -->
+			<td class="description-column">Languages</td>
+		</tr>
+
+		<tr>
+			<td class="title-column">Company</td>
+			<!-- the content of Company -->
+			<td class="description-column">Company</td>
+		</tr>
+
+		<tr>
+			<td class="title-column">Collections</td>
+			<!-- the content of Collections -->
+			<td class="description-column">Collections</td>
+		</tr>
+
+		<tr>
+			<td class="title-column">Education</td>
+			<!-- the content of Education -->
+			<td class="description-column">Education</td>
+		</tr>
+
+		<tr>
+			<td class="title-column">Certifications</td>
+			<!-- the content of Certifications -->
+			<td class="description-column">Certifications</td>
+		</tr>
+
+		<tr>
+			<td class="title-column">Experiences</td>
+			<!-- the content of Experiences -->
+			<td class="description-column">Banana Banana Banana Banana Banana Banana Banana Banana Banana Banana Banana Banana Banana Banana</td>
+		</tr>
+
+		<tr>
+			<td class="title-column">Want to do</td>
+			<!-- the content of want to do -->
+			<td class="description-column">Want to do</td>
+		</tr>
+	</tbody>
+</table>
+
+{% block end_js_extends %}
+{% endblock %}
+{% endblock %}

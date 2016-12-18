@@ -7,58 +7,41 @@
 	<link rel="stylesheet" type="text/css" href="{% static "css/exchange_card_page/exchange_card_page.css" %}">
 {% endblock %}
 
-{% block extra_head %}{% endblock %}platoon/templates/landing/
+{% block extra_head %}{% endblock %}
 
 {% block body_base %}
-
-<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
-	<!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
-
-	<!-- Drawer modal -->
-	{% include 'tools/drawer_unsigned.html' %}
-
-	<header class="bmd-layout-header">
-		<div class="navbar navbar-light bg-faded">
-			<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-				<span class="sr-only">Toggle drawer</span>
-				<i class="material-icons">menu</i>
-			</button>
-		</div>
-	</header>
-
-	<main class="bmd-layout-content">
-
-		<div class="exchange-card-head">
-			<div class="exchange-card-text" align="center">
-				<h2>Business Card</h2>
-				<h6>face to face, exchange easily!</h6>	
-			</div>
-		</div>
-
-		<div class="exchange-card-content row">
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10" align="center">
-				<h2 class="exchange_carg_enter_id_text">Enter Other's Platoon ID</h2> 
-				<!-- Enter other's ID-->
-				<input type="number" class="form-control">
-				<h3 class="exchange-card-text-or">or</h3>
-				<hr> 
-				<!-- show ID dialog-->
-				<div class="btn btn-raised btn-lg exchange-card-show-id-button" data-toggle="modal" data-target="#show-id-modal" id="show-id-button">
-					<h5 class="exchange-card-show-id-button-text">Show Platoon ID</h5>
-				</div>
-			</div>
-			<div class="col-xs-1"></div>
-		</div>
-	</main>
+<div class="exchange-card-head">
+	<div class="exchange-card-text" align="center">
+		<h2>Business Card</h2>
+		<h6>face to face, exchange easily!</h6>
+	</div>
 </div>
 
-<!-- Show ID dialog modal -->
-{% include 'exchange_card_page/exchange_dialog.html' %} 
- 
- <!-- Exchange card finish modal-->
-{% include 'exchange_card_page/exchange_dialog_finish.html' %}
+<div class="exchange-card-content row">
+	<div class="col-xs-1"></div>
+	<div class="col-xs-10" align="center">
+		<h2 class="exchange_carg_enter_id_text">Enter Other's Platoon ID</h2> 
+		<!-- Enter other's ID-->
+		<input type="number" class="form-control">
+		<h3 class="exchange-card-text-or">or</h3>
+		<hr> 
+		<!-- show ID dialog-->
+		<div class="btn btn-raised btn-lg exchange-card-show-id-button" data-toggle="modal" data-target="#show-id-modal" id="show-id-button">
+			<h5 class="exchange-card-show-id-button-text">Show Platoon ID</h5>
+		</div>
+	</div>
+	<div class="col-xs-1"></div>
+</div>
 
 {% block end_js_extends %}
 {% endblock %}
+
+{% endblock %}
+
+{% block include_html %}
+	<!-- Show ID dialog modal -->
+	{% include 'exchange_card_page/exchange_dialog.html' %} 
+	 
+	 <!-- Exchange card finish modal-->
+	{% include 'exchange_card_page/exchange_dialog_finish.html' %}
 {% endblock %}

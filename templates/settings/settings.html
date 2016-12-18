@@ -1,0 +1,104 @@
+{% extends "main.html" %}
+
+{% block head_title %}Platoon{% endblock %}
+
+{% block css_extends %}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/settings/settings.css" %}">
+{% endblock %}
+
+{% block extra_head %}{% endblock %}
+
+{% block body_base %}
+
+<div class="settings-head">
+	<div class="settings-head-text" align="center">
+		<h2>Settings</h2>
+		<h6>control what you want and need</h6>
+	</div>
+</div>
+
+<table class="table table-bordered">
+	<tbody>
+		<tr class="general-title">
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">General</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Change Password</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Change Email</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Log out</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+
+		<div class="blank-space"></div>
+
+		<tr class="general-title">
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Business Card</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">
+							<div class="Close-card-text">Close Your Card</div>
+							<div>將你的名片隱藏，朋友將無法搜尋到你。</div>
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Want to generate QR code</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+
+		<div class="blank-space"></div>
+
+		<tr class="general-title">
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Others</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+		<tr>
+			<td class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">Need more setting</div>
+				<div class="col-xs-1"></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+{% block end_js_extends %}
+{% endblock %}
+{% endblock %}

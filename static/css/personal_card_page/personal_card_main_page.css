@@ -1,0 +1,50 @@
+@media screen and (min-width: 720px) {
+	.max-layout-width-720px {
+		/*display: block;*/
+		margin-right: auto;  
+		margin-left: auto;  
+		max-width: 720px;
+	}
+}
+@media screen and (min-width: 540px) {
+	.max-layout-width-540px {
+		/*display: block;*/
+		margin-right: auto;  
+		margin-left: auto;  
+		max-width: 540px;
+	}
+}
+.business-card-head {
+	/*max-height: 50px;*/
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	background: #3e3e3e;
+}
+.personal-flex-img {
+	height:100%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+.img-height {
+	max-height: 100px;
+}
+.item-text {
+	color: #202020;
+}
+.delete-table-column {
+	margin-top: 2rem;
+}
+.personal-card-flex {
+	height:100%;
+	max-width: 540px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
