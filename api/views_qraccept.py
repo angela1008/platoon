@@ -22,6 +22,6 @@ class CheckQrAccept(APIView):
         if genexgqr.to_user != None:
             to_user = User.objects.get(id=genexgqr.to_user.id)
             serializer_to_user = serializers.UserSerializer(to_user)
-            return Response({"isSuccess": "true","detail": "Exchange Success.", "data": serializer_to_user.data})
+            return Response({"isSuccess": True,"detail": "Code is paired successfully.", "data": serializer_to_user.data})
         else:
-            return Response({'isSuccess': 'false','detail': 'Exchange Failed.'})
+            return Response({"isSuccess": False,"detail": "Code is unpaired."})
