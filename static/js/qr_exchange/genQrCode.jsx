@@ -1,6 +1,8 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ExpireCounter = require('./expireCounter')
+var PersonalCard = require('./personalCard')
+var ajaxreq = require('./../http/ajaxreq')
 var utils = require('./../utils')
 
 module.exports =
@@ -8,6 +10,7 @@ class GenQrCodePage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleRequestCallback = this.handleRequestCallback.bind(this);
         this.handleTimeUpCallback = this.props.handleTimeUpCallback.bind(this);
     }
 
@@ -33,41 +36,67 @@ class GenQrCodePage extends React.Component {
     // Get exchange id and action url for user to do the card exchange
     componentDidMount() {
         console.log(this.props.dataUrl);
-        $.ajax({
-            url: this.props.dataUrl,
-            dataType: 'json',
-            success: function(data) {
-                this.exchange_code = data;
-                // TODO render id and start countdown
+        // Change this for self, don't confuse "this"
+        var self = this;
+        ajaxreq.get(this.props.dataUrl,
+            {'from_user' : 1},
+            function(data) {
+                self.exchange_code = data;
+                // render id and start countdown
                 const element = (
                     <div>
-                        { this.exchange_code.id }
+                        { self.exchange_code.id }
                     </div>
                 );
 
                 ReactDOM.render(
                     element,
-              		document.getElementById('exchange-platoon-id')
-              	);
+                    document.getElementById('exchange-platoon-id')
+                );
 
                 ReactDOM.render(
                     <ExpireCounter
                         start = { utils.countTimeSec }
-                        countCallback = { this.handleRequestCallback }
-                        handleTimeUpCallback = { this.handleTimeUpCallback } />,
+                        countCallback = { self.handleRequestCallback }
+                        handleTimeUpCallback = { self.handleTimeUpCallback } />,
                     document.getElementById('exchange-platoon-counter')
                 );
-            }.bind(this),
-            error: function(xhr, status, err) {
+            },
+            function(xhr, status, err) {
                 console.error(xhr, status, err);
-            }.bind(this)
-        });
+            });
     }
 
     // Handle the exchange request, doing request every second.
     handleRequestCallback() {
-        // TODO query when timer count down
-        console.log('countdown');
+        // query when timer count down, checkqraccept
+        if (!this.isSent) {
+            this.isSent = true;
+            var self = this;
+            ajaxreq.get(this.props.checkUrl,
+                {'from_user': 1, 'exchange_code' : this.exchange_code.id},
+                function(data) {
+                    // show data
+                    self.isSent = false;
+                    if (data.isSuccess) {
+                        ReactDOM.render(
+                            <PersonalCard
+                                id = "exchange-card-finish-dialog-modal"
+                                data = { data.data } />,
+                            document.getElementById('exchange-card-finish-dialog')
+                        );
+                        utils.openModal('exchange-card-finish-dialog-modal');
+                        utils.closeModal('show-id-modal');
+                    } else {
+                        // Keep waiting
+                    }
+                }, function(xhr, status, err) {
+                    console.error(xhr, status, err);
+                    self.isSent = false;
+                });
+        } else {
+            console.log('Not yet back');
+        }
     }
 
     render() {
@@ -85,6 +114,6 @@ class GenQrCodePage extends React.Component {
 
                 <h5 className="exchange-card-dialog-description"> 此ID將於時限後，<br />或關閉此頁面時自動消失。</h5>
             </div>
-        )
+        );
     }
 }

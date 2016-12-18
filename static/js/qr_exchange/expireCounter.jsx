@@ -28,7 +28,6 @@ class ExpireCounter extends React.Component {
         // This function is called every 50 ms. It updates the
         // elapsed counter. Calling setState causes the component to be re-rendered
         // this.handleRequestCallback();
-        console.log(this.state);
         var cur_time = this.state.elapsed;
         this.state = {elapsed: (cur_time - 1)};
 
@@ -70,6 +69,6 @@ class ExpireCounter extends React.Component {
             <h2 id="exchange-platoon-timer" className="exchange-card-show-id-count-down-timer">
                 { this.secToMinAndSec() }
             </h2>
-        )
+        );
     }
 }

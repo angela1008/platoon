@@ -9,6 +9,7 @@ class GenQrCodeButton extends React.Component {
     constructor(props) {
         super(props);
         this.handleTimeUpCallback = this.handleTimeUpCallback.bind(this)
+        this.modalId = 'show-id-modal';
     }
 
     componentWillUnmount() {
@@ -18,14 +19,16 @@ class GenQrCodeButton extends React.Component {
     onGenQrClick() {
         ReactDOM.render(
             <GenQrCodePage
-                dataUrl= { utils.apiGenexgqr + "?from_user=1" }
+                dataUrl= { utils.apiGenexgqr }
+                checkUrl = { utils.apiCheckqr }
+                modalID = { this.modalId }
                 handleTimeUpCallback={ this.handleTimeUpCallback } />,
             document.getElementById('exchange-card-modal')
       	);
     }
 
     handleTimeUpCallback() {
-        console.log('timeup');
+        console.log('timesup');
         ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
 
         const timUpMessage = (
@@ -41,9 +44,9 @@ class GenQrCodeButton extends React.Component {
     render() {
         // render the post
         return (
-            <button onClick={this.onGenQrClick.bind(this)} className="btn btn-raised btn-lg exchange-card-show-id-button" data-toggle="modal" data-target="#show-id-modal">
+            <button onClick={this.onGenQrClick.bind(this)} className="btn btn-raised btn-lg exchange-card-show-id-button" data-toggle="modal" data-target={ "#" + this.modalId }>
                 <h5 className="exchange-card-show-id-button-text">Show Platoon ID</h5>
             </button>
-        )
+        );
     }
 }

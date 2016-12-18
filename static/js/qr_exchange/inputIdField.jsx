@@ -17,7 +17,6 @@ class InputIdField extends React.Component {
     // Handle input field onChanged
     handleChanged(event) {
         this.state = {valueId: event.target.value};
-        console.log('event: ', this.state);
     }
 
     // Handle Enter key pressed on Input Field
@@ -38,7 +37,6 @@ class InputIdField extends React.Component {
 
             ajaxreq.post(this.props.dataUrl, data,
                 function(data) {
-                    console.log(data);
                     // status of request success
                     // Show card
                     ReactDOM.render(
