@@ -1,127 +1,115 @@
 {% extends "main.html" %}
-
+{% load static %}
 {% block head_title %}Platoon{% endblock %}
 
 {% block css_extends %}
-{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static "css/landing/index.css" %}">
 {% endblock %}
 
 {% block extra_head %}{% endblock %}
+{% block bmd_layout_header %}
+<header class="bmd-layout-header">
+	<div class="navbar navbar-light bg-faded">
+		<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
+			<span class="sr-only">Toggle drawer</span>
+			<i class="material-icons">menu</i>
+		</button>
+		<div class="nav pull-xs-right">
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
+			</div>
+		</div>
+	</div>
+</header>
+{% include 'tools/sign_in.html' %}
+{% include 'tools/sign_up.html' %}
 
-	{% block bmd_layout_header %}
-	<header class="bmd-layout-header">
-		<div class="navbar navbar-light bg-faded">
-			<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-				<span class="sr-only">Toggle drawer</span>
-				<i class="material-icons">menu</i>
+{% endblock %}
+
+{% block body_base %}
+	<div class="ex-card-bg text-center">
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10">
+				<h1 class="ex-card-title title-margin">Platoon</h1>
+				<h4 class="ex-card-subtitle subtitle-margin">現在就開始交換名片吧</h4>
+				<h4 class="ex-card-subtitle-desktop subtitle-margin">立即體驗電子名片的簡單、俐落</h4>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2"></div>
+			<button class="col-xs-8 btn btn-outline-primary waves-effect">
+				Exchange Business Card
 			</button>
-			<div class="nav pull-xs-right">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
-					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
+			<div class="col-xs-2"></div>
+		</div>
+		<!-- <div class="row">
+						<div class="col-xs-1"></div>
+						<div class="col-xs-10">
+							<h6 class="help-text">>遇到困難? 立即聯絡我們!</h6>
+						</div>
+						<div class="col-xs-1"></div>
+					</div> -->
+	</div>
+
+	<div class="max-width-960 block-center">
+		<div class="row slogan-easy-bg block-margin">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 slogan-margin">
+				<h2 class="sutitle subtitle-margin">更容易攜帶的名片</h2><br>
+				<div class="content-margin">
+					<h4 class="content-text">只要拿出手機，就能輕鬆交換</h4>
+					<h4 class="content-text">再也不怕紙本不夠用</h4>
 				</div>
+			</div>
+			<div class="col-xs-1"></div>
+			<div>
+				<img src="https://www.newmobilelife.com/wp-content/uploads/2016/09/iP7P_HEA_00.jpg" class="img-responsive" alt="">
 			</div>
 		</div>
-	</header>
-	{% include 'tools/sign_in.html' %}
-	{% include 'tools/sign_up.html' %}
 
-	{% endblock %}
-
-	{% block body_base %}
-		<div class="container">
-			<div class="row start-build-network-bg" >
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10 text-center">
-					<h3>Start to build your network!</h3>
-					<h6>>如何幫助交換名片？</h6>
-					<br>
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-
-			<div class="row" >
-				<div class="col-xs-2"></div>
-				<div class="col-xs-8 btn btn-raised btn-sm">Exchange Business Card</div>
-				<div class="col-xs-2"></div>
-			</div>
-
-			<div class="row unity-bg">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10" style="padding-top: 1.5em;">
-					<h3>Unity is strength</h3><br>
-					<h5>提供你的專業大腦，一加一大於二</h5>
-					<h5>透過跨領域的團隊合作認識世界！</h5>
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-
-			<div class="row find-team-bg">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="row">
-						<h2 class="col-xs-12">Find Team</h2>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<h5>尋找你有興趣的主題或競賽，</h5>
-							<h5>加入那些志同道合，共同目標的團隊！</h5>
-						</div>
-					</div>
-
-					<div class="outer">
-						<div class="inner btn btn-raised btn-sm find-team-button">Enter</div>
-						<div class="inner about-find-team-text"><h5>about find team?</h5></div>
-					</div>
-
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-
-			<div class="row find-support-bg">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="row">
-						<h2 class="col-xs-12">Find Supporters</h2>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<h5>腦袋裡塞滿想法，卻找不到同伴嗎？</h5>
-							<h5>找找你需要的專業和人才，現在啟航合作！</h5>
-						</div>
-					</div>
-
-					<div class="input-group stylish-input-group">
-						<input type="text" class="form-control"  placeholder="skills..." >
-						<i class="material-icons">search</i>
-					</div><br>
-					<div align="center">about find support?</div>
-
-				</div>
-				<div class="col-xs-1"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="embed-responsive embed-responsive-16by9 col-xs-12">
-					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rzc3_b_KnHc" allowfullscreen ></iframe>
+		<div class="row slogan-synchronize-bg block-margin">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 slogan-margin">
+				<h2 class="subtitle subtitle-margin">與紙本合作，輕鬆整合</h2>
+				<div class="content-margin">
+					<h4 class="content-text">紙本和電子同步設計</h4>
+					<h4 class="content-text">任何情況，都游刃有餘的交換</h4>
 				</div>
 			</div>
-
+			<div class="col-xs-1"></div>
+			<div>
+				<img src="https://www.newmobilelife.com/wp-content/uploads/2016/09/iP7P_HEA_00.jpg" class="img-responsive" alt="">
+			</div>
 		</div>
+	</div>
 
-		
-	
-	{% endblock %}
+	<div class="embed-responsive embed-responsive-16by9">
+		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rzc3_b_KnHc" allowfullscreen></iframe>
+	</div>
+
+	<div class="row get-email">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-10">
+			<h2 class="title-margin text-center">對我們產品有興趣嗎?</h2>
+			<input type="email" class="form-control text-center" id="getMoreInformation" placeholder="Email...">
+			<button type="submit" class="btn">獲得產品第一手最新消息</button>
+		</div>
+		<div class="col-xs-1"></div>
+	</div>
+{% endblock %}
 
 {% block footer_base %}
-		<div class="row">
-			<div class="footer-custom-left col-xs-6"></div>
-			<div class="footer-custom-right col-xs-6"></div>
-		</div>
+<div class="row">
+	<!-- <div class="footer-custom-left col-xs-6"></div>
+	<div class="footer-custom-right col-xs-6"></div> -->
+	<div class="footer text-center">
+		@platoon
+	</div>
+</div>
 {% endblock %}
+
 {% block end_js_extends %}
 {% endblock %}
