@@ -1,5 +1,22 @@
+@media screen and (min-width: 540px) {
+	.max-layout-width-540px {
+		/*display: block;*/
+		margin-right: auto;  
+		margin-left: auto;  
+		max-width: 540px;
+	}
+}
 .personal_card {
 	margin-top: 2rem;
+}
+.personal-flex-img {
+	height:100%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 .table {
 	margin-top: 2rem;

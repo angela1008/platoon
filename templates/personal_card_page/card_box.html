@@ -7,90 +7,55 @@
 	<link rel="stylesheet" type="text/css" href="{% static "css/personal_card_page/card_box.css" %}">
 {% endblock %}
 
-{% block extra_head %}{% endblock %}platoon/templates/landing/
+{% block extra_head %}{% endblock %}
 
 {% block body_base %}
-
-<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
-	<!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
-
-	<!-- Drawer modal -->
-	{% include 'tools/drawer_unsigned.html' %}
-
-	<header class="bmd-layout-header">
-		<div class="navbar navbar-light bg-faded">
-			<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-				<span class="sr-only">Toggle drawer</span>
-				<i class="material-icons">menu</i>
-			</button>
-			<div class="nav pull-xs-right">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default navbar-btn">
-						<i class="material-icons">email</i>
-					</button>
-					<!-- TODO a little problem with btn-group oder -->
-					<a href="{% url "personal_card" %}" >
-						<button type="button" class="btn btn-default navbar-btn">
-							<i class="material-icons">account_circle</i>
-						</button>	
-					</a>
-					<button type="button" class="btn btn-default navbar-btn">
-						<i class="material-icons">settings</i>
-					</button>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<main class="bmd-layout-content">
-
-		<div class="card-box-head">
-			<div class="card-box-text" align="center">
-				<h2>Card Box</h2>
-				<h6>search and manage your card</h6>	
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-xs-1"></div>
-			<div class="col-xs-10">
-				<!-- search box for searching card list -->
-				<div class="input-group stylish-input-group search-card-box">
-					<!-- search text -->
-					<input type="text" class="form-control">
-					<!-- search button for card list -->
-					<button type="button" class="btn btn-default navbar-btn">
-						<i class="material-icons">search</i>
-					</button>
-				</div>
-			</div>
-			<div class="col-xs-1"></div>
-		</div>
-
-		<table class="table table-bordered card-list">
-			<tbody>
-				<!-- personal card list -->
-				<tr data-toggle="modal" data-target="#personal_card-dialog">
-					<td class="card-list-item">
-						<!-- personal image -->
-						<span class="material-icons">account_circle</span>
-						<!-- personal name -->
-						<span class="name">柯柯</span>
-						<!-- personal nickname -->
-						<span class="nickname">Ko Ko</span>
-						<!-- receive date -->
-						<span class="receive-date">2016/11/10</span>
-					</td>						
-				</tr>
-			</tbody>
-		</table>
-		
-	</main>
+<div class="card-box-head">
+	<div class="card-box-text" align="center">
+		<h2>Card Box</h2>
+		<h6>search and manage your card</h6>
+	</div>
 </div>
 
- <!-- personal card modal-->
-{% include 'personal_card_page/personal_card.html' %}
+<div class="row search-card-box">
+	<div class="col-xs-1"></div>
+	<div class="col-xs-10 max-layout-width-720px">
+		<!-- search box for searching card list -->
+		<div class="input-group stylish-input-group">
+			<!-- search text -->
+			<input type="text" class="form-control">
+			<!-- search button for card list -->
+			<button type="button" class="btn btn-default navbar-btn">
+				<i class="material-icons">search</i>
+			</button>
+		</div>
+	</div>
+	<div class="col-xs-1"></div>
+</div>
+
+<table class="table table-bordered max-layout-width-720px">
+	<tbody>
+		<!-- personal card list -->
+		<tr data-toggle="modal" data-target="#personal_card-dialog">
+			<td class="card-list-item">
+				<!-- personal image -->
+				<span class="material-icons">account_circle</span>
+				<!-- personal name -->
+				<span class="name">柯柯</span>
+				<!-- personal nickname -->
+				<span class="nickname">Ko Ko</span>
+				<!-- receive date -->
+				<span class="receive-date">2016/11/10</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 {% block end_js_extends %}
 {% endblock %}
+{% endblock %}
+
+{% block include_html %}
+	 <!-- personal card modal-->
+	{% include 'personal_card_page/personal_card.html' %}
 {% endblock %}

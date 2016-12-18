@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.landing',
     'apps.exchange_card',
     'apps.personal_card',
+    'apps.settings',
 ]
 
 MIDDLEWARE = [

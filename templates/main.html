@@ -41,21 +41,59 @@
 
         <!-- Test react qr code exchange function -->
         <!-- <div id="react-qr-code"></div> -->
-
-        {% block body_base %}
-            <div class="container">
-                {% block body %}
-                {% endblock %}
-            </div>
+        <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+        {% block bmd_layout_header %}
+            <header class="bmd-layout-header">
+                <div class="navbar navbar-light bg-faded">
+                    <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
+                        <span class="sr-only">Toggle drawer</span>
+                        <i class="material-icons">menu</i>
+                    </button>
+                    <div class="nav pull-xs-right">
+                        <div class="btn-group" role="group">
+                            <a href="">
+                                <button type="button" class="btn btn-default navbar-btn">
+                                <i class="material-icons">email</i>
+                            </button>
+                            </a>
+                            <a href="{% url "personal_card" %}" >
+                                <button type="button" class="btn btn-default navbar-btn">
+                                    <i class="material-icons">account_circle</i>
+                                </button>   
+                            </a>
+                            <a href="{% url "settings" %}">
+                                <button type="button" class="btn btn-default navbar-btn">
+                                <i class="material-icons">settings</i>
+                            </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
         {% endblock %}
 
-        {% block footer_base %}
-            <footer>
+        {% include 'tools/drawer.html' %}
+            <main class="bmd-layout-content">
+            
+            {% block body_base %}
                 <div class="container">
-                    {% block footer %}
+                    {% block body %}
                     {% endblock %}
-                </div>
-            </footer>
+                </div>            
+            {% endblock %}
+
+            {% block footer_base %}
+                <footer>
+                    <div class="container">
+                        {% block footer %}
+                        {% endblock %}
+                    </div>
+                </footer>
+            {% endblock %}
+            </main>
+        </div>
+
+        {% block include_html %}
         {% endblock %}
 
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

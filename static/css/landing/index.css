@@ -20,8 +20,8 @@ a:active {
 	margin-top: 15em;
 }
 .footer-custom-left {
-	padding-top: 8em;
-	padding-bottom: 8em;
+/*	padding-top: 3rem;
+	padding-bottom: 3rem;*/
 	background: #4d4d4d;
 }
 .footer-custom-right {
@@ -38,12 +38,12 @@ a:active {
 .unity-bg {
 	margin-top: 1.5em;
 	padding-bottom: 25em;
-	background: #f2f2f2;
+	/*background: #f2f2f2;*/
 }
 .find-team-bg {
 	padding-top: 5em;
 	padding-bottom: 5em;
-	background: #bfbfbf;
+	/*background: #bfbfbf;*/
 }
 .find-support-bg {
 	padding-top: 5em;

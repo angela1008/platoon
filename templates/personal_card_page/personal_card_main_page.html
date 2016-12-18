@@ -7,93 +7,77 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/personal_card_page/personal_card_main_page.css" %}">
 {% endblock %}
 
-{% block extra_head %}{% endblock %}platoon/templates/landing/
+{% block extra_head %}{% endblock %}
+
+
 
 {% block body_base %}
-
-<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
-
-
-	<!-- Drawer modal -->
-	{% include 'tools/drawer_unsigned.html' %}
-
-	<header class="bmd-layout-header">
-		<div class="navbar navbar-light bg-faded">
-			<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-				<span class="sr-only">Toggle drawer</span>
-				<i class="material-icons">menu</i>
-			</button>
-			<div class="nav pull-xs-right">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default navbar-btn">
-						<i class="material-icons">email</i>
-					</button>
-
-					<!-- TODO a little problem with btn-group order -->
-					<a href="{% url "personal_card" %}" >
-						<button type="button" class="btn btn-default navbar-btn">
-							<i class="material-icons">account_circle</i>
-						</button>	
-					</a>					
-					<button type="button" class="btn btn-default navbar-btn">
-						<i class="material-icons">settings</i>
-					</button>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<main class="bmd-layout-content">
-
-		<div class="business-card-head">
-			<!-- personal image -->
-			<div class="business-card-text" align="center">
-				<i class="material-icons">account_circle</i>
-			</div>
-		</div>
-
-		<div class="list-group">
-			<div class="list-group-item" class="btn btn-raised btn-sm btn-success" data-toggle="modal" data-target="#personal_card-dialog">
-				<span class="material-icons" >contact_mail</span>
-				<span class="item-text">Show Card View</span>	
-			</div>
-			<div><hr class="hr-line"></div>
-
-			<a class="list-group-item" href="{% url "edit_personal_card" %}" >
-				<span class="material-icons">mode_edit</span>
-				<span class="item-text">Edit Business Card</span>		
-			</a>
-			<div><hr class="hr-line"></div>
-
-			<a class="list-group-item" href="" >
-				<span class="material-icons">view_comfy</span>
-				<span class="item-text">Change Card Design</span>
-			</a>
-			<div><hr class="hr-line"></div>
-
-			<a class="list-group-item" href="{% url "personal_card_box" %}" >
-				<span class="material-icons">drafts</span>
-				<spanc class="item-text">Card Box</span>
-			</a>
-			<div><hr class="hr-line"></div>
-
-			<div class="list-group-item">
-
-			</div>
-			<div><hr class="hr-line"></div>
-
-			<a class="list-group-item" href="" >
-				<span class="material-icons">delete</span>
-				<span class="item-text">Delete Account</span>
-			</a>
-			<div><hr class="hr-line"></div>
-		</div>
-	</main>
+<div class="business-card-head">
+	<div class="personal-flex-img">
+		<!-- personal image -->
+		<img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" class="img-circle img-fluid img-height">
+	</div>
 </div>
 
- <!-- personal card modal-->
-{% include 'personal_card_page/personal_card.html' %}
+<table class="table table-bordered max-layout-width-720px">
+	<tbody>
+		<tr>
+			<td>
+				<div class="list-group-item" class="btn btn-raised btn-sm btn-success" data-toggle="modal" data-target="#personal-card-dialog">
+					<span class="material-icons">contact_mail</span>
+					<span class="item-text">Show Card View</span>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<a class="list-group-item" href="{% url "edit_personal_card" %}" >
+					<span class="material-icons">mode_edit</span>
+					<span class="item-text">Edit Business Card</span>
+				</a>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<a class="list-group-item" href="" >
+					<span class="material-icons">view_comfy</span>
+					<span class="item-text">Change Card Design</span>
+				</a>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<a class="list-group-item" href="{% url "personal_card_box" %}" >
+					<span class="material-icons">drafts</span>
+					<span class="item-text">Card Box</span>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<table class="table table-bordered delete-table-column max-layout-width-720px">
+	<tbody>
+		<tr>
+			<td>
+				<a class="list-group-item" href="" >
+					<span class="material-icons">delete</span>
+					<span class="item-text">Delete Account</span>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 {% block end_js_extends %}
 {% endblock %}
+
+{% endblock %}
+
+{% block include_html %}
+	<!-- personal card modal-->
+	{% include 'personal_card_page/personal_card.html' %}
 {% endblock %}
