@@ -60,7 +60,7 @@ class ScanQr(APIView):
         exchange_code = request.data['exchange_code']
         genexgqr = apiModels.GenExgQr.objects.get(id=exchange_code)
         if genexgqr.expired_at <= datetime.datetime.now():
-            return Response({"isSuccess": "false","detail": "The exchange code is expired."})
+            return Response({"isSuccess": False,"detail": "The exchange code is expired."})
         genexgqr.to_user = user
         genexgqr.save()
 
