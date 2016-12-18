@@ -17,11 +17,11 @@ class GenQrCodeButton extends React.Component {
 
     onGenQrClick() {
         ReactDOM.render(
-    		<GenQrCodePage
+            <GenQrCodePage
                 dataUrl= { utils.apiGenexgqr + "?from_user=1" }
                 handleTimeUpCallback={ this.handleTimeUpCallback } />,
             document.getElementById('exchange-card-modal')
-    	);
+      	);
     }
 
     handleTimeUpCallback() {

@@ -21453,10 +21453,20 @@
 	const apiGenexgqr = apiServer + 'genexgqr/';
 	const apiScanqr = apiServer + 'scanqr/';
 
+	function openThatFkModal(id) {
+	  $('#' + id).modal('show');
+	}
+
+	function closeThatFkModal(id) {
+	  $('#' + id).modal('hide');
+	}
+
 	module.exports = utils = {
-	    apiGenexgqr: apiGenexgqr,
-	    apiScanqr: apiScanqr,
-	    countTimeSec: 300
+	  apiGenexgqr: apiGenexgqr,
+	  apiScanqr: apiScanqr,
+	  countTimeSec: 300,
+	  openModal: openThatFkModal,
+	  cloadModal: closeThatFkModal
 	};
 
 /***/ },
@@ -21602,11 +21612,6 @@
 	                ' \u6B64ID\u5C07\u65BC\u6642\u9650\u5F8C\uFF0C',
 	                React.createElement('br', null),
 	                '\u6216\u95DC\u9589\u6B64\u9801\u9762\u6642\u81EA\u52D5\u6D88\u5931\u3002'
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'btn btn-raised btn-sm btn-success', 'data-toggle': 'modal', 'data-target': '#exchange-card-finish-dialog' },
-	                'Test exchange card finish'
 	            )
 	        );
 	    }
@@ -21696,6 +21701,7 @@
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(183);
+	var PersonalCard = __webpack_require__(186);
 
 	module.exports = class InputIdField extends React.Component {
 
@@ -21706,11 +21712,13 @@
 	        this.handleKeyPressed = this.handleKeyPressed.bind(this);
 	    }
 
+	    // Handle input field onChanged
 	    handleChanged(event) {
 	        this.state = { valueId: event.target.value };
 	        console.log('event: ', this.state);
 	    }
 
+	    // Handle Enter key pressed on Input Field
 	    handleKeyPressed(event) {
 	        if (event.key == 'Enter') {
 	            // Check empty and out of range
@@ -21720,19 +21728,24 @@
 	                return;
 	            }
 	            var data = {
-	                user: 2,
+	                user: 2, // TODO Change to login user
 	                exchange_code: this.state.valueId
 	            };
 
 	            ajaxreq.post(this.props.dataUrl, data, function (data) {
 	                console.log(data);
-	                // TODO request success status
+	                // status of request success
+	                // Show card
+	                ReactDOM.render(React.createElement(PersonalCard, {
+	                    id: 'exchange-card-finish-dialog-modal',
+	                    data: data }), document.getElementById('exchange-card-finish-dialog'));
+	                utils.openModal('exchange-card-finish-dialog-modal');
 	            }, function (xhr, status, err) {
 	                console.error(xhr, status, err);
 	                // TODO error status
 	            });
 
-	            // TODO request sent status
+	            // TODO status of request sent
 	        }
 	    }
 
@@ -22133,6 +22146,79 @@
 	  }
 	}
 
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+
+	module.exports = class PersonalCard extends React.Component {
+
+	    constructor(props) {
+	        super(props);
+	        this.id = this.props.id;
+	        this.data = this.props.data;
+	    }
+
+	    render() {
+	        return React.createElement(
+	            'div',
+	            { id: this.id, className: 'modal fade', role: 'dialog' },
+	            React.createElement(
+	                'div',
+	                { className: 'modal-dialog modal-xs' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'modal-content' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'modal-body row' },
+	                        React.createElement('div', { className: 'col-xs-1' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-10 exchange-card-finish-content' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-4' },
+	                                    React.createElement(
+	                                        'i',
+	                                        { className: 'material-icons' },
+	                                        'account_circle'
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-8' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'exchage-card-text-vertical' },
+	                                        React.createElement(
+	                                            'h3',
+	                                            { className: 'exchange-card-finish-text' },
+	                                            this.data.first_name
+	                                        ),
+	                                        React.createElement(
+	                                            'h6',
+	                                            { className: 'exchange-card-finish-text' },
+	                                            this.data.email
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement('div', { className: 'col-xs-1' })
+	                    )
+	                )
+	            )
+	        );
+	    }
+	};
 
 /***/ }
 /******/ ]);
