@@ -99,12 +99,12 @@ urlpatterns = [
       name='user-wanttodo-detail'),
 
     url(r'^genexgqr/$',
-      views_qrcode.GenExgQrList.as_view(),
-      name='user-genexgqr-list'),
+      views_qrcode.GenExgQr.as_view(),
+      name='user-genexgqr'),
 
     url(r'^scanqr/$',
-      views_qrcode.GenExgQrList.as_view(),
-      name='user-scanqr-list'),
+      views_qrcode.ScanQr.as_view(),
+      name='user-scanqr'),
 
     url(r'^checkqraccept/$',
       views_qraccept.CheckQrAccept.as_view(),

@@ -13,7 +13,8 @@ import datetime
 import random
 
 #class-based View#
-class GenExgQrList(APIView):
+## Exchange QR code
+class GenExgQr(APIView):
     #Why must be there?# For override permission, APIView has this permission var that you can custom your own, otherwise it'll be the default at settings.py
     permission_classes = (permissions.IsStaffOrTargetUser,)
 
@@ -44,6 +45,9 @@ class GenExgQrList(APIView):
         # TODO deal with errors
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+## Scan QR code
+class ScanQr(APIView):
+    permission_classes = (permissions.IsStaffOrTargetUser,)
 
     def post(self, request):
         """
@@ -55,6 +59,8 @@ class GenExgQrList(APIView):
         user = User.objects.get(pk=to_user)
         exchange_code = request.data['exchange_code']
         genexgqr = apiModels.GenExgQr.objects.get(id=exchange_code)
+        if genexgqr.expired_at <= datetime.datetime.now():
+            return Response({"isSuccess": "false","detail": "The exchange code is expired."})
         genexgqr.to_user = user
         genexgqr.save()
 
