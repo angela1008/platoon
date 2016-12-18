@@ -20,15 +20,14 @@
 <div class="exchange-card-content row">
 	<div class="col-xs-1"></div>
 	<div class="col-xs-10" align="center">
-		<h2 class="exchange_carg_enter_id_text">Enter Other's Platoon ID</h2> 
+		<h2 class="exchange_carg_enter_id_text">Enter Other's Platoon ID</h2>
 		<!-- Enter other's ID-->
-		<input type="number" class="form-control">
+		<div id="exchange-platoon-id-input-div"></div>
 		<h3 class="exchange-card-text-or">or</h3>
-		<hr> 
+		<hr>
 		<!-- show ID dialog-->
-		<div class="btn btn-raised btn-lg exchange-card-show-id-button" data-toggle="modal" data-target="#show-id-modal" id="show-id-button">
-			<h5 class="exchange-card-show-id-button-text">Show Platoon ID</h5>
-		</div>
+		<!-- show modal and componentDidMount with ajax -->
+		<div id="show-id-button"></div>
 	</div>
 	<div class="col-xs-1"></div>
 </div>
