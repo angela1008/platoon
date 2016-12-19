@@ -46,6 +46,7 @@ class InputIdField extends React.Component {
                         document.getElementById('exchange-card-finish-dialog')
                   	);
                     utils.openModal('exchange-card-finish-dialog-modal');
+                    // TODO onModal close: unmount PersonalCard
                 }, function(xhr, status, err) {
                     console.error(xhr, status, err);
                     // TODO error status

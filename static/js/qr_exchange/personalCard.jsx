@@ -23,9 +23,9 @@ class PersonalCard extends React.Component {
         						<div className="row">
         							<div className="col-xs-4">
         								<div class="personal-img personal-flex-img">
-                                            <!-- personal image -->
-                                            <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" class="img-circle img-fluid">
-                                        </div>
+                                        {/* <!-- personal image --> */}
+                                        <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" class="img-circle img-fluid" />
+                                    </div>
         							</div>
         							<div className="col-xs-8">
         								<div className="exchage-card-text-vertical">
@@ -49,6 +49,6 @@ class PersonalCard extends React.Component {
         			</div>
         		</div>
         	</div>
-        )
+        );
     }
 }

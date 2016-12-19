@@ -1,71 +1,120 @@
-a:link {
-    color: #202020;
-    text-decoration: none !important;
+/* About Layout */
+@media screen and (min-width: 960px) {
+  .max-width-960 {
+    max-width: 960px;
+  }
 }
 
-/* mouse over link */
-a:hover {
-    color: green;
+/* About content & text */
+
+
+/*  */
+.title-margin, .subtitle-margin {
+	margin: 1rem 0;
+}
+.content-margin {
+  margin: 0.5rem 0;
+}
+.slogan-margin {
+	margin-top: 3rem 0;
+}
+.block-margin {
+	margin: 3rem 0;
 }
 
-/* selected link */
-a:active {
-    color: color: #202020;
+.img-responsive{
+	max-width: 100%;
+  height: auto;
 }
 
-.section {
-	margin-top: 15em;
+/* block 'start to exchange card' */
+.ex-card-bg {
+	width: auto;
+	height: 528px;
+	padding-top: 8rem;
+	padding-bottom: 5rem;
+	background-image: url('http://sistemas.cesmac.edu.br/sic-web/assets/admin/pages/media/bg/1.jpg');
+	background-size: 100% 100%
 }
-.area {
-	margin-top: 15em;
+@media screen and (min-width: 540px){
+	.ex-card-bg .btn{
+		display: none;
+	}
 }
-.footer-custom-left {
-/*	padding-top: 3rem;
-	padding-bottom: 3rem;*/
-	background: #4d4d4d;
+
+.ex-card-bg .btn {
+	background-color: rgba(255, 255, 255, 0.7);
+	width: auto;
+	padding: 2.5rem 0rem;
+	margin: 20px 0;
+	font-size: 1.166rem;
+	line-height: 0;
+	max-height: 1px;
 }
-.footer-custom-right {
-	padding-top: 8em;
-	padding-bottom: 8em;
-	background: #999999;
+
+
+@media screen and (min-width: 540px){
+	.ex-card-title {
+		font-size: 4rem;
+	}
 }
-.footer-text-custom {
-	color: white;
+.ex-card-subtitle {
+
 }
-.start-build-network-bg {
-	margin-top: 1.5em;
+@media screen and (min-width: 540px){
+	.ex-card-subtitle {
+		display: none;
+	}
 }
-.unity-bg {
-	margin-top: 1.5em;
-	padding-bottom: 25em;
-	/*background: #f2f2f2;*/
+.ex-card-subtitle-desktop {
+	font-size: 2rem;
+	display: none;
 }
-.find-team-bg {
-	padding-top: 5em;
-	padding-bottom: 5em;
-	/*background: #bfbfbf;*/
+@media screen and (min-width: 540px){
+	.ex-card-subtitle-desktop {
+		display: block;
+	}
 }
-.find-support-bg {
-	padding-top: 5em;
-	padding-bottom: 5em;
-	background: #d9d9d9;
+
+/* slogan block 'easy to use' */
+.slogan-easy-bg {
 }
-.inner {
-	display: inline-block;
+
+/* slogan block 'virtual and paper synchronize' */
+.slogan-synchronize-bg {
 }
-.find-team-button {
-	padding-left: 1.5em;
-	padding-right: 1.5em;
+
+/* slogan block 'want more information?' */
+.get-email {
+	height: 240px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
 }
-.about-find-team-text {
-	margin-left: 1.5em;
+.get-email .btn {
+  font-size: 1rem;
+	width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1px;
+  border-color: rgba(#000000, 0.3);
 }
+
+
+
+
+
+
+
 .stylish-input-group .input-group-addon {
-	background: white; 
+	background: white;
 }
 .stylish-input-group .form-control {
-	border-right: 0; 
-	box-shadow: 0 0 0; 
+	border-right: 0;
+	box-shadow: 0 0 0;
 	border-color: #ccc;
 }
 .stylish-input-group button {
@@ -79,7 +128,7 @@ a:active {
 	color: #b3b3b3;
 }
 .create-new-account-text {
-	color: #b3b3b3;	
+	color: #b3b3b3;
 }
 .signup-button-text {
 	color: #737373;
@@ -97,11 +146,22 @@ a:active {
 	border-color: #b3b3b3;
 }
 .create-new-account-text {
-	margin-bottom: 6em;
+	margin-bottom: 6rem;
 }
 .drawer-item-line {
 	color: #b3b3b3;
 }
-.drawer-item {
-	color: #202020;
+
+/* footer */
+
+/*.footer-custom-left {
+	padding-top: 8rem;
+	background: #4d4d4d;
+}
+.footer-custom-right {
+	padding-top: 8rem;
+	background: #999999;
+}*/
+.footer-text-custom {
+	color: white;
 }

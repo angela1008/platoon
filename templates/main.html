@@ -1,112 +1,104 @@
 <!DOCTYPE html>
+{% load static %}
 {% load render_bundle from webpack_loader %}
 <html>
-    <head>
+<head>
 
-        <!-- <meta charset="utf-8"> -->
-        <!-- If you delete this meta tag World War Z will become a reality -->
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!-- <meta charset="utf-8"> -->
+  <!-- If you delete this meta tag World War Z will become a reality -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <title>{% block head_title %}{% endblock %} | Platoon</title>
-        <!-- 最新編譯和最佳化的 CSS -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        -->
-        <!-- 選擇性佈景主題 -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
+  <title>{% block head_title %}{% endblock %} | Platoon</title>
+  <!-- 最新編譯和最佳化的 CSS -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+      -->
+  <!-- 選擇性佈景主題 -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
 
-        <!-- Material Design fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <!-- Material Design fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!-- Bootstrap Material Design -->
-        <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
+  <!-- Bootstrap 3 + Material Design -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css"> {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+  {% block css_extends %} {% endblock %}
+  {% block extra_head %} {% endblock %}
 
-        {% load static %}
-        <!-- <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}"> -->
+</head>
 
-        {% block css_extends %}
-        {% endblock %}
-        {% block extra_head %}
-        {% endblock %}
+<body class="my-body">
 
-    </head>
-
-    <body class="my-body">
-
-        <!-- Test react qr code exchange function -->
-        <!-- <div id="react-qr-code"></div> -->
-        <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
-        {% block bmd_layout_header %}
-            <header class="bmd-layout-header">
-                <div class="navbar navbar-light bg-faded">
-                    <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-                        <span class="sr-only">Toggle drawer</span>
-                        <i class="material-icons">menu</i>
-                    </button>
-                    <div class="nav pull-xs-right">
-                        <div class="btn-group" role="group">
-                            <a href="">
-                                <button type="button" class="btn btn-default navbar-btn">
-                                <i class="material-icons">email</i>
+  <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+    <!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
+    {% block bmd_layout_header %}
+        <header class="bmd-layout-header">
+            <div class="navbar navbar-light bg-faded">
+                <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
+                    <span class="sr-only">Toggle drawer</span>
+                    <i class="material-icons">menu</i>
+                </button>
+                <div class="nav pull-xs-right">
+                    <div class="btn-group" role="group">
+                        <a href="">
+                            <button type="button" class="btn btn-default navbar-btn">
+                            <i class="material-icons">email</i>
+                        </button>
+                        </a>
+                        <a href="{% url "personal_card" %}" >
+                            <button type="button" class="btn btn-default navbar-btn">
+                                <i class="material-icons">account_circle</i>
                             </button>
-                            </a>
-                            <a href="{% url "personal_card" %}" >
-                                <button type="button" class="btn btn-default navbar-btn">
-                                    <i class="material-icons">account_circle</i>
-                                </button>   
-                            </a>
-                            <a href="{% url "settings" %}">
-                                <button type="button" class="btn btn-default navbar-btn">
-                                <i class="material-icons">settings</i>
-                            </button>
-                            </a>
-                        </div>
+                        </a>
+                        <a href="{% url "settings" %}">
+                            <button type="button" class="btn btn-default navbar-btn">
+                            <i class="material-icons">settings</i>
+                        </button>
+                        </a>
                     </div>
                 </div>
-            </header>
-        {% endblock %}
+            </div>
+        </header>
+    {% endblock %}
+    {% include 'tools/drawer.html' %}
 
-        {% include 'tools/drawer.html' %}
-            <main class="bmd-layout-content">
-            
-            {% block body_base %}
-                <div class="container">
-                    {% block body %}
-                    {% endblock %}
-                </div>            
-            {% endblock %}
-
-            {% block footer_base %}
-                <footer>
-                    <div class="container">
-                        {% block footer %}
-                        {% endblock %}
-                    </div>
-                </footer>
-            {% endblock %}
-            </main>
+    <main class="bmd-layout-content">
+      {% block body_base %}
+        <div class="container">
+          {% block body %} {% endblock %}
         </div>
+          {% endblock %}
 
-        {% block include_html %}
-        {% endblock %}
+          {% block footer_base %}
+          <footer>
+              <div class="container">
+                  {% block footer %} {% endblock %}
 
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-        <script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
-        <script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-        {% render_bundle 'main' %}
-        <script>
-          $('body').bootstrapMaterialDesign();
-        </script>
+              </div>
+          </footer>
+          {% endblock %}
+      </main>
+  </div>
 
-        {% block end_js_extends %}
-        {% endblock %}
-    </body>
+  {% block include_html %}
+  {% endblock %}
+
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
+  <script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+  {% render_bundle 'main' %}
+  <script>
+      $('body').bootstrapMaterialDesign();
+  </script>
+
+  {% block end_js_extends %} {% endblock %}
+</body>
+
 </html>
