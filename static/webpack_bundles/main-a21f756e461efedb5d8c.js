@@ -49,31 +49,44 @@
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
 	var LoginModal = __webpack_require__(182);
+	var SignupModal = __webpack_require__(188);
 	var GenQrCodeButton = __webpack_require__(183);
 	var InputIdField = __webpack_require__(187);
 
+	// Login Modal
 	try {
 	  ReactDOM.render(React.createElement(LoginModal, null), document.getElementById('react-signin-modal'));
 	} catch (err) {
 	  console.error('id "react-signin-modal" not found');
 	}
 
+	// Signup Modal
+	try {
+	  ReactDOM.render(React.createElement(SignupModal, null), document.getElementById('react-signup-modal'));
+	} catch (err) {
+	  console.error('id "react-signup-modal" not found');
+	}
+
+	// Exchange Button for gen id
 	try {
 	  ReactDOM.render(React.createElement(GenQrCodeButton, null), document.getElementById('show-id-button'));
 	} catch (err) {
 	  console.error('id "show-id-button" not found');
 	}
 
+	// Exchange Input for scan id
 	try {
 	  ReactDOM.render(React.createElement(InputIdField, { dataUrl: utils.apiScanqr }), document.getElementById('exchange-platoon-id-input-div'));
 	} catch (err) {
 	  console.error('id "exchange-platoon-id-input-div" not found');
 	}
 
+	// Exchange ID Cancel
 	$('#show-id-modal').on('hidden.bs.modal', function () {
 	  ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
 	});
 
+	// User who is Intersted to us
 	$('#getMoreInformationBtn').click(function () {
 	  var email = $('#getMoreInformation').val();
 	  ajaxreq.post(utils.apiInterestedUser, { 'from_ip': '', 'email': email }, function (data) {
@@ -22389,6 +22402,83 @@
 	        // render the post
 	        return React.createElement('input', { id: 'exchange-platoon-id-input', type: 'number', min: '0', max: '9999', className: 'form-control', onChange: this.handleChanged, onKeyPress: this.handleKeyPressed });
 	    }
+	};
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class SignupModal extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  handleSubmitClick() {
+	    var name = document.getElementById('signup-name').value;
+	    var email = document.getElementById('signup-email').value;
+	    var password = document.getElementById('signup-password').value;
+	    ajaxreq.post(utils.apiUserSignup, { 'name': name, 'email': email, 'password': password }, function (data) {
+	      console.log(data);
+	      // TODO Signup Success, redirect
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	      // TODO error status
+	    });
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { className: 'modal fade', id: 'signup-modal', role: 'dialog' },
+	      React.createElement(
+	        'div',
+	        { className: 'modal-dialog modal-xs' },
+	        React.createElement(
+	          'div',
+	          { className: 'modal-content' },
+	          React.createElement(
+	            'div',
+	            { className: 'modal-body row' },
+	            React.createElement('div', { className: 'col-xs-1' }),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-10' },
+	              React.createElement(
+	                'h3',
+	                { className: 'signin-align-center' },
+	                'Platoon',
+	                React.createElement('br', null),
+	                'Sign Up'
+	              ),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'text', className: 'form-control', id: 'signup-name', placeholder: 'Name' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'email', className: 'form-control', id: 'signup-email', placeholder: 'Email' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'password', className: 'form-control', id: 'signup-password', placeholder: 'Password' }),
+	              React.createElement(
+	                'button',
+	                { className: 'btn btn-raised btn-lg signin-button', onClick: this.handleSubmitClick.bind(this) },
+	                React.createElement(
+	                  'h3',
+	                  { className: 'signin-button-text' },
+	                  'SIGN UP'
+	                )
+	              )
+	            ),
+	            React.createElement('div', { className: 'col-xs-1' })
+	          )
+	        )
+	      )
+	    );
+	  }
 	};
 
 /***/ }
