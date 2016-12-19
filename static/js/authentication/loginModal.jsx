@@ -27,7 +27,7 @@ class LoginModal extends React.Component {
               <div className="col-xs-1"></div>
               <div className="col-xs-10">
                 <h3 className="signin-align-center">Platoon<br/>Sign In</h3><br/>
-                <input type="email" className="form-control" id="input-email" placeholder="Email or Username" /><br/>
+                <input type="email" className="form-control" id="input-email" placeholder="Email" /><br/>
                 <input type="password" className="form-control" id="input-password" placeholder="Password" />
                 <h6 className="forgot-passsword-text" className="signin-align-center">forget password?</h6>
                 <h6  className="create-new-account-text" className="signin-align-center">Creat New Account!</h6>

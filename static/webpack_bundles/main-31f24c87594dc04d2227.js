@@ -21970,7 +21970,7 @@
 	                'Sign In'
 	              ),
 	              React.createElement('br', null),
-	              React.createElement('input', { type: 'email', className: 'form-control', id: 'input-email', placeholder: 'Email or Username' }),
+	              React.createElement('input', { type: 'email', className: 'form-control', id: 'input-email', placeholder: 'Email' }),
 	              React.createElement('br', null),
 	              React.createElement('input', { type: 'password', className: 'form-control', id: 'input-password', placeholder: 'Password' }),
 	              React.createElement(
