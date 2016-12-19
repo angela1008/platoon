@@ -65,3 +65,9 @@ webpack-stats.json
 #ssh
 ankao_gitlab_ssh_key
 ankao_gitlab_ssh_key.pub
+
+#pip selfcheck
+pip-selfcheck.json
+
+#db sqlite3
+db.sqlite3
