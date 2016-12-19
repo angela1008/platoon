@@ -21477,6 +21477,8 @@
 /***/ function(module, exports) {
 
 	const apiServer = 'http://127.0.0.1:8000/platoon-api/';
+	const apiUserLogin = apiServer + 'login/';
+	const apiUserSignup = apiServer + 'signup/';
 	const apiInterestedUser = apiServer + 'interested-user/';
 	const apiGenexgqr = apiServer + 'genexgqr/';
 	const apiScanqr = apiServer + 'scanqr/';
@@ -21497,6 +21499,8 @@
 	  return id;
 	}
 
+	exports.apiUserLogin = apiUserLogin;
+	exports.apiUserSignup = apiUserSignup;
 	exports.apiInterestedUser = apiInterestedUser;
 	exports.apiGenexgqr = apiGenexgqr;
 	exports.apiScanqr = apiScanqr, exports.apiCheckqr = apiCheckqr;
@@ -21940,8 +21944,13 @@
 	  handleSubmitClick() {
 	    var email = document.getElementById('input-email').value;
 	    var password = document.getElementById('input-password').value;
-	    // ajaxreq.post();
-	    console.log(email, password);
+	    ajaxreq.post(utils.apiUserLogin, { 'email': email, 'password': password }, function (data) {
+	      console.log(data);
+	      // TODO Login Success, redirect
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	      // TODO error status
+	    });
 	  }
 
 	  render() {

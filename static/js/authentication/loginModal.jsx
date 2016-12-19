@@ -13,8 +13,15 @@ class LoginModal extends React.Component {
   handleSubmitClick() {
     var email = document.getElementById('input-email').value;
     var password = document.getElementById('input-password').value;
-    // ajaxreq.post();
-    console.log(email, password);
+    ajaxreq.post(utils.apiUserLogin,
+      {'email': email, 'password': password},
+      function(data) {
+        console.log(data);
+        // TODO Login Success, redirect
+      }, function(xhr, status, err) {
+          console.error(xhr, status, err);
+          // TODO error status
+      });
   }
 
   render() {

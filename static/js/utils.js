@@ -1,4 +1,6 @@
 const apiServer = 'http://127.0.0.1:8000/platoon-api/';
+const apiUserLogin = apiServer + 'login/';
+const apiUserSignup = apiServer + 'signup/';
 const apiInterestedUser = apiServer + 'interested-user/';
 const apiGenexgqr = apiServer + 'genexgqr/';
 const apiScanqr = apiServer + 'scanqr/';
@@ -19,6 +21,8 @@ function id4DigitFormater(id) {
   return id;
 }
 
+exports.apiUserLogin = apiUserLogin;
+exports.apiUserSignup = apiUserSignup;
 exports.apiInterestedUser = apiInterestedUser;
 exports.apiGenexgqr = apiGenexgqr;
 exports.apiScanqr = apiScanqr,
