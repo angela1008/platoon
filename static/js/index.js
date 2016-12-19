@@ -2,8 +2,18 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var utils = require('./utils')
 var ajaxreq = require('./http/ajaxreq')
+var LoginModal = require('./authentication/loginModal')
 var GenQrCodeButton = require('./qr_exchange/buttonGenQr')
 var InputIdField = require('./qr_exchange/inputIdField')
+
+try {
+  ReactDOM.render(
+    <LoginModal />,
+    document.getElementById('react-signin-modal')
+  );
+} catch(err) {
+  console.error('id "react-signin-modal" not found');
+}
 
 try {
     ReactDOM.render(

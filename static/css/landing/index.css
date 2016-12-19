@@ -142,6 +142,9 @@
 .signin-button {
 	width: 100%;
 }
+.signin-align-center {
+  align: center;
+}
 .hr-line {
 	border-color: #b3b3b3;
 }
