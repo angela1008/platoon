@@ -15,9 +15,18 @@ class InterestedUser(APIView):
     permission_classes = (permissions.AllowAny,)
     # queryset = apiModels.InterestedUser.objects.all()
     # serializer_class = serializers.InterestedUserSerializer
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
 
     def post(self, request, format = None):
-        serializer = InterestedUserSerializer(data = request.data)
+        data = request.data.copy()
+        data['from_ip'] = self.get_client_ip(request)
+        serializer = serializers.InterestedUserSerializer(data = data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
