@@ -47,15 +47,55 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
-	var GenQrCodeButton = __webpack_require__(179);
-	var InputIdField = __webpack_require__(185);
+	var ajaxreq = __webpack_require__(179);
+	var LoginModal = __webpack_require__(182);
+	var SignupModal = __webpack_require__(183);
+	var GenQrCodeButton = __webpack_require__(184);
+	var InputIdField = __webpack_require__(188);
 
-	ReactDOM.render(React.createElement(GenQrCodeButton, null), document.getElementById('show-id-button'));
+	// Login Modal
+	try {
+	  ReactDOM.render(React.createElement(LoginModal, null), document.getElementById('react-signin-modal'));
+	} catch (err) {
+	  console.error('id "react-signin-modal" not found');
+	}
 
-	ReactDOM.render(React.createElement(InputIdField, { dataUrl: utils.apiScanqr }), document.getElementById('exchange-platoon-id-input-div'));
+	// Signup Modal
+	try {
+	  ReactDOM.render(React.createElement(SignupModal, null), document.getElementById('react-signup-modal'));
+	} catch (err) {
+	  console.error('id "react-signup-modal" not found');
+	}
 
+	// Exchange Button for gen id
+	try {
+	  ReactDOM.render(React.createElement(GenQrCodeButton, null), document.getElementById('show-id-button'));
+	} catch (err) {
+	  console.error('id "show-id-button" not found');
+	}
+
+	// Exchange Input for scan id
+	try {
+	  ReactDOM.render(React.createElement(InputIdField, { dataUrl: utils.apiScanqr }), document.getElementById('exchange-platoon-id-input-div'));
+	} catch (err) {
+	  console.error('id "exchange-platoon-id-input-div" not found');
+	}
+
+	// Exchange ID Cancel
 	$('#show-id-modal').on('hidden.bs.modal', function () {
-		ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+	  ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+	});
+
+	// User who is Intersted to us
+	$('#getMoreInformationBtn').click(function () {
+	  var email = $('#getMoreInformation').val();
+	  ajaxreq.post(utils.apiInterestedUser, { 'from_ip': '', 'email': email }, function (data) {
+	    console.log(data);
+	    // TODO Say thanks
+	  }, function (xhr, status, err) {
+	    console.error(xhr, status, err);
+	    // TODO error status
+	  });
 	});
 
 /***/ },
@@ -21450,6 +21490,9 @@
 /***/ function(module, exports) {
 
 	const apiServer = 'http://127.0.0.1:8000/platoon-api/';
+	const apiUserLogin = apiServer + 'login/';
+	const apiUserSignup = apiServer + 'signup/';
+	const apiInterestedUser = apiServer + 'interested-user/';
 	const apiGenexgqr = apiServer + 'genexgqr/';
 	const apiScanqr = apiServer + 'scanqr/';
 	const apiCheckqr = apiServer + 'checkqraccept/';
@@ -21469,6 +21512,9 @@
 	  return id;
 	}
 
+	exports.apiUserLogin = apiUserLogin;
+	exports.apiUserSignup = apiUserSignup;
+	exports.apiInterestedUser = apiInterestedUser;
 	exports.apiGenexgqr = apiGenexgqr;
 	exports.apiScanqr = apiScanqr, exports.apiCheckqr = apiCheckqr;
 	exports.id4DigitFormater = id4DigitFormater;
@@ -21480,179 +21526,7 @@
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var GenQrCodePage = __webpack_require__(180);
-	var utils = __webpack_require__(178);
-
-	module.exports = class GenQrCodeButton extends React.Component {
-
-	    constructor(props) {
-	        super(props);
-	        this.handleTimeUpCallback = this.handleTimeUpCallback.bind(this);
-	        this.modalId = 'show-id-modal';
-	    }
-
-	    componentWillUnmount() {
-	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
-	    }
-
-	    onGenQrClick() {
-	        ReactDOM.render(React.createElement(GenQrCodePage, {
-	            dataUrl: utils.apiGenexgqr,
-	            checkUrl: utils.apiCheckqr,
-	            modalID: this.modalId,
-	            handleTimeUpCallback: this.handleTimeUpCallback }), document.getElementById('exchange-card-modal'));
-	    }
-
-	    handleTimeUpCallback() {
-	        console.log('timesup');
-	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
-
-	        const timUpMessage = React.createElement(
-	            'h1',
-	            { className: 'alert alert-danger' },
-	            'Supreme'
-	        );
-
-	        ReactDOM.render(timUpMessage, document.getElementById('exchange-card-modal'));
-	    }
-
-	    render() {
-	        // render the post
-	        return React.createElement(
-	            'button',
-	            { onClick: this.onGenQrClick.bind(this), className: 'btn btn-raised btn-lg exchange-card-show-id-button', 'data-toggle': 'modal', 'data-target': "#" + this.modalId },
-	            React.createElement(
-	                'h5',
-	                { className: 'exchange-card-show-id-button-text' },
-	                'Show Platoon ID'
-	            )
-	        );
-	    }
-	};
-
-/***/ },
-/* 180 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var ExpireCounter = __webpack_require__(184);
-	var PersonalCard = __webpack_require__(186);
-	var ajaxreq = __webpack_require__(181);
-	var utils = __webpack_require__(178);
-
-	module.exports = class GenQrCodePage extends React.Component {
-
-	    constructor(props) {
-	        super(props);
-	        this.handleRequestCallback = this.handleRequestCallback.bind(this);
-	        this.handleTimeUpCallback = this.props.handleTimeUpCallback.bind(this);
-	    }
-
-	    componentWillUnmount() {
-	        // This method is called immediately before the component is removed
-	        // from the page and destroyed. We can send cancel request here:
-	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-platoon-counter'));
-	        // TODO Send cancel request
-	        // $.ajax({
-	        //     url: this.props.dataURL,
-	        //     dataType: 'json',
-	        //     cache: false,
-	        //     success: function(data) {
-	        //         this.exchange_code = data;
-	        //     }.bind(this),
-	        //     error: function(xhr, status, err) {
-	        //         console.error(xhr, status, err);
-	        //     }.bind(this)
-	        // });
-	    }
-
-	    // Get exchange id and action url for user to do the card exchange
-	    componentDidMount() {
-	        console.log(this.props.dataUrl);
-	        // Change this for self, don't confuse "this"
-	        var self = this;
-	        ajaxreq.get(this.props.dataUrl, { 'from_user': 1 }, function (data) {
-	            self.exchange_code = data;
-	            // render id and start countdown
-	            const element = React.createElement(
-	                'div',
-	                null,
-	                self.exchange_code.id
-	            );
-
-	            ReactDOM.render(element, document.getElementById('exchange-platoon-id'));
-
-	            ReactDOM.render(React.createElement(ExpireCounter, {
-	                start: utils.countTimeSec,
-	                countCallback: self.handleRequestCallback,
-	                handleTimeUpCallback: self.handleTimeUpCallback }), document.getElementById('exchange-platoon-counter'));
-	        }, function (xhr, status, err) {
-	            console.error(xhr, status, err);
-	        });
-	    }
-
-	    // Handle the exchange request, doing request every second.
-	    handleRequestCallback() {
-	        // query when timer count down, checkqraccept
-	        if (!this.isSent) {
-	            this.isSent = true;
-	            var self = this;
-	            ajaxreq.get(this.props.checkUrl, { 'from_user': 1, 'exchange_code': this.exchange_code.id }, function (data) {
-	                // show data
-	                self.isSent = false;
-	                if (data.isSuccess) {
-	                    ReactDOM.render(React.createElement(PersonalCard, {
-	                        id: 'exchange-card-finish-dialog-modal',
-	                        data: data.data }), document.getElementById('exchange-card-finish-dialog'));
-	                    utils.openModal('exchange-card-finish-dialog-modal');
-	                    utils.closeModal('show-id-modal');
-	                } else {
-	                    // Keep waiting
-	                }
-	            }, function (xhr, status, err) {
-	                console.error(xhr, status, err);
-	                self.isSent = false;
-	            });
-	        } else {
-	            console.log('Not yet back');
-	        }
-	    }
-
-	    render() {
-	        return React.createElement(
-	            'div',
-	            { style: { align: 'center' } },
-	            React.createElement(
-	                'h4',
-	                { className: 'exchange-card-show-id-text' },
-	                'Platoon ID'
-	            ),
-	            React.createElement(
-	                'h2',
-	                { id: 'exchange-platoon-id', className: 'exchange-card-show-id-text' },
-	                'Generating ID...'
-	            ),
-	            React.createElement('hr', null),
-	            React.createElement('div', { id: 'exchange-platoon-counter' }),
-	            React.createElement(
-	                'h5',
-	                { className: 'exchange-card-dialog-description' },
-	                ' \u6B64ID\u5C07\u65BC\u6642\u9650\u5F8C\uFF0C',
-	                React.createElement('br', null),
-	                '\u6216\u95DC\u9589\u6B64\u9801\u9762\u6642\u81EA\u52D5\u6D88\u5931\u3002'
-	            )
-	        );
-	    }
-	};
-
-/***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var cookie = __webpack_require__(182);
+	var cookie = __webpack_require__(180);
 	var csrftoken = cookie.load('csrftoken');
 
 	function csrfSafeMethod(method) {
@@ -21708,7 +21582,7 @@
 	exports.post = post;
 
 /***/ },
-/* 182 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -21726,7 +21600,7 @@
 	exports.setRawCookie = setRawCookie;
 	exports.plugToRequest = plugToRequest;
 
-	var _cookie = __webpack_require__(183);
+	var _cookie = __webpack_require__(181);
 
 	var _cookie2 = _interopRequireDefault(_cookie);
 
@@ -21865,7 +21739,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 183 */
+/* 181 */
 /***/ function(module, exports) {
 
 	/*!
@@ -22066,7 +21940,340 @@
 
 
 /***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class LoginModal extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  handleSubmitClick() {
+	    var email = document.getElementById('input-email').value;
+	    var password = document.getElementById('input-password').value;
+	    ajaxreq.post(utils.apiUserLogin, { 'email': email, 'password': password }, function (data) {
+	      console.log(data);
+	      // TODO Login Success, redirect
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	      // TODO error status
+	    });
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { className: 'modal fade', id: 'signin-modal', role: 'dialog' },
+	      React.createElement(
+	        'div',
+	        { className: 'modal-dialog modal-xs' },
+	        React.createElement(
+	          'div',
+	          { className: 'modal-content' },
+	          React.createElement(
+	            'div',
+	            { className: 'modal-body row' },
+	            React.createElement('div', { className: 'col-xs-1' }),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-10' },
+	              React.createElement(
+	                'h3',
+	                { className: 'signin-align-center' },
+	                'Platoon',
+	                React.createElement('br', null),
+	                'Sign In'
+	              ),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'email', className: 'form-control', id: 'input-email', placeholder: 'Email' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'password', className: 'form-control', id: 'input-password', placeholder: 'Password' }),
+	              React.createElement(
+	                'h6',
+	                { className: 'forgot-passsword-text', className: 'signin-align-center' },
+	                'forget password?'
+	              ),
+	              React.createElement(
+	                'h6',
+	                { className: 'create-new-account-text', className: 'signin-align-center' },
+	                'Creat New Account!'
+	              ),
+	              React.createElement(
+	                'button',
+	                { className: 'btn btn-raised btn-lg signin-button', onClick: this.handleSubmitClick.bind(this) },
+	                React.createElement(
+	                  'h3',
+	                  { className: 'signin-button-text' },
+	                  'SIGN IN'
+	                )
+	              )
+	            ),
+	            React.createElement('div', { className: 'col-xs-1' })
+	          )
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class SignupModal extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  handleSubmitClick() {
+	    var name = document.getElementById('signup-name').value;
+	    var email = document.getElementById('signup-email').value;
+	    var password = document.getElementById('signup-password').value;
+	    ajaxreq.post(utils.apiUserSignup, { 'name': name, 'email': email, 'password': password }, function (data) {
+	      console.log(data);
+	      // TODO Signup Success, redirect
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	      // TODO error status
+	    });
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { className: 'modal fade', id: 'signup-modal', role: 'dialog' },
+	      React.createElement(
+	        'div',
+	        { className: 'modal-dialog modal-xs' },
+	        React.createElement(
+	          'div',
+	          { className: 'modal-content' },
+	          React.createElement(
+	            'div',
+	            { className: 'modal-body row' },
+	            React.createElement('div', { className: 'col-xs-1' }),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-10' },
+	              React.createElement(
+	                'h3',
+	                { className: 'signin-align-center' },
+	                'Platoon',
+	                React.createElement('br', null),
+	                'Sign Up'
+	              ),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'text', className: 'form-control', id: 'signup-name', placeholder: 'Name' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'email', className: 'form-control', id: 'signup-email', placeholder: 'Email' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'password', className: 'form-control', id: 'signup-password', placeholder: 'Password' }),
+	              React.createElement(
+	                'button',
+	                { className: 'btn btn-raised btn-lg signin-button', onClick: this.handleSubmitClick.bind(this) },
+	                React.createElement(
+	                  'h3',
+	                  { className: 'signin-button-text' },
+	                  'SIGN UP'
+	                )
+	              )
+	            ),
+	            React.createElement('div', { className: 'col-xs-1' })
+	          )
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
 /* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var GenQrCodePage = __webpack_require__(185);
+	var utils = __webpack_require__(178);
+
+	module.exports = class GenQrCodeButton extends React.Component {
+
+	    constructor(props) {
+	        super(props);
+	        this.handleTimeUpCallback = this.handleTimeUpCallback.bind(this);
+	        this.modalId = 'show-id-modal';
+	    }
+
+	    componentWillUnmount() {
+	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+	    }
+
+	    onGenQrClick() {
+	        ReactDOM.render(React.createElement(GenQrCodePage, {
+	            dataUrl: utils.apiGenexgqr,
+	            checkUrl: utils.apiCheckqr,
+	            modalID: this.modalId,
+	            handleTimeUpCallback: this.handleTimeUpCallback }), document.getElementById('exchange-card-modal'));
+	    }
+
+	    handleTimeUpCallback() {
+	        console.log('timesup');
+	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+
+	        const timUpMessage = React.createElement(
+	            'h1',
+	            { className: 'alert alert-danger' },
+	            'Supreme'
+	        );
+
+	        ReactDOM.render(timUpMessage, document.getElementById('exchange-card-modal'));
+	    }
+
+	    render() {
+	        // render the post
+	        return React.createElement(
+	            'button',
+	            { onClick: this.onGenQrClick.bind(this), className: 'btn btn-raised btn-lg exchange-card-show-id-button', 'data-toggle': 'modal', 'data-target': "#" + this.modalId },
+	            React.createElement(
+	                'h5',
+	                { className: 'exchange-card-show-id-button-text' },
+	                'Show Platoon ID'
+	            )
+	        );
+	    }
+	};
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var ExpireCounter = __webpack_require__(186);
+	var PersonalCard = __webpack_require__(187);
+	var ajaxreq = __webpack_require__(179);
+	var utils = __webpack_require__(178);
+
+	module.exports = class GenQrCodePage extends React.Component {
+
+	    constructor(props) {
+	        super(props);
+	        this.handleRequestCallback = this.handleRequestCallback.bind(this);
+	        this.handleTimeUpCallback = this.props.handleTimeUpCallback.bind(this);
+	    }
+
+	    componentWillUnmount() {
+	        // This method is called immediately before the component is removed
+	        // from the page and destroyed. We can send cancel request here:
+	        ReactDOM.unmountComponentAtNode(document.getElementById('exchange-platoon-counter'));
+	        // TODO Send cancel request
+	        // $.ajax({
+	        //     url: this.props.dataURL,
+	        //     dataType: 'json',
+	        //     cache: false,
+	        //     success: function(data) {
+	        //         this.exchange_code = data;
+	        //     }.bind(this),
+	        //     error: function(xhr, status, err) {
+	        //         console.error(xhr, status, err);
+	        //     }.bind(this)
+	        // });
+	    }
+
+	    // Get exchange id and action url for user to do the card exchange
+	    componentDidMount() {
+	        console.log(this.props.dataUrl);
+	        // Change this for self, don't confuse "this"
+	        var self = this;
+	        ajaxreq.get(this.props.dataUrl, { 'from_user': 1 }, function (data) {
+	            self.exchange_code = data;
+	            // render id and start countdown
+	            const element = React.createElement(
+	                'div',
+	                null,
+	                self.exchange_code.id
+	            );
+
+	            ReactDOM.render(element, document.getElementById('exchange-platoon-id'));
+
+	            ReactDOM.render(React.createElement(ExpireCounter, {
+	                start: utils.countTimeSec,
+	                countCallback: self.handleRequestCallback,
+	                handleTimeUpCallback: self.handleTimeUpCallback }), document.getElementById('exchange-platoon-counter'));
+	        }, function (xhr, status, err) {
+	            console.error(xhr, status, err);
+	        });
+	    }
+
+	    // Handle the exchange request, doing request every second.
+	    handleRequestCallback() {
+	        // query when timer count down, checkqraccept
+	        if (!this.isSent) {
+	            this.isSent = true;
+	            var self = this;
+	            ajaxreq.get(this.props.checkUrl, { 'from_user': 1, 'exchange_code': this.exchange_code.id }, function (data) {
+	                // show data
+	                self.isSent = false;
+	                if (data.isSuccess) {
+	                    ReactDOM.render(React.createElement(PersonalCard, {
+	                        id: 'exchange-card-finish-dialog-modal',
+	                        data: data.data }), document.getElementById('exchange-card-finish-dialog'));
+	                    utils.openModal('exchange-card-finish-dialog-modal');
+	                    utils.closeModal('show-id-modal');
+	                } else {
+	                    // Keep waiting
+	                }
+	            }, function (xhr, status, err) {
+	                console.error(xhr, status, err);
+	                self.isSent = false;
+	            });
+	        } else {
+	            console.log('Not yet back');
+	        }
+	    }
+
+	    render() {
+	        return React.createElement(
+	            'div',
+	            { style: { align: 'center' } },
+	            React.createElement(
+	                'h4',
+	                { className: 'exchange-card-show-id-text' },
+	                'Platoon ID'
+	            ),
+	            React.createElement(
+	                'h2',
+	                { id: 'exchange-platoon-id', className: 'exchange-card-show-id-text' },
+	                'Generating ID...'
+	            ),
+	            React.createElement('hr', null),
+	            React.createElement('div', { id: 'exchange-platoon-counter' }),
+	            React.createElement(
+	                'h5',
+	                { className: 'exchange-card-dialog-description' },
+	                ' \u6B64ID\u5C07\u65BC\u6642\u9650\u5F8C\uFF0C',
+	                React.createElement('br', null),
+	                '\u6216\u95DC\u9589\u6B64\u9801\u9762\u6642\u81EA\u52D5\u6D88\u5931\u3002'
+	            )
+	        );
+	    }
+	};
+
+/***/ },
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -22141,14 +22348,87 @@
 	};
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
-	var ajaxreq = __webpack_require__(181);
-	var PersonalCard = __webpack_require__(186);
+
+	module.exports = class PersonalCard extends React.Component {
+
+	    constructor(props) {
+	        super(props);
+	        this.id = this.props.id;
+	        this.data = this.props.data;
+	    }
+
+	    render() {
+	        return React.createElement(
+	            'div',
+	            { id: this.id, className: 'modal fade', role: 'dialog' },
+	            React.createElement(
+	                'div',
+	                { className: 'modal-dialog modal-xs personal-card-flex' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'modal-content' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'modal-body row' },
+	                        React.createElement('div', { className: 'col-xs-1' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-10 exchange-card-finish-content' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-4' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { 'class': 'personal-img personal-flex-img' },
+	                                        React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', 'class': 'img-circle img-fluid' })
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-8' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'exchage-card-text-vertical' },
+	                                        React.createElement(
+	                                            'h3',
+	                                            { className: 'exchange-card-finish-text' },
+	                                            this.data.first_name
+	                                        ),
+	                                        React.createElement(
+	                                            'h6',
+	                                            { className: 'exchange-card-finish-text' },
+	                                            this.data.email
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement('div', { className: 'col-xs-1' })
+	                    )
+	                )
+	            )
+	        );
+	    }
+	};
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+	var PersonalCard = __webpack_require__(187);
 
 	module.exports = class InputIdField extends React.Component {
 
@@ -22185,6 +22465,7 @@
 	                    id: 'exchange-card-finish-dialog-modal',
 	                    data: data }), document.getElementById('exchange-card-finish-dialog'));
 	                utils.openModal('exchange-card-finish-dialog-modal');
+	                // TODO onModal close: unmount PersonalCard
 	            }, function (xhr, status, err) {
 	                console.error(xhr, status, err);
 	                // TODO error status
@@ -22197,79 +22478,6 @@
 	    render() {
 	        // render the post
 	        return React.createElement('input', { id: 'exchange-platoon-id-input', type: 'number', min: '0', max: '9999', className: 'form-control', onChange: this.handleChanged, onKeyPress: this.handleKeyPressed });
-	    }
-	};
-
-/***/ },
-/* 186 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var utils = __webpack_require__(178);
-
-	module.exports = class PersonalCard extends React.Component {
-
-	    constructor(props) {
-	        super(props);
-	        this.id = this.props.id;
-	        this.data = this.props.data;
-	    }
-
-	    render() {
-	        return React.createElement(
-	            'div',
-	            { id: this.id, className: 'modal fade', role: 'dialog' },
-	            React.createElement(
-	                'div',
-	                { className: 'modal-dialog modal-xs' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'modal-content' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'modal-body row' },
-	                        React.createElement('div', { className: 'col-xs-1' }),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-10 exchange-card-finish-content' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'col-xs-4' },
-	                                    React.createElement(
-	                                        'i',
-	                                        { className: 'material-icons' },
-	                                        'account_circle'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'col-xs-8' },
-	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'exchage-card-text-vertical' },
-	                                        React.createElement(
-	                                            'h3',
-	                                            { className: 'exchange-card-finish-text' },
-	                                            this.data.first_name
-	                                        ),
-	                                        React.createElement(
-	                                            'h6',
-	                                            { className: 'exchange-card-finish-text' },
-	                                            this.data.email
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement('div', { className: 'col-xs-1' })
-	                    )
-	                )
-	            )
-	        );
 	    }
 	};
 

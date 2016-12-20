@@ -1,13 +1,10 @@
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers
 
 from api import views, views_qrcode, views_qraccept
 from api import views_customer as viewCus
-
-
-# Routers provide an easy way of automatically determining the URL conf.
-# router = routers.DefaultRouter()
+from api import views_login
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -24,6 +21,15 @@ urlpatterns = [
     url(r'^interested-users/$',
         viewCus.InterestedUserList.as_view(),
         name='interested-user-list'),
+
+    # login
+    url(r'^login/$',
+        views_login.Login.as_view(),
+        name='user-login'),
+
+    url(r'^signup/$',
+        views_login.SignUp.as_view(),
+        name='user-signup'),
 
     # User
     url(r'^users/$',
