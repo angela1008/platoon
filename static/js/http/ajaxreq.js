@@ -6,9 +6,20 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
+function getUserId() {
+  var userId = cookie.load('uid');
+  return userId;
+}
+
 function getAccessToken() {
   // TODO replace with loged-in accesstoken
-  return '2213';
+  var accessToken = cookie.load('access_token');
+  if (accessToken) {
+    return accessToken;
+  } else {
+    // No access_token
+    return '9487';
+  }
 }
 
 function urlForGET(url, params) {
@@ -51,3 +62,4 @@ var post = function(url, data, success, error) {
 
 exports.get = get;
 exports.post = post;
+exports.getUserId = getUserId();
