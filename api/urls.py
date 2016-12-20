@@ -112,6 +112,10 @@ urlpatterns = [
       views_qrcode.ScanQr.as_view(),
       name='user-scanqr'),
 
+    url(r'^cancelqr/$',
+      views_qrcode.CancelQr.as_view(),
+      name='user-Cancelqr'),
+
     url(r'^checkqraccept/$',
       views_qraccept.CheckQrAccept.as_view(),
       name='user-checkqraccept'),
