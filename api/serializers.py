@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username','password', 'first_name', 'email', 'last_login')
+        fields = ('id', 'username', 'first_name', 'email')
         write_only_fields = ('password',)
 
     def restore_object(self, attrs, instance=None):
