@@ -49,9 +49,9 @@
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
 	var LoginModal = __webpack_require__(182);
-	var SignupModal = __webpack_require__(188);
-	var GenQrCodeButton = __webpack_require__(183);
-	var InputIdField = __webpack_require__(187);
+	var SignupModal = __webpack_require__(183);
+	var GenQrCodeButton = __webpack_require__(184);
+	var InputIdField = __webpack_require__(188);
 
 	// Login Modal
 	try {
@@ -22029,7 +22029,84 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
-	var GenQrCodePage = __webpack_require__(184);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class SignupModal extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  handleSubmitClick() {
+	    var name = document.getElementById('signup-name').value;
+	    var email = document.getElementById('signup-email').value;
+	    var password = document.getElementById('signup-password').value;
+	    ajaxreq.post(utils.apiUserSignup, { 'name': name, 'email': email, 'password': password }, function (data) {
+	      console.log(data);
+	      // TODO Signup Success, redirect
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	      // TODO error status
+	    });
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { className: 'modal fade', id: 'signup-modal', role: 'dialog' },
+	      React.createElement(
+	        'div',
+	        { className: 'modal-dialog modal-xs' },
+	        React.createElement(
+	          'div',
+	          { className: 'modal-content' },
+	          React.createElement(
+	            'div',
+	            { className: 'modal-body row' },
+	            React.createElement('div', { className: 'col-xs-1' }),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-10' },
+	              React.createElement(
+	                'h3',
+	                { className: 'signin-align-center' },
+	                'Platoon',
+	                React.createElement('br', null),
+	                'Sign Up'
+	              ),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'text', className: 'form-control', id: 'signup-name', placeholder: 'Name' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'email', className: 'form-control', id: 'signup-email', placeholder: 'Email' }),
+	              React.createElement('br', null),
+	              React.createElement('input', { type: 'password', className: 'form-control', id: 'signup-password', placeholder: 'Password' }),
+	              React.createElement(
+	                'button',
+	                { className: 'btn btn-raised btn-lg signin-button', onClick: this.handleSubmitClick.bind(this) },
+	                React.createElement(
+	                  'h3',
+	                  { className: 'signin-button-text' },
+	                  'SIGN UP'
+	                )
+	              )
+	            ),
+	            React.createElement('div', { className: 'col-xs-1' })
+	          )
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var GenQrCodePage = __webpack_require__(185);
 	var utils = __webpack_require__(178);
 
 	module.exports = class GenQrCodeButton extends React.Component {
@@ -22080,13 +22157,13 @@
 	};
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
-	var ExpireCounter = __webpack_require__(185);
-	var PersonalCard = __webpack_require__(186);
+	var ExpireCounter = __webpack_require__(186);
+	var PersonalCard = __webpack_require__(187);
 	var ajaxreq = __webpack_require__(179);
 	var utils = __webpack_require__(178);
 
@@ -22196,7 +22273,7 @@
 	};
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -22271,7 +22348,7 @@
 	};
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -22344,14 +22421,14 @@
 	};
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
-	var PersonalCard = __webpack_require__(186);
+	var PersonalCard = __webpack_require__(187);
 
 	module.exports = class InputIdField extends React.Component {
 
@@ -22402,83 +22479,6 @@
 	        // render the post
 	        return React.createElement('input', { id: 'exchange-platoon-id-input', type: 'number', min: '0', max: '9999', className: 'form-control', onChange: this.handleChanged, onKeyPress: this.handleKeyPressed });
 	    }
-	};
-
-/***/ },
-/* 188 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var utils = __webpack_require__(178);
-	var ajaxreq = __webpack_require__(179);
-
-	module.exports = class SignupModal extends React.Component {
-
-	  constructor(props) {
-	    super(props);
-	  }
-
-	  handleSubmitClick() {
-	    var name = document.getElementById('signup-name').value;
-	    var email = document.getElementById('signup-email').value;
-	    var password = document.getElementById('signup-password').value;
-	    ajaxreq.post(utils.apiUserSignup, { 'name': name, 'email': email, 'password': password }, function (data) {
-	      console.log(data);
-	      // TODO Signup Success, redirect
-	    }, function (xhr, status, err) {
-	      console.error(xhr, status, err);
-	      // TODO error status
-	    });
-	  }
-
-	  render() {
-	    // render the post
-	    return React.createElement(
-	      'div',
-	      { className: 'modal fade', id: 'signup-modal', role: 'dialog' },
-	      React.createElement(
-	        'div',
-	        { className: 'modal-dialog modal-xs' },
-	        React.createElement(
-	          'div',
-	          { className: 'modal-content' },
-	          React.createElement(
-	            'div',
-	            { className: 'modal-body row' },
-	            React.createElement('div', { className: 'col-xs-1' }),
-	            React.createElement(
-	              'div',
-	              { className: 'col-xs-10' },
-	              React.createElement(
-	                'h3',
-	                { className: 'signin-align-center' },
-	                'Platoon',
-	                React.createElement('br', null),
-	                'Sign Up'
-	              ),
-	              React.createElement('br', null),
-	              React.createElement('input', { type: 'text', className: 'form-control', id: 'signup-name', placeholder: 'Name' }),
-	              React.createElement('br', null),
-	              React.createElement('input', { type: 'email', className: 'form-control', id: 'signup-email', placeholder: 'Email' }),
-	              React.createElement('br', null),
-	              React.createElement('input', { type: 'password', className: 'form-control', id: 'signup-password', placeholder: 'Password' }),
-	              React.createElement(
-	                'button',
-	                { className: 'btn btn-raised btn-lg signin-button', onClick: this.handleSubmitClick.bind(this) },
-	                React.createElement(
-	                  'h3',
-	                  { className: 'signin-button-text' },
-	                  'SIGN UP'
-	                )
-	              )
-	            ),
-	            React.createElement('div', { className: 'col-xs-1' })
-	          )
-	        )
-	      )
-	    );
-	  }
 	};
 
 /***/ }

@@ -11,19 +11,36 @@ from api import models
 from api import serializers
 from api.permissions import IsStaffOrTargetUser
 
+import datetime
 import random
 
 # TODO access_token
 # Validation, Update, Create
 def getAccesstoken(user):
     # Check this user's token exist or expired
-    # non-exist or expired:
-    # Create new one or update new one
-    hash = random.getrandbits(128)
+    try:
+       token = models.Token.objects.get(user=user)
+    except models.Token.DoesNotExist:
+       token = None
 
+    time_now = datetime.datetime.now()
+    if token is None:
+        # non-exist
+        # Create new one
+        hash = random.getrandbits(128)
+        token = models.Token(user=user, token=hash, expired_at=time_now + datetime.timedelta(days = 7))
+        token.save()
+    elif token.expired_at <= time_now:
+        # expired, update new one
+        hash = random.getrandbits(128)
+        token.token = hash
+        token.expired_at = time_now + datetime.timedelta(days = 7)
+        token.save()
+
+    # Normal status:
     # exist and not expired:
     # get that and push back to user
-    return '123';
+    return token.token
 
 # User login
 class Login(APIView):
@@ -39,12 +56,15 @@ class Login(APIView):
 
         if user is not None and user.is_active:
             auth.login(request, user)
+            token = getAccesstoken(user)
             res = {
                 'is_authed': True,
                 'data': serializers.UserSerializer(user).data,
-                'access_token': getAccesstoken(user)
+                'access_token': token
             }
-            return Response(res)
+            response = Response(res)
+            response.set_cookie('access_token', token)
+            return response
         else:
             res = {
                 'is_authed': False,
@@ -78,12 +98,15 @@ class SignUp(APIView):
 
         if user is not None and user.is_active:
             auth.login(request, user)
+            token = getAccesstoken(user)
             res = {
                 'is_authed': True,
                 'data': serializers.UserSerializer(user).data,
                 'access_token': getAccesstoken(user)
             }
-            return Response(res)
+            response = Response(res)
+            response.set_cookie('access_token', token)
+            return response
         else:
             res = {
                 'is_authed': False,
