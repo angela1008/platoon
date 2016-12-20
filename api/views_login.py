@@ -64,6 +64,7 @@ class Login(APIView):
             }
             response = Response(res)
             response.set_cookie('access_token', token)
+            response.set_cookie('uid', user.id)
             return response
         else:
             res = {
@@ -106,6 +107,7 @@ class SignUp(APIView):
             }
             response = Response(res)
             response.set_cookie('access_token', token)
+            response.set_cookie('uid', user.id)
             return response
         else:
             res = {

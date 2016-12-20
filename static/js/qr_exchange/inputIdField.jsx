@@ -31,10 +31,11 @@ class InputIdField extends React.Component {
                 return;
             }
             var data = {
-                user: 2, // TODO Change to login user
+                user: ajaxreq.getUserId(), // TODO Change to login user
                 exchange_code: this.state.valueId
             }
 
+            var self = this;
             ajaxreq.post(this.props.dataUrl, data,
                 function(data) {
                     // status of request success
@@ -46,7 +47,7 @@ class InputIdField extends React.Component {
                         document.getElementById('exchange-card-finish-dialog')
                   	);
                     utils.openModal('exchange-card-finish-dialog-modal');
-                    // TODO onModal close: unmount PersonalCard
+                    utils.unmountComponentOnModalHidden(ReactDOM, 'exchange-card-finish-dialog-modal', 'exchange-card-finish-dialog');
                 }, function(xhr, status, err) {
                     console.error(xhr, status, err);
                     // TODO error status
@@ -60,6 +61,6 @@ class InputIdField extends React.Component {
         // render the post
         return (
             <input id="exchange-platoon-id-input" type="number" min="0" max="9999" className="form-control" onChange={ this.handleChanged } onKeyPress={ this.handleKeyPressed }/>
-        )
+        );
     }
 }

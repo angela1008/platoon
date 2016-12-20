@@ -39,7 +39,7 @@ class GenQrCodePage extends React.Component {
         // Change this for self, don't confuse "this"
         var self = this;
         ajaxreq.get(this.props.dataUrl,
-            {'from_user' : 1},
+            {'from_user' : ajaxreq.getUserId()},
             function(data) {
                 self.exchange_code = data;
                 // render id and start countdown
@@ -74,7 +74,7 @@ class GenQrCodePage extends React.Component {
             this.isSent = true;
             var self = this;
             ajaxreq.get(this.props.checkUrl,
-                {'from_user': 1, 'exchange_code' : this.exchange_code.id},
+                {'from_user': ajaxreq.getUserId(), 'exchange_code' : this.exchange_code.id},
                 function(data) {
                     // show data
                     self.isSent = false;
@@ -86,6 +86,7 @@ class GenQrCodePage extends React.Component {
                             document.getElementById('exchange-card-finish-dialog')
                         );
                         utils.openModal('exchange-card-finish-dialog-modal');
+                        utils.unmountComponentOnModalHidden(ReactDOM, 'exchange-card-finish-dialog-modal', 'exchange-card-finish-dialog');
                         utils.closeModal('show-id-modal');
                     } else {
                         // Keep waiting
@@ -102,17 +103,23 @@ class GenQrCodePage extends React.Component {
     render() {
         // render the post
         return (
-            <div style={{ align: 'center' }}>
-                <h4 className="exchange-card-show-id-text">Platoon ID</h4>
-                {/* personal business card ID */}
-                <h2 id="exchange-platoon-id" className="exchange-card-show-id-text">Generating ID...</h2>
+            <div className="modal-content">
+                <div className="modal-header">
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 className="modal-title exchange-card-show-id-text">Platoon ID</h4>
+                </div>
 
-                <hr />
+                <div className="modal-body">
+                    {/* personal business card ID */}
+                    <h2 id="exchange-platoon-id" className="exchange-card-show-id-text">Generating ID...</h2>
 
-                {/* exchange card countdown timer */}
-                <div id="exchange-platoon-counter"></div>
+                    <hr />
 
-                <h5 className="exchange-card-dialog-description"> 此ID將於時限後，<br />或關閉此頁面時自動消失。</h5>
+                    {/* exchange card countdown timer */}
+                    <div id="exchange-platoon-counter"></div>
+
+                    <h5 className="exchange-card-dialog-description"> 此ID將於時限後，<br />或關閉此頁面時自動消失。</h5>
+    			</div>
             </div>
         );
     }

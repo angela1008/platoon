@@ -21506,6 +21506,12 @@
 	  $('#' + id).modal('hide');
 	}
 
+	function unmountComponentOnModalHidden(ReactDOM, modalId, componentId) {
+	  $('#' + modalId).on('hidden.bs.modal', function () {
+	    ReactDOM.unmountComponentAtNode(document.getElementById(componentId));
+	  });
+	}
+
 	function id4DigitFormater(id) {
 	  // TODO add zero if not 4 digit
 	  // TODO remove zero if 4 digit
@@ -21521,6 +21527,7 @@
 	exports.countTimeSec = countTimeSec;
 	exports.openModal = openThatFkModal;
 	exports.closeModal = closeThatFkModal;
+	exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
 
 /***/ },
 /* 179 */
@@ -21535,9 +21542,20 @@
 	  );
 	}
 
+	exports.getUserId = function () {
+	  var userId = cookie.load('uid');
+	  return userId;
+	};
+
 	function getAccessToken() {
 	  // TODO replace with loged-in accesstoken
-	  return '2213';
+	  var accessToken = cookie.load('access_token');
+	  if (accessToken) {
+	    return accessToken;
+	  } else {
+	    // No access_token
+	    return '9487';
+	  }
 	}
 
 	function urlForGET(url, params) {
@@ -22198,7 +22216,7 @@
 	        console.log(this.props.dataUrl);
 	        // Change this for self, don't confuse "this"
 	        var self = this;
-	        ajaxreq.get(this.props.dataUrl, { 'from_user': 1 }, function (data) {
+	        ajaxreq.get(this.props.dataUrl, { 'from_user': ajaxreq.getUserId() }, function (data) {
 	            self.exchange_code = data;
 	            // render id and start countdown
 	            const element = React.createElement(
@@ -22224,7 +22242,7 @@
 	        if (!this.isSent) {
 	            this.isSent = true;
 	            var self = this;
-	            ajaxreq.get(this.props.checkUrl, { 'from_user': 1, 'exchange_code': this.exchange_code.id }, function (data) {
+	            ajaxreq.get(this.props.checkUrl, { 'from_user': ajaxreq.getUserId(), 'exchange_code': this.exchange_code.id }, function (data) {
 	                // show data
 	                self.isSent = false;
 	                if (data.isSuccess) {
@@ -22232,6 +22250,7 @@
 	                        id: 'exchange-card-finish-dialog-modal',
 	                        data: data.data }), document.getElementById('exchange-card-finish-dialog'));
 	                    utils.openModal('exchange-card-finish-dialog-modal');
+	                    utils.unmountComponentOnModalHidden(ReactDOM, 'exchange-card-finish-dialog-modal', 'exchange-card-finish-dialog');
 	                    utils.closeModal('show-id-modal');
 	                } else {
 	                    // Keep waiting
@@ -22248,25 +22267,42 @@
 	    render() {
 	        return React.createElement(
 	            'div',
-	            { style: { align: 'center' } },
+	            { className: 'modal-content' },
 	            React.createElement(
-	                'h4',
-	                { className: 'exchange-card-show-id-text' },
-	                'Platoon ID'
+	                'div',
+	                { className: 'modal-header' },
+	                React.createElement(
+	                    'button',
+	                    { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+	                    React.createElement(
+	                        'span',
+	                        { 'aria-hidden': 'true' },
+	                        '\xD7'
+	                    )
+	                ),
+	                React.createElement(
+	                    'h4',
+	                    { className: 'modal-title exchange-card-show-id-text' },
+	                    'Platoon ID'
+	                )
 	            ),
 	            React.createElement(
-	                'h2',
-	                { id: 'exchange-platoon-id', className: 'exchange-card-show-id-text' },
-	                'Generating ID...'
-	            ),
-	            React.createElement('hr', null),
-	            React.createElement('div', { id: 'exchange-platoon-counter' }),
-	            React.createElement(
-	                'h5',
-	                { className: 'exchange-card-dialog-description' },
-	                ' \u6B64ID\u5C07\u65BC\u6642\u9650\u5F8C\uFF0C',
-	                React.createElement('br', null),
-	                '\u6216\u95DC\u9589\u6B64\u9801\u9762\u6642\u81EA\u52D5\u6D88\u5931\u3002'
+	                'div',
+	                { className: 'modal-body' },
+	                React.createElement(
+	                    'h2',
+	                    { id: 'exchange-platoon-id', className: 'exchange-card-show-id-text' },
+	                    'Generating ID...'
+	                ),
+	                React.createElement('hr', null),
+	                React.createElement('div', { id: 'exchange-platoon-counter' }),
+	                React.createElement(
+	                    'h5',
+	                    { className: 'exchange-card-dialog-description' },
+	                    ' \u6B64ID\u5C07\u65BC\u6642\u9650\u5F8C\uFF0C',
+	                    React.createElement('br', null),
+	                    '\u6216\u95DC\u9589\u6B64\u9801\u9762\u6642\u81EA\u52D5\u6D88\u5931\u3002'
+	                )
 	            )
 	        );
 	    }
@@ -22375,6 +22411,19 @@
 	                    { className: 'modal-content' },
 	                    React.createElement(
 	                        'div',
+	                        { className: 'modal-header' },
+	                        React.createElement(
+	                            'button',
+	                            { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+	                            React.createElement(
+	                                'span',
+	                                { 'aria-hidden': 'true' },
+	                                '\xD7'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
 	                        { className: 'modal-body row' },
 	                        React.createElement('div', { className: 'col-xs-1' }),
 	                        React.createElement(
@@ -22388,8 +22437,8 @@
 	                                    { className: 'col-xs-4' },
 	                                    React.createElement(
 	                                        'div',
-	                                        { 'class': 'personal-img personal-flex-img' },
-	                                        React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', 'class': 'img-circle img-fluid' })
+	                                        { className: 'personal-img personal-flex-img' },
+	                                        React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', className: 'img-circle img-fluid' })
 	                                    )
 	                                ),
 	                                React.createElement(
@@ -22454,10 +22503,11 @@
 	                return;
 	            }
 	            var data = {
-	                user: 2, // TODO Change to login user
+	                user: ajaxreq.getUserId(), // TODO Change to login user
 	                exchange_code: this.state.valueId
 	            };
 
+	            var self = this;
 	            ajaxreq.post(this.props.dataUrl, data, function (data) {
 	                // status of request success
 	                // Show card
@@ -22465,7 +22515,7 @@
 	                    id: 'exchange-card-finish-dialog-modal',
 	                    data: data }), document.getElementById('exchange-card-finish-dialog'));
 	                utils.openModal('exchange-card-finish-dialog-modal');
-	                // TODO onModal close: unmount PersonalCard
+	                utils.unmountComponentOnModalHidden(ReactDOM, 'exchange-card-finish-dialog-modal', 'exchange-card-finish-dialog');
 	            }, function (xhr, status, err) {
 	                console.error(xhr, status, err);
 	                // TODO error status

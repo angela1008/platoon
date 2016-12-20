@@ -15,6 +15,12 @@ function closeThatFkModal(id) {
   $('#' + id).modal('hide');
 }
 
+function unmountComponentOnModalHidden(ReactDOM, modalId, componentId) {
+  $('#' + modalId).on('hidden.bs.modal', function () {
+  	ReactDOM.unmountComponentAtNode(document.getElementById(componentId));
+  });
+}
+
 function id4DigitFormater(id) {
   // TODO add zero if not 4 digit
   // TODO remove zero if 4 digit
@@ -31,3 +37,4 @@ exports.id4DigitFormater = id4DigitFormater;
 exports.countTimeSec = countTimeSec;
 exports.openModal = openThatFkModal;
 exports.closeModal = closeThatFkModal;
+exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
