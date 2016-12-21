@@ -32,6 +32,14 @@ function getUrlByName(name) {
     return djangoUrls[name];
 }
 
+function initBoostrapMD() {
+  $('body').bootstrapMaterialDesign();
+}
+
+function reload() {
+  location.reload();
+}
+
 exports.apiUserLogin = apiUserLogin;
 exports.apiUserSignup = apiUserSignup;
 exports.apiAuthVerify = apiAuthVerify;
@@ -45,3 +53,5 @@ exports.openModal = openThatFkModal;
 exports.closeModal = closeThatFkModal;
 exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
 exports.getUrlByName = getUrlByName;
+exports.initBoostrapMD = initBoostrapMD;
+exports.reload = reload;

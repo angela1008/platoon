@@ -59,6 +59,8 @@ $(document).ready(function() {
       console.error('id "exchange-platoon-id-input-div" not found');
   }
 
+  utils.initBoostrapMD();
+
   // Exchange ID Cancel
   $('#show-id-modal').on('hidden.bs.modal', function () {
   	ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));

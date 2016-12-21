@@ -90,6 +90,8 @@
 	    console.error('id "exchange-platoon-id-input-div" not found');
 	  }
 
+	  utils.initBoostrapMD();
+
 	  // Exchange ID Cancel
 	  $('#show-id-modal').on('hidden.bs.modal', function () {
 	    ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
@@ -21533,6 +21535,14 @@
 	  return djangoUrls[name];
 	}
 
+	function initBoostrapMD() {
+	  $('body').bootstrapMaterialDesign();
+	}
+
+	function reload() {
+	  location.reload();
+	}
+
 	exports.apiUserLogin = apiUserLogin;
 	exports.apiUserSignup = apiUserSignup;
 	exports.apiAuthVerify = apiAuthVerify;
@@ -21545,6 +21555,8 @@
 	exports.closeModal = closeThatFkModal;
 	exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
 	exports.getUrlByName = getUrlByName;
+	exports.initBoostrapMD = initBoostrapMD;
+	exports.reload = reload;
 
 /***/ },
 /* 179 */
@@ -21995,7 +22007,8 @@
 	    var password = document.getElementById('input-password').value;
 	    ajaxreq.post(utils.apiUserLogin, { 'email': email, 'password': password }, function (data) {
 	      console.log(data);
-	      // TODO Login Success, redirect
+	      // Login Success, redirect
+	      utils.reload();
 	    }, function (xhr, status, err) {
 	      console.error(xhr, status, err);
 	      // TODO error status
@@ -22080,7 +22093,8 @@
 	    var password = document.getElementById('signup-password').value;
 	    ajaxreq.post(utils.apiUserSignup, { 'name': name, 'email': email, 'password': password }, function (data) {
 	      console.log(data);
-	      // TODO Signup Success, redirect
+	      // Signup Success, redirect
+	      utils.reload();
 	    }, function (xhr, status, err) {
 	      console.error(xhr, status, err);
 	      // TODO error status
@@ -22651,7 +22665,7 @@
 	      { id: 'react-nav-unlogin', className: 'btn-group', role: 'group' },
 	      React.createElement(
 	        'div',
-	        { 'class': 'btn-group', role: 'group' },
+	        { className: 'btn-group', role: 'group' },
 	        React.createElement(
 	          'button',
 	          { type: 'button', className: 'btn btn-default navbar-btn', 'data-toggle': 'modal', 'data-target': '#signup-modal' },

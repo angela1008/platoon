@@ -14,7 +14,7 @@ class NavbarUnLogin extends React.Component {
     // render the post
     return (
       <div id="react-nav-unlogin" className="btn-group" role="group">
-        <div class="btn-group" role="group">
+        <div className="btn-group" role="group">
           <button type="button" className="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
           <button type="button" className="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
         </div>

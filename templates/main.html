@@ -14,8 +14,7 @@
 
   <title>{% block head_title %}{% endblock %} | Platoon</title>
   <!-- 最新編譯和最佳化的 CSS -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-      -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
   <!-- 選擇性佈景主題 -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
 
@@ -71,7 +70,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
   {% render_bundle 'main' %}
   <script>
-      $('body').bootstrapMaterialDesign();
       var djangoUrls = {
         'personal_card': '{% url "personal_card" %}',
         'settings': '{% url "settings" %}'
