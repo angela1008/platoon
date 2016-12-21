@@ -17,7 +17,8 @@ class LoginModal extends React.Component {
       {'email': email, 'password': password},
       function(data) {
         console.log(data);
-        // TODO Login Success, redirect
+        // Login Success, redirect
+        utils.reload();
       }, function(xhr, status, err) {
           console.error(xhr, status, err);
           // TODO error status

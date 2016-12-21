@@ -18,7 +18,8 @@ class SignupModal extends React.Component {
       {'name': name, 'email': email, 'password': password},
       function(data) {
         console.log(data);
-        // TODO Signup Success, redirect
+        // Signup Success, redirect
+        utils.reload();
       }, function(xhr, status, err) {
           console.error(xhr, status, err);
           // TODO error status

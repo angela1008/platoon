@@ -6,7 +6,7 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
-exports.getUserId = function () {
+function getUserId() {
   var userId = cookie.load('uid');
   return userId;
 }
@@ -62,3 +62,4 @@ var post = function(url, data, success, error) {
 
 exports.get = get;
 exports.post = post;
+exports.getUserId = getUserId;

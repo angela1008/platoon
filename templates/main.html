@@ -14,8 +14,7 @@
 
   <title>{% block head_title %}{% endblock %} | Platoon</title>
   <!-- 最新編譯和最佳化的 CSS -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-      -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
   <!-- 選擇性佈景主題 -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
 
@@ -36,36 +35,12 @@
 
   <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
     <!-- <nav class="navbar navbar-light navbar-fixed-top" role="navigation"> -->
-    {% block bmd_layout_header %}
-        <header class="bmd-layout-header">
-            <div class="navbar navbar-light bg-faded">
-                <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-                    <span class="sr-only">Toggle drawer</span>
-                    <i class="material-icons">menu</i>
-                </button>
-                <div class="nav pull-xs-right">
-                    <div class="btn-group" role="group">
-                        <a href="">
-                            <button type="button" class="btn btn-default navbar-btn">
-                            <i class="material-icons">email</i>
-                        </button>
-                        </a>
-                        <a href="{% url "personal_card" %}" >
-                            <button type="button" class="btn btn-default navbar-btn">
-                                <i class="material-icons">account_circle</i>
-                            </button>
-                        </a>
-                        <a href="{% url "settings" %}">
-                            <button type="button" class="btn btn-default navbar-btn">
-                            <i class="material-icons">settings</i>
-                        </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-    {% endblock %}
+    {% block bmd_layout_header %} {% endblock %}
+
+    <div id="react-navbar"></div>
     {% include 'tools/drawer.html' %}
+    {% include 'tools/sign_in.html' %}
+    {% include 'tools/sign_up.html' %}
 
     <main class="bmd-layout-content">
       {% block body_base %}
@@ -95,7 +70,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
   {% render_bundle 'main' %}
   <script>
-      $('body').bootstrapMaterialDesign();
+      var djangoUrls = {
+        'personal_card': '{% url "personal_card" %}',
+        'settings': '{% url "settings" %}'
+      };
   </script>
 
   {% block end_js_extends %} {% endblock %}

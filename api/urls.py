@@ -31,6 +31,10 @@ urlpatterns = [
         views_login.SignUp.as_view(),
         name='user-signup'),
 
+    url(r'^auth-verify/$',
+        views_login.VerifyToken.as_view(),
+        name="auth-verify"),
+
     # User
     url(r'^users/$',
         views.UserList.as_view(),
