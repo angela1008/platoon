@@ -16,12 +16,12 @@ class CardBox extends React.Component {
 
     componentDidMount() {
         var data = [{
-            "id": 6,
+            "id": 4,
             "username": "andy@jdsys.com.tw",
             "first_name": "Andy",
             "email": "andy@jdsys.com.tw"
         },{
-            "id": 6,
+            "id": 5,
             "username": "andy@jdsys.com.tw",
             "first_name": "Andy",
             "email": "andy@jdsys.com.tw"
@@ -55,9 +55,9 @@ class CardBox extends React.Component {
                 {
                     this.state.cards.map((item) => (
                         <Card
+                            key={ item.id }
                             personalId={ 'personal-card-dialog-' + item.id }
-                            firstName={ item.first_name }
-                            createdAt={item.created_at} />
+                            user={ item } />
                     ))
                 }
             </div>

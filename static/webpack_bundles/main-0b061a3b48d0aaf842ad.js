@@ -21528,6 +21528,10 @@
 	  $('#' + id).modal('hide');
 	}
 
+	function toggleThatFkModal(id) {
+	  $('#' + id).modal('toggle');
+	}
+
 	function unmountComponentOnModalHidden(ReactDOM, modalId, componentId) {
 	  $('#' + modalId).on('hidden.bs.modal', function () {
 	    ReactDOM.unmountComponentAtNode(document.getElementById(componentId));
@@ -21538,6 +21542,14 @@
 	  // TODO add zero if not 4 digit
 	  // TODO remove zero if 4 digit
 	  return id;
+	}
+
+	// This function is for the modal can't inside the bmd menu
+	// exclude those template id, will return the place React mount at.
+	function appendModalDialog(targetId, appendId) {
+	  var element = '<div id="' + appendId + '"></div>';
+	  $('#' + targetId).append(element);
+	  return appendId;
 	}
 
 	function getUrlByName(name) {
@@ -21564,7 +21576,9 @@
 	exports.countTimeSec = countTimeSec;
 	exports.openModal = openThatFkModal;
 	exports.closeModal = closeThatFkModal;
+	exports.toggleModal = toggleThatFkModal;
 	exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
+	exports.appendModalDialog = appendModalDialog;
 	exports.getUrlByName = getUrlByName;
 	exports.initBoostrapMD = initBoostrapMD;
 	exports.reload = reload;
@@ -22776,12 +22790,12 @@
 
 	    componentDidMount() {
 	        var data = [{
-	            "id": 6,
+	            "id": 4,
 	            "username": "andy@jdsys.com.tw",
 	            "first_name": "Andy",
 	            "email": "andy@jdsys.com.tw"
 	        }, {
-	            "id": 6,
+	            "id": 5,
 	            "username": "andy@jdsys.com.tw",
 	            "first_name": "Andy",
 	            "email": "andy@jdsys.com.tw"
@@ -22814,9 +22828,9 @@
 	            'div',
 	            null,
 	            this.state.cards.map(item => React.createElement(Card, {
+	                key: item.id,
 	                personalId: 'personal-card-dialog-' + item.id,
-	                firstName: item.first_name,
-	                createdAt: item.created_at }))
+	                user: item }))
 	        );
 	    }
 	};
@@ -22829,22 +22843,32 @@
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
+	var PersonalCard = __webpack_require__(190);
 
 	module.exports = class Card extends React.Component {
 
 	    constructor(props) {
 	        super(props);
-	        console.log('Card');
-	        // <PersonalCard
-	        //     id = "personal-card-dialog"
-	        //     data = { cardUser } />,
-	        // document.getElementById('exchange-card-finish-dialog')
+	    }
+
+	    componentDidMount() {
+	        var appendId = utils.appendModalDialog('personal-card-dialog', this.props.personalId + '-border');
+	        ReactDOM.render(React.createElement(PersonalCard, {
+	            id: this.props.personalId,
+	            data: this.props.user }), document.getElementById(appendId));
+	    }
+
+	    handleCardClicked() {
+	        utils.toggleModal(this.props.personalId);
 	    }
 
 	    render() {
 	        return React.createElement(
 	            'div',
-	            { className: 'card-list-item', 'data-toggle': 'modal', 'data-target': '{ this.props.personalId }' },
+	            { className: 'card-list-item',
+	                'data-toggle': 'modal',
+	                'data-target': this.props.personalId,
+	                onClick: this.handleCardClicked.bind(this) },
 	            React.createElement(
 	                'span',
 	                { className: 'material-icons' },
@@ -22853,12 +22877,12 @@
 	            React.createElement(
 	                'span',
 	                { className: 'name' },
-	                this.props.firstName
+	                this.props.user.first_name
 	            ),
 	            React.createElement(
 	                'span',
 	                { className: 'receive-date' },
-	                this.props.createdAt
+	                this.props.user.created_at
 	            )
 	        );
 	    }

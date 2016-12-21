@@ -2,30 +2,48 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var utils = require('./../utils')
 var ajaxreq = require('./../http/ajaxreq')
+var PersonalCard = require('./../qr_exchange/personalCard')
 
 module.exports =
 class Card extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log('Card');
-        // <PersonalCard
-        //     id = "personal-card-dialog"
-        //     data = { cardUser } />,
-        // document.getElementById('exchange-card-finish-dialog')
+    }
+
+    componentDidMount() {
+        var appendId =
+            utils.appendModalDialog(
+                'personal-card-dialog',
+                this.props.personalId + '-border'
+            );
+        ReactDOM.render(
+            <PersonalCard
+                id = { this.props.personalId }
+                data = { this.props.user } />,
+            document.getElementById(appendId)
+        );
+    }
+
+    handleCardClicked() {
+        utils.toggleModal(this.props.personalId);
     }
 
     render() {
         // render the post
         return (
-        	<div className="card-list-item" data-toggle="modal" data-target="{ this.props.personalId }">
+        	<div className="card-list-item"
+                data-toggle="modal"
+                data-target={ this.props.personalId }
+                onClick={ this.handleCardClicked.bind(this) }>
+
         		{/* <!-- personal image --> */}
                 {/* TODO ajax query pic */}
         		<span className="material-icons">account_circle</span>
         		{/* <!-- personal name --> */}
-        		<span className="name">{ this.props.firstName }</span>
+        		<span className="name">{ this.props.user.first_name }</span>
         		{/* <!-- receive date --> */}
-        		<span className="receive-date">{ this.props.createdAt }</span>
+        		<span className="receive-date">{ this.props.user.created_at }</span>
         	</div>
         );
     }
