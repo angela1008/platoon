@@ -42,6 +42,31 @@ def getAccesstoken(user):
     # get that and push back to user
     return token.token
 
+class VerifyToken(APIView):
+
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request):
+        str_token = request.GET.get('access_token')
+        time_now = datetime.datetime.now()
+        res = {
+            'is_authed': False,
+            'detail': ''
+        }
+        try:
+           token = models.Token.objects.get(token=str_token)
+           if token.expired_at <= time_now:
+               res['detail'] = 'No such token.'
+               return Response(res)
+           else:
+               res['is_authed'] = True
+               res['data'] = serializers.UserSerializer(token.user).data
+               return Response(res)
+
+        except models.Token.DoesNotExist:
+            res['detail'] = 'No such token.'
+            return Response(res)
+
 # User login
 class Login(APIView):
 

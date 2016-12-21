@@ -21492,6 +21492,7 @@
 	const apiServer = 'http://127.0.0.1:8000/platoon-api/';
 	const apiUserLogin = apiServer + 'login/';
 	const apiUserSignup = apiServer + 'signup/';
+	const apiAuthVerify = apiServer + 'auth-verify/';
 	const apiInterestedUser = apiServer + 'interested-user/';
 	const apiGenexgqr = apiServer + 'genexgqr/';
 	const apiScanqr = apiServer + 'scanqr/';
@@ -21520,6 +21521,7 @@
 
 	exports.apiUserLogin = apiUserLogin;
 	exports.apiUserSignup = apiUserSignup;
+	exports.apiAuthVerify = apiAuthVerify;
 	exports.apiInterestedUser = apiInterestedUser;
 	exports.apiGenexgqr = apiGenexgqr;
 	exports.apiScanqr = apiScanqr, exports.apiCheckqr = apiCheckqr;
@@ -21542,10 +21544,10 @@
 	  );
 	}
 
-	exports.getUserId = function () {
+	function getUserId() {
 	  var userId = cookie.load('uid');
 	  return userId;
-	};
+	}
 
 	function getAccessToken() {
 	  // TODO replace with loged-in accesstoken
@@ -21598,6 +21600,7 @@
 
 	exports.get = get;
 	exports.post = post;
+	exports.getUserId = getUserId;
 
 /***/ },
 /* 180 */
