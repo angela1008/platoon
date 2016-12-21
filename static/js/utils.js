@@ -6,6 +6,7 @@ const apiInterestedUser = apiServer + 'interested-user/';
 const apiGenexgqr = apiServer + 'genexgqr/';
 const apiScanqr = apiServer + 'scanqr/';
 const apiCheckqr = apiServer + 'checkqraccept/';
+const apiCardbox = apiServer + 'cardbox/';
 const countTimeSec = 300;
 
 function openThatFkModal(id) {
@@ -47,6 +48,8 @@ exports.apiInterestedUser = apiInterestedUser;
 exports.apiGenexgqr = apiGenexgqr;
 exports.apiScanqr = apiScanqr,
 exports.apiCheckqr = apiCheckqr;
+exports.apiCardbox = apiCardbox;
+
 exports.id4DigitFormater = id4DigitFormater;
 exports.countTimeSec = countTimeSec;
 exports.openModal = openThatFkModal;
