@@ -28,6 +28,10 @@ function id4DigitFormater(id) {
   return id;
 }
 
+function getUrlByName(name) {
+    return djangoUrls[name];
+}
+
 exports.apiUserLogin = apiUserLogin;
 exports.apiUserSignup = apiUserSignup;
 exports.apiAuthVerify = apiAuthVerify;
@@ -40,3 +44,4 @@ exports.countTimeSec = countTimeSec;
 exports.openModal = openThatFkModal;
 exports.closeModal = closeThatFkModal;
 exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
+exports.getUrlByName = getUrlByName;

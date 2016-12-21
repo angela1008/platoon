@@ -48,53 +48,63 @@
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
+	var Navbar = __webpack_require__(189);
 	var LoginModal = __webpack_require__(182);
 	var SignupModal = __webpack_require__(183);
 	var GenQrCodeButton = __webpack_require__(184);
 	var InputIdField = __webpack_require__(188);
 
-	// Login Modal
-	try {
-	  ReactDOM.render(React.createElement(LoginModal, null), document.getElementById('react-signin-modal'));
-	} catch (err) {
-	  console.error('id "react-signin-modal" not found');
-	}
+	$(document).ready(function () {
+	  // Navbar
+	  try {
+	    ReactDOM.render(React.createElement(Navbar, null), document.getElementById('react-navbar'));
+	  } catch (err) {
+	    console.error('id "react-navbar" not found');
+	  }
 
-	// Signup Modal
-	try {
-	  ReactDOM.render(React.createElement(SignupModal, null), document.getElementById('react-signup-modal'));
-	} catch (err) {
-	  console.error('id "react-signup-modal" not found');
-	}
+	  // Login Modal
+	  try {
+	    ReactDOM.render(React.createElement(LoginModal, null), document.getElementById('react-signin-modal'));
+	  } catch (err) {
+	    console.error('id "react-signin-modal" not found');
+	  }
 
-	// Exchange Button for gen id
-	try {
-	  ReactDOM.render(React.createElement(GenQrCodeButton, null), document.getElementById('show-id-button'));
-	} catch (err) {
-	  console.error('id "show-id-button" not found');
-	}
+	  // Signup Modal
+	  try {
+	    ReactDOM.render(React.createElement(SignupModal, null), document.getElementById('react-signup-modal'));
+	  } catch (err) {
+	    console.error('id "react-signup-modal" not found');
+	  }
 
-	// Exchange Input for scan id
-	try {
-	  ReactDOM.render(React.createElement(InputIdField, { dataUrl: utils.apiScanqr }), document.getElementById('exchange-platoon-id-input-div'));
-	} catch (err) {
-	  console.error('id "exchange-platoon-id-input-div" not found');
-	}
+	  // Exchange Button for gen id
+	  try {
+	    ReactDOM.render(React.createElement(GenQrCodeButton, null), document.getElementById('show-id-button'));
+	  } catch (err) {
+	    console.error('id "show-id-button" not found');
+	  }
 
-	// Exchange ID Cancel
-	$('#show-id-modal').on('hidden.bs.modal', function () {
-	  ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
-	});
+	  // Exchange Input for scan id
+	  try {
+	    ReactDOM.render(React.createElement(InputIdField, { dataUrl: utils.apiScanqr }), document.getElementById('exchange-platoon-id-input-div'));
+	  } catch (err) {
+	    console.error('id "exchange-platoon-id-input-div" not found');
+	  }
 
-	// User who is Intersted to us
-	$('#getMoreInformationBtn').click(function () {
-	  var email = $('#getMoreInformation').val();
-	  ajaxreq.post(utils.apiInterestedUser, { 'from_ip': '', 'email': email }, function (data) {
-	    console.log(data);
-	    // TODO Say thanks
-	  }, function (xhr, status, err) {
-	    console.error(xhr, status, err);
-	    // TODO error status
+	  // Exchange ID Cancel
+	  $('#show-id-modal').on('hidden.bs.modal', function () {
+	    ReactDOM.unmountComponentAtNode(document.getElementById('exchange-card-modal'));
+	  });
+
+	  // User who is Intersted to us
+	  $('#getMoreInformationBtn').click(function () {
+	    var email = $('#getMoreInformation').val();
+	    ajaxreq.post(utils.apiInterestedUser, { 'from_ip': '', 'email': email }, function (data) {
+	      console.log(data);
+	      // TODO Say thanks
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	      // TODO error status
+	    });
 	  });
 	});
 
@@ -21519,6 +21529,10 @@
 	  return id;
 	}
 
+	function getUrlByName(name) {
+	  return djangoUrls[name];
+	}
+
 	exports.apiUserLogin = apiUserLogin;
 	exports.apiUserSignup = apiUserSignup;
 	exports.apiAuthVerify = apiAuthVerify;
@@ -21530,6 +21544,7 @@
 	exports.openModal = openThatFkModal;
 	exports.closeModal = closeThatFkModal;
 	exports.unmountComponentOnModalHidden = unmountComponentOnModalHidden;
+	exports.getUrlByName = getUrlByName;
 
 /***/ },
 /* 179 */
@@ -22531,6 +22546,187 @@
 	    render() {
 	        // render the post
 	        return React.createElement('input', { id: 'exchange-platoon-id-input', type: 'number', min: '0', max: '9999', className: 'form-control', onChange: this.handleChanged, onKeyPress: this.handleKeyPressed });
+	    }
+	};
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var cookie = __webpack_require__(180);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+	var NavbarUnLogin = __webpack_require__(190);
+	var NavbarLogedin = __webpack_require__(191);
+
+	module.exports = class Navbar extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  componentDidMount() {
+	    var accessToken = cookie.load('access_token');
+	    if (accessToken) {
+
+	      // If has access token, seem as login
+	      ReactDOM.render(React.createElement(NavbarLogedin, null), document.getElementById('react-nav-login-area'));
+
+	      // Verify this login is valid
+	      ajaxreq.get(utils.apiAuthVerify, { 'access_token': accessToken }, function (data) {
+	        if (data.is_authed) {
+	          var user = data.data;
+	          // TODO query pic or other
+	          console.log(user);
+	        } else {
+	          console.log(data.detail);
+	          this.handleNotLoginNav();
+	        }
+	      }, function (xhr, status, err) {
+	        console.error(xhr, status, err);
+	        this.handleNotLoginNav();
+	      });
+	    } else {
+	      this.handleNotLoginNav();
+	    }
+	  }
+
+	  handleNotLoginNav() {
+	    ReactDOM.render(React.createElement(NavbarUnLogin, null), document.getElementById('react-nav-login-area'));
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'header',
+	      { className: 'bmd-layout-header' },
+	      React.createElement(
+	        'div',
+	        { className: 'navbar navbar-light bg-faded' },
+	        React.createElement(
+	          'button',
+	          { className: 'navbar-toggler', type: 'button', 'data-toggle': 'drawer', 'data-target': '#dw-p1' },
+	          React.createElement(
+	            'span',
+	            { className: 'sr-only' },
+	            'Toggle drawer'
+	          ),
+	          React.createElement(
+	            'i',
+	            { className: 'material-icons' },
+	            'menu'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'nav pull-xs-right' },
+	          React.createElement('div', { id: 'react-nav-login-area' })
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class NavbarUnLogin extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { id: 'react-nav-unlogin', className: 'btn-group', role: 'group' },
+	      React.createElement(
+	        'div',
+	        { 'class': 'btn-group', role: 'group' },
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'btn btn-default navbar-btn', 'data-toggle': 'modal', 'data-target': '#signup-modal' },
+	          'Sign up'
+	        ),
+	        React.createElement(
+	          'button',
+	          { type: 'button', className: 'btn btn-default navbar-btn', 'data-toggle': 'modal', 'data-target': '#signin-modal' },
+	          'Sign in'
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class NavbarLogedin extends React.Component {
+
+	    constructor(props) {
+	        super(props);
+	    }
+
+	    render() {
+	        // render the post
+	        return React.createElement(
+	            'div',
+	            { id: 'react-nav-logedin', className: 'btn-group', role: 'group' },
+	            React.createElement(
+	                'a',
+	                { href: '#' },
+	                React.createElement(
+	                    'button',
+	                    { type: 'button', className: 'btn btn-default navbar-btn' },
+	                    React.createElement(
+	                        'i',
+	                        { className: 'material-icons' },
+	                        'email'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'a',
+	                { href: utils.getUrlByName('personal_card') },
+	                React.createElement(
+	                    'button',
+	                    { type: 'button', className: 'btn btn-default navbar-btn' },
+	                    React.createElement(
+	                        'i',
+	                        { className: 'material-icons' },
+	                        'account_circle'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'a',
+	                { href: utils.getUrlByName('settings') },
+	                React.createElement(
+	                    'button',
+	                    { type: 'button', className: 'btn btn-default navbar-btn' },
+	                    React.createElement(
+	                        'i',
+	                        { className: 'material-icons' },
+	                        'settings'
+	                    )
+	                )
+	            )
+	        );
 	    }
 	};
 

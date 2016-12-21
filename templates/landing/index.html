@@ -7,25 +7,6 @@
 {% endblock %}
 
 {% block extra_head %}{% endblock %}
-{% block bmd_layout_header %}
-<header class="bmd-layout-header">
-	<div class="navbar navbar-light bg-faded">
-		<button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-p1">
-			<span class="sr-only">Toggle drawer</span>
-			<i class="material-icons">menu</i>
-		</button>
-		<div class="nav pull-xs-right">
-			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign up</button>
-				<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign in</button>
-			</div>
-		</div>
-	</div>
-</header>
-{% include 'tools/sign_in.html' %}
-{% include 'tools/sign_up.html' %}
-
-{% endblock %}
 
 {% block body_base %}
 	<div class="ex-card-bg text-center">
