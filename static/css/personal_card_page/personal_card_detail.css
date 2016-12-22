@@ -8,6 +8,12 @@
 }
 .personal_card {
 	margin-top: 2rem;
+	max-width: 540px;
+	margin-right: auto;  
+	margin-left: auto; 
+	border-style: solid;
+	border-width: thin;
+	/*height: 40vh;*/
 }
 .personal-flex-img {
 	height:100%;
@@ -31,4 +37,13 @@
 }
 .title-column {
 	color: #202020;
+}
+.personal-card-flex {
+	height: 40vh;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }

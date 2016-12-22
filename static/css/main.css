@@ -27,12 +27,6 @@ h5 {
 h6{
   1rem;
 }
-
-@media screen and (min-width: 768px) {
-  .drawer-layout-width-768px {
-    display: none;
-  }
-}
 .text-center {
   text-align: center;
 }
@@ -94,13 +88,17 @@ h6{
   -webkit-justify-content: center;
   justify-content: center;
 }
-.signin-signinup-dialog-flex {
-  height: 80vh;
-  min-width: 540px;
+/*.signin-signinup-dialog-flex {
+  height: 100%;
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+}*/
+@media screen and (min-width: 768px) {
+  .drawer-layout-width-768px {
+    display: none;
+  }
 }
