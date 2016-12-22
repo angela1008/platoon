@@ -22228,7 +22228,7 @@
 	      { className: 'modal fade', id: 'signin-modal', role: 'dialog' },
 	      React.createElement(
 	        'div',
-	        { className: 'modal-dialog modal-xs' },
+	        { className: 'modal-dialog modal-xs signin-signinup-dialog-flex' },
 	        React.createElement(
 	          'div',
 	          { className: 'modal-content' },
@@ -22241,7 +22241,7 @@
 	              { className: 'col-xs-10' },
 	              React.createElement(
 	                'h3',
-	                { className: 'signin-align-center' },
+	                { className: 'signin-align-center signin-title-text' },
 	                'Platoon',
 	                React.createElement('br', null),
 	                'Sign In'
@@ -22314,7 +22314,7 @@
 	      { className: 'modal fade', id: 'signup-modal', role: 'dialog' },
 	      React.createElement(
 	        'div',
-	        { className: 'modal-dialog modal-xs' },
+	        { className: 'modal-dialog modal-xs signin-signinup-dialog-flex' },
 	        React.createElement(
 	          'div',
 	          { className: 'modal-content' },
@@ -22327,7 +22327,7 @@
 	              { className: 'col-xs-10' },
 	              React.createElement(
 	                'h3',
-	                { className: 'signin-align-center' },
+	                { className: 'signin-align-center signup-title-text' },
 	                'Platoon',
 	                React.createElement('br', null),
 	                'Sign Up'
@@ -22340,10 +22340,10 @@
 	              React.createElement('input', { type: 'password', className: 'form-control', id: 'signup-password', placeholder: 'Password' }),
 	              React.createElement(
 	                'button',
-	                { className: 'btn btn-raised btn-lg signin-button', onClick: this.handleSubmitClick.bind(this) },
+	                { className: 'btn btn-raised btn-lg signup-button', onClick: this.handleSubmitClick.bind(this) },
 	                React.createElement(
 	                  'h3',
-	                  { className: 'signin-button-text' },
+	                  { className: 'signup-button-text' },
 	                  'SIGN UP'
 	                )
 	              )
@@ -22789,14 +22789,15 @@
 	    }
 
 	    componentDidMount() {
-	        ajaxreq.get(utils.apiCardbox, { 'user': utils.getUserId() }, function (data) {
+	        var self = this;
+	        ajaxreq.get(utils.apiCardbox, { 'user': ajaxreq.getUserId() }, function (data) {
 	            // status of request success
 	            // Show card
 	            var cardUsers = data;
 	            for (var i = 0; i < cardUsers.length; i++) {
 	                var cardUser = cardUsers[i];
-	                this.state.cards.push(cardUser);
-	                this.setState(this.state.cards);
+	                self.state.cards.push(cardUser);
+	                self.setState(self.state.cards);
 	                console.log(cardUser);
 	            }
 	        }, function (xhr, status, err) {
@@ -22811,7 +22812,7 @@
 	            'div',
 	            null,
 	            this.state.cards.map(item => React.createElement(Card, {
-	                key: item.card_user_detail.id,
+	                key: item.id,
 	                personalId: 'personal-card-dialog-' + item.card_user_detail.id,
 	                user: item }))
 	        );

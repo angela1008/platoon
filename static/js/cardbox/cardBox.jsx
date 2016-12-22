@@ -15,15 +15,16 @@ class CardBox extends React.Component {
     }
 
     componentDidMount() {
-        ajaxreq.get(utils.apiCardbox, {'user': utils.getUserId()},
+        var self = this;
+        ajaxreq.get(utils.apiCardbox, {'user': ajaxreq.getUserId()},
             function(data) {
                 // status of request success
                 // Show card
                 var cardUsers = data;
                 for(var i = 0; i < cardUsers.length; i++) {
                     var cardUser = cardUsers[i];
-                    this.state.cards.push(cardUser);
-                    this.setState(this.state.cards);
+                    self.state.cards.push(cardUser);
+                    self.setState(self.state.cards);
                     console.log(cardUser);
                 }
             }, function(xhr, status, err) {
@@ -39,7 +40,7 @@ class CardBox extends React.Component {
                 {
                     this.state.cards.map((item) => (
                         <Card
-                            key={ item.card_user_detail.id }
+                            key={ item.id }
                             personalId={ 'personal-card-dialog-' + item.card_user_detail.id }
                             user={ item } />
                     ))
