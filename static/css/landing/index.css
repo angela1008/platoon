@@ -1,36 +1,3 @@
-/* About Layout */
-@media screen and (min-width: 960px) {
-  .max-width-960 {
-    max-width: 960px;
-  }
-}
-/*@media screen and (min-width: 768px) {
-  .left-element-max-width-768 {
-    float: left;
-  }
-  .right-element-max-width-768 {
-    float: right;
-  }
-}*/
-@media screen and (min-width: 540px){
-	.ex-card-bg .btn{
-		display: none;
-	}
-	.ex-card-title {
-		font-size: 4rem;
-	}
-	.ex-card-subtitle {
-		font-size: 3.5rem;
-		display: none;
-	}
-	.ex-card-subtitle-desktop {
-		font-size: 3.5rem;
-		display: block;
-	}
-	.content-text {
-	font-size: 3.5rem;
-	}
-}
 /* About content & text */
 
 
@@ -42,10 +9,15 @@
   margin: 0.5rem 0;
 }
 .slogan-margin {
-	margin-top: 3rem 0;
+	margin: 3rem 0;
 }
 .block-margin {
 	margin: 3rem 0;
+}
+
+/* img */
+.img-index {
+  padding: 0 15vw;
 }
 
 .img-responsive{
@@ -55,21 +27,23 @@
 
 /* block 'start to exchange card' */
 .ex-card-bg {
+  color: #fff;
 	height: 75vh;
 	min-height: 600px;
 	width: auto;
+  text-shadow: 2px 2px 2px #333;
 	padding-top: 8rem;
 	padding-bottom: 5rem;
-	background-image: url('http://sistemas.cesmac.edu.br/sic-web/assets/admin/pages/media/bg/1.jpg');
+	background-image: url('../../platoon/bg-exchange-card.jpg');
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
 }
 
-.ex-card-bg .btn {
-	background-color: rgba(255, 255, 255, 0.7);
+.ex-card-bg a .btn {
+	background-color: rgba(255, 255, 255, 0.85);
 	width: auto;
-	padding: 2.5rem 0rem;
+	padding: 2.5rem 1rem;
 	margin: 20px 0;
 	font-size: 1.166rem;
 	line-height: 0;
@@ -84,10 +58,12 @@
 /* slogan block 'easy to use' */
 
 .slogan-easy-bg {
+  text-shadow: 0px 0px 10px #e7e7e7;
 }
 
 /* slogan block 'virtual and paper synchronize' */
 .slogan-synchronize-bg {
+  text-shadow: 0px 0px 10px #e7e7e7;
 }
 
 /* slogan block 'want more information?' */
@@ -157,4 +133,64 @@
 }*/
 .footer-text-custom {
 	color: white;
+}
+
+/* About Layout */
+@media screen and (min-width: 960px) {
+  .max-width-960 {
+    max-width: 960px;
+  }
+}
+/*@media screen and (min-width: 768px) {
+  .left-element-max-width-768 {
+    float: left;
+  }
+  .right-element-max-width-768 {
+    float: right;
+  }
+}*/
+
+
+@media screen and (min-width: 540px){
+  .title {
+    font-size: 4rem;
+  }
+  .subtitle {
+    font-size: 3rem;
+  }
+  .ex-card-bg .btn{
+		display: none;
+	}
+	.ex-card-subtitle {
+		font-size: 3.5rem;
+		display: none;
+	}
+	.ex-card-subtitle-desktop {
+    display: block;
+		font-size: 3rem;
+	}
+	.content-text {
+	  font-size: 2rem;
+	}
+
+  .get-email-bg .btn {
+    font-size: 2rem;
+  }
+  .get-email-bg input {
+    color: #cccccc;
+    font-size: 2rem;
+  }
+
+  .get-email-bg input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 2rem;
+  }
+  .get-email-bg input::-moz-placeholder { /* Firefox 19+ */
+    font-size: 2rem;
+  }
+  .get-email-bg input:-ms-input-placeholder { /* IE 10+ */
+    font-size: 2rem;
+  }
+  .get-email-bg input:-moz-placeholder { /* Firefox 18- */
+    font-size: 2rem;
+  }
 }
