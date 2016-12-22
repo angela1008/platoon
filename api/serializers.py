@@ -33,9 +33,12 @@ class UserExtensionSerializer(serializers.ModelSerializer):
 
 
 class UserRelationSerializer(serializers.ModelSerializer):
+    # Serialize the user relationship first and then serialize the card user's detail "for each time".
+    card_user_detail = UserSerializer(source = 'card_user', read_only = True)
 
     class Meta:
         model = models.UserRelation
+        # fields = ('user', 'card_user_detail', 'is_favorite', 'note', 'created_at', 'updated_at')
 
 
 class SkillSerializer(serializers.ModelSerializer):
