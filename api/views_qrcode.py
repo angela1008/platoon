@@ -74,3 +74,22 @@ class ScanQr(APIView):
         user_otherside = User.objects.get(pk=genexgqr.from_user.id)
         serializer_user_otherside = serializers.UserSerializer(user_otherside)
         return Response(serializer_user_otherside.data, status=status.HTTP_201_CREATED)
+
+## Cancel QR code existing in database
+class CancelQr(APIView):
+    permission_classes = (permissions.IsStaffOrTargetUser,)
+
+    """
+    If user cancel the exchange code, we have to clean the database avoid exchange code idle 5 minutes.
+    """
+    def put(self, request):
+        user = request.data['user']
+        exchange_code = request.data['exchange_code']
+        genexgqr = apiModels.GenExgQr.objects.get(from_user=user, id=exchange_code)
+        genexgqr.from_user = None
+        genexgqr.to_user = None
+        genexgqr.created_at = None
+        genexgqr.expired_at = None
+        genexgqr.save()
+        serializer = serializers.GenExgQrSerializer(genexgqr)
+        return Response({"isClean": True, "data": serializer.data})

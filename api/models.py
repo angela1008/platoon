@@ -18,6 +18,15 @@ class InterestedUser(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+# API Token for restful login and signup
+class Token(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=254)
+    note = models.CharField(max_length=254, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    expired_at = models.DateTimeField(null=True, blank=True)
+
 # User's extension fields
 class UserExtension(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

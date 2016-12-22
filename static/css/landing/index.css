@@ -135,28 +135,6 @@
 	color: #b3b3b3;
 	text-align: center;
 }
-.signup-title-text {
-	font-size: 32px;
-	text-align: center;
-}
-.signup-button-text {
-	color: #737373;
-	font-size: 32px;
-}
-.signin-title-text {
-	font-size: 32px;
-	text-align: center;
-}
-.signin-button-text {
-	color: #737373;
-	font-size: 32px;
-}
-.signup-button{
-	width: 100%;
-}
-.signin-button {
-	width: 100%;
-}
 .hr-line {
 	border-color: #b3b3b3;
 }
@@ -179,14 +157,4 @@
 }*/
 .footer-text-custom {
 	color: white;
-}
-.signin-signinup-dialog-flex {
-	height: 80vh;
-	min-width: 540px;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-justify-content: center;
-	justify-content: center;
 }

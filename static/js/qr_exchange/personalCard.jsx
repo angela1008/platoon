@@ -17,14 +17,17 @@ class PersonalCard extends React.Component {
             <div id={ this.id } className="modal fade" role="dialog">
         		<div className="modal-dialog modal-xs personal-card-flex">
         			<div className="modal-content">
+                        <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
         				<div className="modal-body row">
         					<div className="col-xs-1"></div>
         					<div className="col-xs-10 exchange-card-finish-content">
         						<div className="row">
         							<div className="col-xs-4">
-        								<div class="personal-img personal-flex-img">
+        								<div className="personal-img personal-flex-img">
                                         {/* <!-- personal image --> */}
-                                        <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" class="img-circle img-fluid" />
+                                        <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" className="img-circle img-fluid" />
                                     </div>
         							</div>
         							<div className="col-xs-8">

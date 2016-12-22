@@ -9,13 +9,13 @@ from api.permissions import IsStaffOrTargetUser
 
 # Create your views here.
 ## User
-class UserList(generics.ListCreateAPIView):
+class UserList(generics.ListAPIView):
     # authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.IsAdminUser,)
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserDetail(generics.RetrieveUpdateAPIView):
     # authentication_classes = (TokenAuthentication,)
     permission_classes = (IsStaffOrTargetUser,)
     queryset = User.objects.all()
