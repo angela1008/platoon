@@ -4,7 +4,33 @@
     max-width: 960px;
   }
 }
-
+/*@media screen and (min-width: 768px) {
+  .left-element-max-width-768 {
+    float: left;
+  }
+  .right-element-max-width-768 {
+    float: right;
+  }
+}*/
+@media screen and (min-width: 540px){
+	.ex-card-bg .btn{
+		display: none;
+	}
+	.ex-card-title {
+		font-size: 4rem;
+	}
+	.ex-card-subtitle {
+		font-size: 3.5rem;
+		display: none;
+	}
+	.ex-card-subtitle-desktop {
+		font-size: 3.5rem;
+		display: block;
+	}
+	.content-text {
+	font-size: 3.5rem;
+	}
+}
 /* About content & text */
 
 
@@ -29,17 +55,15 @@
 
 /* block 'start to exchange card' */
 .ex-card-bg {
+	height: 75vh;
+	min-height: 600px;
 	width: auto;
-	height: 528px;
 	padding-top: 8rem;
 	padding-bottom: 5rem;
 	background-image: url('http://sistemas.cesmac.edu.br/sic-web/assets/admin/pages/media/bg/1.jpg');
-	background-size: 100% 100%
-}
-@media screen and (min-width: 540px){
-	.ex-card-bg .btn{
-		display: none;
-	}
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 
 .ex-card-bg .btn {
@@ -52,31 +76,13 @@
 	max-height: 1px;
 }
 
-
-@media screen and (min-width: 540px){
-	.ex-card-title {
-		font-size: 4rem;
-	}
-}
-.ex-card-subtitle {
-
-}
-@media screen and (min-width: 540px){
-	.ex-card-subtitle {
-		display: none;
-	}
-}
 .ex-card-subtitle-desktop {
 	font-size: 2rem;
 	display: none;
 }
-@media screen and (min-width: 540px){
-	.ex-card-subtitle-desktop {
-		display: block;
-	}
-}
 
 /* slogan block 'easy to use' */
+
 .slogan-easy-bg {
 }
 
@@ -85,8 +91,8 @@
 }
 
 /* slogan block 'want more information?' */
-.get-email {
-	height: 240px;
+.get-email-bg {
+	height: 75vh;
   display: -webkit-flex;
   display:         flex;
   -webkit-align-items: center;
@@ -94,20 +100,16 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.get-email .btn {
-  font-size: 1rem;
-	width: 100%;
+.get-email-bg .btn {
+  font-size: 1.166rem;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   border-style: solid;
   border-width: 1px;
   border-radius: 1px;
   border-color: rgba(#000000, 0.3);
 }
-
-
-
-
-
-
 
 .stylish-input-group .input-group-addon {
 	background: white;
@@ -123,18 +125,31 @@
 }
 .skills-input-descrpiption {
 	color: #b3b3b3;
+	text-align: center;
 }
 .forgot-passsword-text {
 	color: #b3b3b3;
+	text-align: center;
 }
 .create-new-account-text {
 	color: #b3b3b3;
+	text-align: center;
+}
+.signup-title-text {
+	font-size: 32px;
+	text-align: center;
 }
 .signup-button-text {
 	color: #737373;
+	font-size: 32px;
+}
+.signin-title-text {
+	font-size: 32px;
+	text-align: center;
 }
 .signin-button-text {
 	color: #737373;
+	font-size: 32px;
 }
 .signup-button{
 	width: 100%;
@@ -164,4 +179,14 @@
 }*/
 .footer-text-custom {
 	color: white;
+}
+.signin-signinup-dialog-flex {
+	height: 80vh;
+	min-width: 540px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }

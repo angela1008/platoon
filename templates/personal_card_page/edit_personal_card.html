@@ -20,14 +20,6 @@
 <table class="table borderless max-layout-width-540px">
 	<tbody>
 		<tr>
-			<td class="title-column">Nickname</td>
-			<td class="description-column">
-				<!-- the content of nickname -->
-				<input value="" type="text" class="form-control">
-			</td>
-		</tr>
-
-		<tr>
 			<td class="title-column">Phone</td>
 			<td class="description-column">
 				<!-- the content of phone number -->
@@ -46,8 +38,10 @@
 		<tr>
 			<td class="title-column">Languages</td>
 			<td class="description-column">
-				<!-- the textarea content of languages -->
-				<textarea type="text" class="md-textarea form-control"></textarea>
+				<!-- the content of native language -->
+				<input value="" type="text" placeholder="native..." class="form-control">
+				<!-- the textarea content of foreign languages -->
+				<textarea type="text" placeholder="foreign..." class="md-textarea form-control"></textarea>
 			</td>
 		</tr>
 
@@ -88,9 +82,17 @@
 			<td class="title-column">Education</td>
 			<td class="description-column">
 				<div class="row">
-					<div class="col-xs-9">
+					<div class="col-xs-6">
 						<!-- the content of education -->
-						<input value="" type="text" class="form-control">		
+						<input value="" type="text" class="form-control">
+					</div>
+					<div class="col-xs-3">
+					   <select class="custom-select">
+						    <option value="" disabled selected>Choose your option</option>
+						    <option value="1">MD</option>
+						    <option value="2">BD</option>
+						    <option value="3">PhD</option>
+						</select>
 					</div>
 					<div class="col-xs-3">
 						<!-- remove education input button -->
