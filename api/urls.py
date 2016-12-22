@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers
 
-from api import views, views_qrcode, views_qraccept
+from api import views, views_qrcode, views_qraccept, views_card_box
 from api import views_customer as viewCus
 from api import views_login
 
@@ -119,5 +119,9 @@ urlpatterns = [
     url(r'^checkqraccept/$',
       views_qraccept.CheckQrAccept.as_view(),
       name='user-checkqraccept'),
+
+    url(r'^cardbox/$',
+      views_card_box.CardBox.as_view(),
+      name='user-cardbox'),
 
 ]
