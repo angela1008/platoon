@@ -28,6 +28,11 @@ h6{
   1rem;
 }
 
+@media screen and (min-width: 768px) {
+  .drawer-layout-width-768px {
+    display: none;
+  }
+}
 .text-center {
   text-align: center;
 }
@@ -42,4 +47,25 @@ h6{
   background: #4d4d4d;
   padding: 2rem 0;
   color: #ffffff;
+}
+.drawer-layout {
+  padding-left: 10px; 
+  padding-right: 10px;
+  max-width: 420px;
+}
+.drawer-text-size {
+  font-size: 20px;
+}
+.drawer-head-text {
+  size: 20px;
+  float: left;
+}
+.drawer-flex-head {
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }

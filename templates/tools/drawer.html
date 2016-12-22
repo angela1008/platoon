@@ -1,45 +1,48 @@
-<!DOCTYPE html>
-<html>
-    <div id="dw-p1" class="bmd-layout-drawer bg-faded max-layout-width">
-        <header >
-            <div class="row">
-                <div class="col-xs-1">
-                     <i class="material-icons">account_circle</i>
-                </div>
-                <div class="col-xs-7">
-                    <a class="navbar-brand">Sign In</a> 
-                </div>
-                <div class="col-xs-4"></div>
-            </div>
-        </header>
+<div id="dw-p1" class="bmd-layout-drawer bg-faded max-layout-width drawer-text-size drawer-layout">
+    <header>
         <div class="row">
             <div class="col-xs-1"></div>
-            <div class="col-xs-10">
-                <div><hr class="hr-line"></div>
-                <div class="list-group">
-                    
-                    <a href="{% url "index" %}" >
-                        <div class="list-group-item drawer-item">     
-                            <h6>Home Page</h6>
-                        </div>
-                    </a>
-                    <div><hr class="drawer-item-line"></div>
-
-                    <a href="{% url "exchange_page" %}" >
-                        <div class="list-group-item drawer-item">     
-                            <h6>Exchange Business Card</h6>
-                        </div>
-                    </a>
-
-                    <div><hr class="drawer-item-line"></div>
-                    <a class="list-group-item drawer-item"><h6>About</h6></a>
-                    <div><hr class="drawer-item-line"></div>
-                    <!-- <a class="list-group-item drawer-item"><h6>Support</h6></a>
-                    <div><hr class="drawer-item-line"></div> -->
-                    <a class="list-group-item drawer-item"><h6>Team & Join Us</h6></a>
-                </div>
+            <div class="col-xs-4 drawer-flex-head">
+                <!-- personal image -->
+                <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" class="img-circle img-fluid">
             </div>
-            <div class="col-xs-1"></div>    
+            <div class="col-xs-6">
+                <div class="drawer-head-text drawer-flex-head">Sign In</div>  
+            </div>
         </div>
+    </header>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <div><hr class="hr-line"></div>
+            <div class="list-group">
+                
+                <a href="{% url "index" %}" >
+                    <div class="list-group-item drawer-item">Home Page
+                    </div>
+                </a>
+                <div><hr class="drawer-item-line"></div>
+
+                <a class="drawer-layout-width-768px" href="{% url "exchange_page" %}" >
+                    <div class="list-group-item drawer-item">     
+                        Exchange Business Card
+                    </div>
+                </a>
+                <div><hr class="drawer-item-line drawer-layout-width-768px"></div>
+
+                <a href="{% url "personal_card_box" %}" >
+                    <div class="list-group-item drawer-item">Card Box
+                    </div>
+                </a>
+                <div><hr class="drawer-item-line"></div>
+
+                <a class="list-group-item drawer-item">About</a>
+                <div><hr class="drawer-item-line"></div>
+                <!-- <a class="list-group-item drawer-item"><h6>Support</h6></a>
+                <div><hr class="drawer-item-line"></div> -->
+                <a class="list-group-item drawer-item">Team & Join Us</a>
+            </div>
+        </div>
+        <div class="col-xs-1"></div>    
     </div>
-</html>
+</div>

@@ -1,9 +1,9 @@
-@media screen and (min-width: 720px) {
-	.max-layout-width-720px {
+@media screen and (min-width: 768px) {
+	.max-layout-width-768px {
 		/*display: block;*/
 		margin-right: auto;  
 		margin-left: auto;  
-		max-width: 720px;
+		max-width: 768px;
 	}
 }
 .card-box-head {
@@ -33,4 +33,23 @@
 .receive-date {
 	float: right;
 	color: #c3c3c3;
+}
+.personal-flex-img {
+	height: 100%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+.personal-card-flex {
+	height:100%;
+	max-width: 540px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
