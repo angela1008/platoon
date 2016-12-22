@@ -22789,37 +22789,20 @@
 	    }
 
 	    componentDidMount() {
-	        var data = [{
-	            "id": 4,
-	            "username": "andy@jdsys.com.tw",
-	            "first_name": "Andy",
-	            "email": "andy@jdsys.com.tw"
-	        }, {
-	            "id": 5,
-	            "username": "andy@jdsys.com.tw",
-	            "first_name": "Andy",
-	            "email": "andy@jdsys.com.tw"
-	        }, {
-	            "id": 6,
-	            "username": "andy@jdsys.com.tw",
-	            "first_name": "Andy",
-	            "email": "andy@jdsys.com.tw"
-	        }];
-	        // ajaxreq.get(utils.apiCardbox, data,
-	        // function(data) {
-	        // status of request success
-	        // Show card
-	        var cardUsers = data;
-	        for (var i = 0; i < cardUsers.length; i++) {
-	            var cardUser = cardUsers[i];
-	            this.state.cards.push(cardUser);
-	            this.setState(this.state.cards);
-	            console.log(cardUser);
-	        }
-	        // }, function(xhr, status, err) {
-	        //     console.error(xhr, status, err);
-	        //     // TODO error status
-	        // });
+	        ajaxreq.get(utils.apiCardbox, { 'user': utils.getUserId() }, function (data) {
+	            // status of request success
+	            // Show card
+	            var cardUsers = data;
+	            for (var i = 0; i < cardUsers.length; i++) {
+	                var cardUser = cardUsers[i];
+	                this.state.cards.push(cardUser);
+	                this.setState(this.state.cards);
+	                console.log(cardUser);
+	            }
+	        }, function (xhr, status, err) {
+	            console.error(xhr, status, err);
+	            // TODO error status
+	        });
 	    }
 
 	    render() {
@@ -22828,8 +22811,8 @@
 	            'div',
 	            null,
 	            this.state.cards.map(item => React.createElement(Card, {
-	                key: item.id,
-	                personalId: 'personal-card-dialog-' + item.id,
+	                key: item.card_user_detail.id,
+	                personalId: 'personal-card-dialog-' + item.card_user_detail.id,
 	                user: item }))
 	        );
 	    }
@@ -22855,7 +22838,7 @@
 	        var appendId = utils.appendModalDialog('personal-card-dialog', this.props.personalId + '-border');
 	        ReactDOM.render(React.createElement(PersonalCard, {
 	            id: this.props.personalId,
-	            data: this.props.user }), document.getElementById(appendId));
+	            data: this.props.user.card_user_detail }), document.getElementById(appendId));
 	    }
 
 	    handleCardClicked() {
@@ -22877,7 +22860,7 @@
 	            React.createElement(
 	                'span',
 	                { className: 'name' },
-	                this.props.user.first_name
+	                this.props.user.card_user_detail.first_name
 	            ),
 	            React.createElement(
 	                'span',

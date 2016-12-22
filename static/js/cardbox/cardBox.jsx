@@ -15,24 +15,8 @@ class CardBox extends React.Component {
     }
 
     componentDidMount() {
-        var data = [{
-            "id": 4,
-            "username": "andy@jdsys.com.tw",
-            "first_name": "Andy",
-            "email": "andy@jdsys.com.tw"
-        },{
-            "id": 5,
-            "username": "andy@jdsys.com.tw",
-            "first_name": "Andy",
-            "email": "andy@jdsys.com.tw"
-        },{
-            "id": 6,
-            "username": "andy@jdsys.com.tw",
-            "first_name": "Andy",
-            "email": "andy@jdsys.com.tw"
-        }];
-        // ajaxreq.get(utils.apiCardbox, data,
-            // function(data) {
+        ajaxreq.get(utils.apiCardbox, {'user': utils.getUserId()},
+            function(data) {
                 // status of request success
                 // Show card
                 var cardUsers = data;
@@ -42,10 +26,10 @@ class CardBox extends React.Component {
                     this.setState(this.state.cards);
                     console.log(cardUser);
                 }
-            // }, function(xhr, status, err) {
-            //     console.error(xhr, status, err);
-            //     // TODO error status
-            // });
+            }, function(xhr, status, err) {
+                console.error(xhr, status, err);
+                // TODO error status
+            });
     }
 
     render() {
@@ -55,8 +39,8 @@ class CardBox extends React.Component {
                 {
                     this.state.cards.map((item) => (
                         <Card
-                            key={ item.id }
-                            personalId={ 'personal-card-dialog-' + item.id }
+                            key={ item.card_user_detail.id }
+                            personalId={ 'personal-card-dialog-' + item.card_user_detail.id }
                             user={ item } />
                     ))
                 }

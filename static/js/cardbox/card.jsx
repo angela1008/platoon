@@ -20,7 +20,7 @@ class Card extends React.Component {
         ReactDOM.render(
             <PersonalCard
                 id = { this.props.personalId }
-                data = { this.props.user } />,
+                data = { this.props.user.card_user_detail } />,
             document.getElementById(appendId)
         );
     }
@@ -41,7 +41,7 @@ class Card extends React.Component {
                 {/* TODO ajax query pic */}
         		<span className="material-icons">account_circle</span>
         		{/* <!-- personal name --> */}
-        		<span className="name">{ this.props.user.first_name }</span>
+        		<span className="name">{ this.props.user.card_user_detail.first_name }</span>
         		{/* <!-- receive date --> */}
         		<span className="receive-date">{ this.props.user.created_at }</span>
         	</div>
