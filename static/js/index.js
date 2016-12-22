@@ -7,6 +7,7 @@ var LoginModal = require('./authentication/loginModal')
 var SignupModal = require('./authentication/signupModal')
 var GenQrCodeButton = require('./qr_exchange/buttonGenQr')
 var InputIdField = require('./qr_exchange/inputIdField')
+var CardBox = require('./cardbox/cardBox')
 
 $(document).ready(function() {
   // Navbar
@@ -57,6 +58,16 @@ $(document).ready(function() {
     );
   } catch(err) {
       console.error('id "exchange-platoon-id-input-div" not found');
+  }
+
+  // CardBox
+  try {
+    ReactDOM.render(
+      <CardBox />,
+      document.getElementById('react-card-box')
+    );
+  } catch(err) {
+    console.error('id "react-card-box" not found', err);
   }
 
   utils.initBoostrapMD();
