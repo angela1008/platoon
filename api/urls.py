@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers
 
-from api import views, views_qrcode, views_qraccept, views_card_box
+from api import views, views_qrcode, views_qraccept, views_card_box, views_user_detail
 from api import views_customer as viewCus
 from api import views_login
 
@@ -127,5 +127,9 @@ urlpatterns = [
     url(r'^cardbox/$',
       views_card_box.CardBox.as_view(),
       name='user-cardbox'),
+
+    url(r'^userdetail/$',
+      views_user_detail.UserDetail.as_view(),
+      name='user-userdetail'),
 
 ]

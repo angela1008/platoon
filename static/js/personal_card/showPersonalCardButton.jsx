@@ -11,6 +11,10 @@ class ShowPersonalCardButton extends React.Component {
     super(props);
   }
 
+  handleDetailClicked() {
+
+  }
+
   handleClicked() {
     var userid = ajaxreq.getUserId();
     var username = ajaxreq.getUserName();
@@ -24,7 +28,11 @@ class ShowPersonalCardButton extends React.Component {
     ReactDOM.render(
         <PersonalCard
             id = "personal-card-show-card-modal"
-            data = { data } />,
+            data = { data }
+            handleClick = { function() {
+              // redirect to detail page
+              utils.redirectTo(utils.getUrlByName('personal_card_detail'));
+            } } />,
         document.getElementById('personal-card-dialog')
     );
     utils.openModal('personal-card-show-card-modal');

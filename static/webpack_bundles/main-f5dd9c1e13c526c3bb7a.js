@@ -51,59 +51,74 @@
 	var Navbar = __webpack_require__(182);
 	var LoginModal = __webpack_require__(185);
 	var SignupModal = __webpack_require__(186);
-	var ShowPersonalCardButton = __webpack_require__(194);
-	var GenQrCodeButton = __webpack_require__(187);
-	var InputIdField = __webpack_require__(191);
-	var CardBox = __webpack_require__(192);
+	var ShowPersonalCardButton = __webpack_require__(187);
+	var GenQrCodeButton = __webpack_require__(189);
+	var InputIdField = __webpack_require__(192);
+	var CardBox = __webpack_require__(193);
+	var DetailPage = __webpack_require__(195);
+	var EditPage = __webpack_require__(196);
 
 	$(document).ready(function () {
 	  // Navbar
 	  try {
 	    ReactDOM.render(React.createElement(Navbar, null), document.getElementById('react-navbar'));
 	  } catch (err) {
-	    console.error('id "react-navbar" not found');
+	    console.error('react-navbar');
 	  }
 
 	  // Login Modal
 	  try {
 	    ReactDOM.render(React.createElement(LoginModal, null), document.getElementById('react-signin-modal'));
 	  } catch (err) {
-	    console.error('id "react-signin-modal" not found');
+	    console.error('react-signin-modal');
 	  }
 
 	  // Signup Modal
 	  try {
 	    ReactDOM.render(React.createElement(SignupModal, null), document.getElementById('react-signup-modal'));
 	  } catch (err) {
-	    console.error('id "react-signup-modal" not found');
+	    console.error('react-signup-modal');
 	  }
 
-	  // personal-card-show-personal-card
+	  try {
+	    ReactDOM.render(React.createElement(DetailPage, null), document.getElementById('react-personal-detail-page'));
+	  } catch (e) {
+	    console.error('react-show-personal-card');
+	  }
+
+	  // react-show-personal-card
 	  try {
 	    ReactDOM.render(React.createElement(ShowPersonalCardButton, null), document.getElementById('react-show-personal-card'));
-	  } catch (e) {
-	    console.error('id "react-show-personal-card" not found');
+	  } catch (err) {
+	    console.error('react-show-personal-card');
+	  }
+
+	  // react-personal-edit-page
+	  try {
+	    ReactDOM.render(React.createElement(EditPage, null), document.getElementById('react-personal-edit-page'));
+	  } catch (err) {
+	    console.error('react-personal-edit-page');
 	  }
 
 	  // Exchange Button for gen id
 	  try {
 	    ReactDOM.render(React.createElement(GenQrCodeButton, null), document.getElementById('show-id-button'));
 	  } catch (err) {
-	    console.error('id "show-id-button" not found');
+	    console.error('show-id-button');
 	  }
 
 	  // Exchange Input for scan id
 	  try {
 	    ReactDOM.render(React.createElement(InputIdField, { dataUrl: utils.apiScanqr }), document.getElementById('exchange-platoon-id-input-div'));
 	  } catch (err) {
-	    console.error('id "exchange-platoon-id-input-div" not found');
+	    console.error('exchange-platoon-id-input-div');
 	  }
 
 	  // CardBox
 	  try {
 	    ReactDOM.render(React.createElement(CardBox, null), document.getElementById('react-card-box'));
 	  } catch (err) {
-	    console.error('id "react-card-box" not found', err);
+	    console.error('react-card-box');
 	  }
 
 	  utils.initBoostrapMD();
@@ -21520,6 +21535,7 @@
 	const apiServer = 'http://127.0.0.1:8000/platoon-api/';
 	const apiUserLogin = apiServer + 'login/';
 	const apiUserSignup = apiServer + 'signup/';
+	const apiUserDetail = apiServer + 'userdetail';
 	const apiAuthVerify = apiServer + 'auth-verify/';
 	const apiInterestedUser = apiServer + 'interested-user/';
 	const apiGenexgqr = apiServer + 'genexgqr/';
@@ -21552,6 +21568,30 @@
 	  return id;
 	}
 
+	function handleArrayNameToStringLine(array) {
+	  var str = '';
+	  if (!array) {
+	    return str;
+	  }
+	  for (var i = 0; i < array.length; i++) {
+	    str += array[i].name + ',';
+	  }
+	  str = str.slice(0, -1);
+	  return str;
+	}
+
+	function handleArrayTitleToStringLine(array) {
+	  var str = '';
+	  if (!array) {
+	    return str;
+	  }
+	  for (var i = 0; i < array.length; i++) {
+	    str += array[i].title + ',';
+	  }
+	  str = str.slice(0, -1);
+	  return str;
+	}
+
 	// This function is for the modal can't inside the bmd menu
 	// exclude those template id, will return the place React mount at.
 	function appendModalDialog(targetId, appendId) {
@@ -21568,12 +21608,17 @@
 	  $('body').bootstrapMaterialDesign();
 	}
 
+	function redirectTo(name) {
+	  window.location = name;
+	}
+
 	function reload() {
 	  location.reload();
 	}
 
 	exports.apiUserLogin = apiUserLogin;
 	exports.apiUserSignup = apiUserSignup;
+	exports.apiUserDetail = apiUserDetail;
 	exports.apiAuthVerify = apiAuthVerify;
 	exports.apiInterestedUser = apiInterestedUser;
 	exports.apiGenexgqr = apiGenexgqr;
@@ -21581,6 +21626,8 @@
 	exports.apiCardbox = apiCardbox;
 
 	exports.id4DigitFormater = id4DigitFormater;
+	exports.handleArrayNameToStringLine = handleArrayNameToStringLine;
+	exports.handleArrayTitleToStringLine = handleArrayTitleToStringLine;
 	exports.countTimeSec = countTimeSec;
 	exports.openModal = openThatFkModal;
 	exports.closeModal = closeThatFkModal;
@@ -21589,6 +21636,7 @@
 	exports.appendModalDialog = appendModalDialog;
 	exports.getUrlByName = getUrlByName;
 	exports.initBoostrapMD = initBoostrapMD;
+	exports.redirectTo = redirectTo;
 	exports.reload = reload;
 
 /***/ },
@@ -22383,7 +22431,151 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
-	var GenQrCodePage = __webpack_require__(188);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+	var PersonalCard = __webpack_require__(188);
+
+	module.exports = class ShowPersonalCardButton extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  handleDetailClicked() {}
+
+	  handleClicked() {
+	    var userid = ajaxreq.getUserId();
+	    var username = ajaxreq.getUserName();
+	    var useremail = ajaxreq.getUserEmail();
+	    var data = {
+	      id: userid,
+	      first_name: username,
+	      email: useremail
+	    };
+	    console.log(data);
+	    ReactDOM.render(React.createElement(PersonalCard, {
+	      id: 'personal-card-show-card-modal',
+	      data: data,
+	      handleClick: function () {
+	        // redirect to detail page
+	        utils.redirectTo(utils.getUrlByName('personal_card_detail'));
+	      } }), document.getElementById('personal-card-dialog'));
+	    utils.openModal('personal-card-show-card-modal');
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { onClick: this.handleClicked, className: 'list-group-item', 'data-toggle': 'modal', 'data-target': '#personal-card-show-card-modal' },
+	      React.createElement(
+	        'span',
+	        { className: 'material-icons' },
+	        'contact_mail'
+	      ),
+	      React.createElement(
+	        'span',
+	        { className: 'item-text' },
+	        'Show Card View'
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+
+	module.exports = class PersonalCard extends React.Component {
+
+	    constructor(props) {
+	        super(props);
+	        this.id = this.props.id;
+	        this.data = this.props.data;
+	        this.handleClick = this.props.handleClick ? this.props.handleClick : {};
+	    }
+
+	    render() {
+	        return React.createElement(
+	            'div',
+	            { id: this.id, className: 'modal fade', role: 'dialog' },
+	            React.createElement(
+	                'div',
+	                { className: 'modal-dialog modal-xs personal-card-flex' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'modal-content' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'modal-header' },
+	                        React.createElement(
+	                            'button',
+	                            { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+	                            React.createElement(
+	                                'span',
+	                                { 'aria-hidden': 'true' },
+	                                '\xD7'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'modal-body row', onClick: this.handleClick },
+	                        React.createElement('div', { className: 'col-xs-1' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-xs-10 exchange-card-finish-content' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'row' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-4' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'personal-img personal-flex-img' },
+	                                        React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', className: 'img-circle img-fluid' })
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'col-xs-8' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'exchage-card-text-vertical' },
+	                                        React.createElement(
+	                                            'h3',
+	                                            { className: 'exchange-card-finish-text' },
+	                                            this.data.first_name
+	                                        ),
+	                                        React.createElement(
+	                                            'h6',
+	                                            { className: 'exchange-card-finish-text' },
+	                                            this.data.email
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement('div', { className: 'col-xs-1' })
+	                    )
+	                )
+	            )
+	        );
+	    }
+	};
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var GenQrCodePage = __webpack_require__(190);
 	var utils = __webpack_require__(178);
 
 	module.exports = class GenQrCodeButton extends React.Component {
@@ -22434,13 +22626,13 @@
 	};
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
-	var ExpireCounter = __webpack_require__(189);
-	var PersonalCard = __webpack_require__(190);
+	var ExpireCounter = __webpack_require__(191);
+	var PersonalCard = __webpack_require__(188);
 	var ajaxreq = __webpack_require__(179);
 	var utils = __webpack_require__(178);
 
@@ -22568,7 +22760,7 @@
 	};
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -22643,100 +22835,14 @@
 	};
 
 /***/ },
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var utils = __webpack_require__(178);
-
-	module.exports = class PersonalCard extends React.Component {
-
-	    constructor(props) {
-	        super(props);
-	        this.id = this.props.id;
-	        this.data = this.props.data;
-	    }
-
-	    render() {
-	        return React.createElement(
-	            'div',
-	            { id: this.id, className: 'modal fade', role: 'dialog' },
-	            React.createElement(
-	                'div',
-	                { className: 'modal-dialog modal-xs personal-card-flex' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'modal-content' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'modal-header' },
-	                        React.createElement(
-	                            'button',
-	                            { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
-	                            React.createElement(
-	                                'span',
-	                                { 'aria-hidden': 'true' },
-	                                '\xD7'
-	                            )
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'modal-body row' },
-	                        React.createElement('div', { className: 'col-xs-1' }),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'col-xs-10 exchange-card-finish-content' },
-	                            React.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'col-xs-4' },
-	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'personal-img personal-flex-img' },
-	                                        React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', className: 'img-circle img-fluid' })
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'div',
-	                                    { className: 'col-xs-8' },
-	                                    React.createElement(
-	                                        'div',
-	                                        { className: 'exchage-card-text-vertical' },
-	                                        React.createElement(
-	                                            'h3',
-	                                            { className: 'exchange-card-finish-text' },
-	                                            this.data.first_name
-	                                        ),
-	                                        React.createElement(
-	                                            'h6',
-	                                            { className: 'exchange-card-finish-text' },
-	                                            this.data.email
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement('div', { className: 'col-xs-1' })
-	                    )
-	                )
-	            )
-	        );
-	    }
-	};
-
-/***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
-	var PersonalCard = __webpack_require__(190);
+	var PersonalCard = __webpack_require__(188);
 
 	module.exports = class InputIdField extends React.Component {
 
@@ -22791,14 +22897,14 @@
 	};
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
-	var Card = __webpack_require__(193);
+	var Card = __webpack_require__(194);
 
 	module.exports = class CardBox extends React.Component {
 
@@ -22841,14 +22947,14 @@
 	};
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
-	var PersonalCard = __webpack_require__(190);
+	var PersonalCard = __webpack_require__(188);
 
 	module.exports = class Card extends React.Component {
 
@@ -22894,51 +23000,648 @@
 	};
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
-	var PersonalCard = __webpack_require__(190);
+	var DetailCard = __webpack_require__(197);
+	var DetailExtends = __webpack_require__(198);
 
-	module.exports = class ShowPersonalCardButton extends React.Component {
+	module.exports = class DetailPage extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	    this.state = {
+	      user: {}
+	    };
+	  }
+
+	  componentDidMount() {
+	    var self = this;
+	    // Verify this login is valid
+	    ajaxreq.get(utils.apiUserDetail, { user: ajaxreq.getUserId() }, function (data) {
+	      ReactDOM.render(React.createElement(DetailCard, {
+	        user: data.user,
+	        userskill: data.userskill
+	      }), document.getElementById('react-personal-detail-page-card'));
+
+	      ReactDOM.render(React.createElement(DetailExtends, {
+	        userlanguage: data.userlanguage,
+	        userexperiences: data.userexperiences,
+	        usercollection: data.usercollection,
+	        userextension: data.userextension,
+	        usercertification: data.usercertification,
+	        userwanttodo: data.userwanttodo
+	      }), document.getElementById('react-personal-detail-page-extends'));
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	    });
+	  }
+
+	  render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'div',
+	        { className: 'row personal_card personal-card-flex' },
+	        React.createElement('div', { className: 'col-xs-1' }),
+	        React.createElement(
+	          'div',
+	          { className: 'col-xs-10 exchange-card-finish-content max-layout-width-540px' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-4' },
+	              React.createElement(
+	                'div',
+	                { className: 'personal-flex-img' },
+	                React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', className: 'img-circle img-fluid' })
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-8' },
+	              React.createElement('div', { id: 'react-personal-detail-page-card' })
+	            )
+	          )
+	        ),
+	        React.createElement('div', { className: 'col-xs-1' })
+	      ),
+	      React.createElement('table', { id: 'react-personal-detail-page-extends', className: 'table table-bordered max-layout-width-540px' })
+	    );
+	  }
+	};
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class EditPage extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	    this.state = {
+	      user: {}
+	    };
+	  }
+
+	  componentDidMount() {
+	    var self = this;
+	    // Verify this login is valid
+	    ajaxreq.get(utils.apiUserDetail, { user: ajaxreq.getUserId() }, function (data) {
+	      self.setState({ user: data });
+	    }, function (xhr, status, err) {
+	      console.error(xhr, status, err);
+	    });
+	  }
+
+	  handleChanged(event) {
+	    console.log('handleChanged', event.target.value);
+	  }
+
+	  render() {
+	    return React.createElement(
+	      'tbody',
+	      null,
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Phone'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement('input', { type: 'number',
+	            className: 'form-control',
+	            defaultValue: this.state.user.userextension ? this.state.user.userextension.phone : '',
+	            onChange: this.handleChanged })
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Skills'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement('input', { type: 'text',
+	            className: 'form-control',
+	            defaultValue: utils.handleArrayNameToStringLine(this.state.user.userskill),
+	            onChange: this.handleChanged })
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Languages'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement('input', { type: 'text', placeholder: 'native...', className: 'form-control',
+	            defaultValue: utils.handleArrayNameToStringLine(this.state.user.userlanguage),
+	            onChange: this.handleChanged }),
+	          React.createElement('textarea', { type: 'text', placeholder: 'foreign...', className: 'md-textarea form-control',
+	            defaultValue: utils.handleArrayNameToStringLine(this.state.user.userlanguage),
+	            onChange: this.handleChanged })
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Company'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement('input', { type: 'text',
+	            className: 'form-control',
+	            defaultValue: utils.handleArrayTitleToStringLine(this.state.user.userexperiences),
+	            onChange: this.handleChanged })
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Collections'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-9' },
+	              React.createElement('input', { type: 'text',
+	                className: 'form-control',
+	                defaultValue: utils.handleArrayNameToStringLine(this.state.user.usercollection),
+	                onChange: this.handleChanged })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-3' },
+	              React.createElement(
+	                'button',
+	                { type: 'button', className: 'btn btn-default navbar-btn' },
+	                React.createElement(
+	                  'i',
+	                  { className: 'material-icons remove-button' },
+	                  'remove_circle'
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            React.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default navbar-btn' },
+	              React.createElement(
+	                'i',
+	                { className: 'material-icons add-button' },
+	                'add'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            'Add New One'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Education'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-6' },
+	              React.createElement('input', { type: 'text',
+	                defaultValue: this.state.user.userextension ? this.state.user.userextension.education : '',
+	                onChange: this.handleChanged,
+	                className: 'form-control' })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-3' },
+	              React.createElement(
+	                'select',
+	                { defaultValue: '0', className: 'custom-select' },
+	                React.createElement(
+	                  'option',
+	                  { value: '0', disabled: true },
+	                  'Choose your option'
+	                ),
+	                React.createElement(
+	                  'option',
+	                  { value: '1' },
+	                  'MD'
+	                ),
+	                React.createElement(
+	                  'option',
+	                  { value: '2' },
+	                  'BD'
+	                ),
+	                React.createElement(
+	                  'option',
+	                  { value: '3' },
+	                  'PhD'
+	                )
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-3' },
+	              React.createElement(
+	                'button',
+	                { type: 'button', className: 'btn btn-default navbar-btn' },
+	                React.createElement(
+	                  'i',
+	                  { className: 'material-icons remove-button' },
+	                  'remove_circle'
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            React.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default navbar-btn' },
+	              React.createElement(
+	                'i',
+	                { className: 'material-icons add-button' },
+	                'add'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            'Add New One'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Certifications'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-9' },
+	              React.createElement('input', { defaultValue: '', type: 'text', className: 'form-control' })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-3' },
+	              React.createElement(
+	                'button',
+	                { type: 'button', className: 'btn btn-default navbar-btn' },
+	                React.createElement(
+	                  'i',
+	                  { className: 'material-icons remove-button' },
+	                  'remove_circle'
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            React.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default navbar-btn' },
+	              React.createElement(
+	                'i',
+	                { className: 'material-icons add-button' },
+	                'add'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            'Add New One'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Experiences(title)'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-9' },
+	              React.createElement('input', { defaultValue: '', type: 'text', className: 'form-control' })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-3' },
+	              React.createElement(
+	                'button',
+	                { type: 'button', className: 'btn btn-default navbar-btn' },
+	                React.createElement(
+	                  'i',
+	                  { className: 'material-icons remove-button' },
+	                  'remove_circle'
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            React.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default navbar-btn' },
+	              React.createElement(
+	                'i',
+	                { className: 'material-icons add-button' },
+	                'add'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            'Add New One'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Want to do(title)'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-9' },
+	              React.createElement('input', { defaultValue: '', type: 'text', className: 'form-control' }),
+	              React.createElement('textarea', { type: 'text', className: 'md-textarea want-to-do-textarea form-control' })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'col-xs-3' },
+	              React.createElement(
+	                'button',
+	                { type: 'button', className: 'btn btn-default navbar-btn' },
+	                React.createElement(
+	                  'i',
+	                  { className: 'material-icons remove-button' },
+	                  'remove_circle'
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            React.createElement(
+	              'button',
+	              { type: 'button', className: 'btn btn-default navbar-btn' },
+	              React.createElement(
+	                'i',
+	                { className: 'material-icons add-button' },
+	                'add'
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            null,
+	            'Add New One'
+	          )
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class DetailCard extends React.Component {
 
 	  constructor(props) {
 	    super(props);
 	  }
 
-	  handleClicked() {
-	    var userid = ajaxreq.getUserId();
-	    var username = ajaxreq.getUserName();
-	    var useremail = ajaxreq.getUserEmail();
-	    var data = {
-	      id: userid,
-	      first_name: username,
-	      email: useremail
-	    };
-	    console.log(data);
-	    ReactDOM.render(React.createElement(PersonalCard, {
-	      id: 'personal-card-show-card-modal',
-	      data: data }), document.getElementById('personal-card-dialog'));
-	    utils.openModal('personal-card-show-card-modal');
+	  render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        { className: 'exchange-card-finish-text' },
+	        this.props.user.first_name
+	      ),
+	      React.createElement(
+	        'h6',
+	        { className: 'exchange-card-finish-text' },
+	        this.props.user.email
+	      ),
+	      React.createElement(
+	        'h6',
+	        { className: 'exchange-card-finish-text' },
+	        utils.handleArrayNameToStringLine(this.props.userskill)
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class DetailExtends extends React.Component {
+
+	  constructor(props) {
+	    super(props);
 	  }
 
 	  render() {
-	    // render the post
 	    return React.createElement(
-	      'div',
-	      { onClick: this.handleClicked, className: 'list-group-item', 'data-toggle': 'modal', 'data-target': '#personal-card-show-card-modal' },
+	      'tbody',
+	      null,
 	      React.createElement(
-	        'span',
-	        { className: 'material-icons' },
-	        'contact_mail'
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Languages'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayNameToStringLine(this.props.userlanguage)
+	        )
 	      ),
 	      React.createElement(
-	        'span',
-	        { className: 'item-text' },
-	        'Show Card View'
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Company'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayTitleToStringLine(this.props.userexperiences)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Collections'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayNameToStringLine(this.props.usercollection)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Education'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          this.props.userextension ? this.props.userextension.education : ''
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Certifications'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayNameToStringLine(this.props.usercertification)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Experiences'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayTitleToStringLine(this.props.userexperiences)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Want to do'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayTitleToStringLine(this.props.userwanttodo)
+	        )
 	      )
 	    );
 	  }

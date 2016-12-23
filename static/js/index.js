@@ -9,6 +9,8 @@ var ShowPersonalCardButton = require('./personal_card/showPersonalCardButton')
 var GenQrCodeButton = require('./qr_exchange/buttonGenQr')
 var InputIdField = require('./qr_exchange/inputIdField')
 var CardBox = require('./cardbox/cardBox')
+var DetailPage = require('./personal_card/detailPage')
+var EditPage = require('./personal_card/editPage')
 
 $(document).ready(function() {
   // Navbar
@@ -18,7 +20,7 @@ $(document).ready(function() {
       document.getElementById('react-navbar')
     );
   } catch(err) {
-    console.error('id "react-navbar" not found');
+    console.error('react-navbar');
   }
 
   // Login Modal
@@ -28,7 +30,7 @@ $(document).ready(function() {
       document.getElementById('react-signin-modal')
     );
   } catch(err) {
-    console.error('id "react-signin-modal" not found');
+    console.error('react-signin-modal');
   }
 
   // Signup Modal
@@ -38,17 +40,36 @@ $(document).ready(function() {
       document.getElementById('react-signup-modal')
     );
   } catch (err) {
-    console.error('id "react-signup-modal" not found');
+    console.error('react-signup-modal');
   }
 
-  // personal-card-show-personal-card
+  try {
+    ReactDOM.render(
+      <DetailPage />,
+      document.getElementById('react-personal-detail-page')
+    );
+  } catch (e) {
+    console.error('react-show-personal-card');
+  }
+
+  // react-show-personal-card
   try {
     ReactDOM.render(
       <ShowPersonalCardButton />,
       document.getElementById('react-show-personal-card')
     );
-  } catch (e) {
-    console.error('id "react-show-personal-card" not found');
+  } catch (err) {
+    console.error('react-show-personal-card');
+  }
+
+  // react-personal-edit-page
+  try {
+    ReactDOM.render(
+      <EditPage />,
+      document.getElementById('react-personal-edit-page')
+    );
+  } catch (err) {
+    console.error('react-personal-edit-page');
   }
 
   // Exchange Button for gen id
@@ -58,7 +79,7 @@ $(document).ready(function() {
       	document.getElementById('show-id-button')
       );
   } catch(err) {
-      console.error('id "show-id-button" not found');
+      console.error('show-id-button');
   }
 
   // Exchange Input for scan id
@@ -68,7 +89,7 @@ $(document).ready(function() {
       document.getElementById('exchange-platoon-id-input-div')
     );
   } catch(err) {
-      console.error('id "exchange-platoon-id-input-div" not found');
+      console.error('exchange-platoon-id-input-div');
   }
 
   // CardBox
@@ -78,7 +99,7 @@ $(document).ready(function() {
       document.getElementById('react-card-box')
     );
   } catch(err) {
-    console.error('id "react-card-box" not found', err);
+    console.error('react-card-box');
   }
 
   utils.initBoostrapMD();

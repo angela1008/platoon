@@ -9,6 +9,7 @@ class PersonalCard extends React.Component {
         super(props);
         this.id = this.props.id;
         this.data = this.props.data;
+        this.handleClick = this.props.handleClick ? this.props.handleClick : {};
     }
 
     render() {
@@ -20,7 +21,7 @@ class PersonalCard extends React.Component {
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
-        				<div className="modal-body row">
+        				<div className="modal-body row" onClick={ this.handleClick }>
         					<div className="col-xs-1"></div>
         					<div className="col-xs-10 exchange-card-finish-content">
         						<div className="row">
