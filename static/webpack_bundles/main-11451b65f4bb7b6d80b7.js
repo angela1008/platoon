@@ -21596,6 +21596,11 @@
 	  );
 	}
 
+	function getUserData() {
+	  var userData = cookie.load('ud');
+	  return userData;
+	}
+
 	function getUserId() {
 	  var userId = cookie.load('uid');
 	  return userId;
@@ -21653,6 +21658,7 @@
 	exports.get = get;
 	exports.post = post;
 	exports.getUserId = getUserId;
+	exports.getUserData = getUserData;
 
 /***/ },
 /* 180 */
@@ -22037,19 +22043,20 @@
 	      // If has access token, seem as login
 	      ReactDOM.render(React.createElement(NavbarLogedin, null), document.getElementById('react-nav-login-area'));
 
+	      var self = this;
 	      // Verify this login is valid
-	      ajaxreq.get(utils.apiAuthVerify, { 'access_token': accessToken }, function (data) {
+	      ajaxreq.get(utils.apiAuthVerify, {}, function (data) {
 	        if (data.is_authed) {
 	          var user = data.data;
 	          // TODO query pic or other
 	          console.log(user);
 	        } else {
 	          console.log(data.detail);
-	          this.handleNotLoginNav();
+	          self.handleNotLoginNav();
 	        }
 	      }, function (xhr, status, err) {
 	        console.error(xhr, status, err);
-	        this.handleNotLoginNav();
+	        self.handleNotLoginNav();
 	      });
 	    } else {
 	      this.handleNotLoginNav();

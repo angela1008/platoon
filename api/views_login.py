@@ -61,7 +61,10 @@ class VerifyToken(APIView):
            else:
                res['is_authed'] = True
                res['data'] = serializers.UserSerializer(token.user).data
-               return Response(res)
+               response = Response(res)
+               response.set_cookie('uid', token.user.id)
+               response.set_cookie('ud', serializers.UserSerializer(token.user).data)
+               return response
 
         except models.Token.DoesNotExist:
             res['detail'] = 'No such token.'
@@ -90,6 +93,7 @@ class Login(APIView):
             response = Response(res)
             response.set_cookie('access_token', token)
             response.set_cookie('uid', user.id)
+            response.set_cookie('ud', serializers.UserSerializer(user).data)
             return response
         else:
             res = {
@@ -133,6 +137,7 @@ class SignUp(APIView):
             response = Response(res)
             response.set_cookie('access_token', token)
             response.set_cookie('uid', user.id)
+            response.set_cookie('ud', serializers.UserSerializer(user).data)
             return response
         else:
             res = {
