@@ -5,6 +5,7 @@ var ajaxreq = require('./http/ajaxreq')
 var Navbar = require('./navbar/navbar')
 var LoginModal = require('./authentication/loginModal')
 var SignupModal = require('./authentication/signupModal')
+var ShowPersonalCardButton = require('./personal_card/showPersonalCardButton')
 var GenQrCodeButton = require('./qr_exchange/buttonGenQr')
 var InputIdField = require('./qr_exchange/inputIdField')
 var CardBox = require('./cardbox/cardBox')
@@ -38,6 +39,16 @@ $(document).ready(function() {
     );
   } catch (err) {
     console.error('id "react-signup-modal" not found');
+  }
+
+  // personal-card-show-personal-card
+  try {
+    ReactDOM.render(
+      <ShowPersonalCardButton />,
+      document.getElementById('react-show-personal-card')
+    );
+  } catch (e) {
+    console.error('id "react-show-personal-card" not found');
   }
 
   // Exchange Button for gen id

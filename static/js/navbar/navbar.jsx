@@ -23,8 +23,9 @@ class Navbar extends React.Component {
         document.getElementById('react-nav-login-area')
       );
 
+      var self = this;
       // Verify this login is valid
-      ajaxreq.get(utils.apiAuthVerify, { 'access_token' : accessToken },
+      ajaxreq.get(utils.apiAuthVerify, {},
         function(data) {
           if (data.is_authed) {
             var user = data.data;
@@ -32,11 +33,11 @@ class Navbar extends React.Component {
             console.log(user);
           } else {
             console.log(data.detail);
-            this.handleNotLoginNav();
+            self.handleNotLoginNav();
           }
         }, function(xhr, status, err) {
           console.error(xhr, status, err);
-          this.handleNotLoginNav();
+          self.handleNotLoginNav();
         });
     } else {
       this.handleNotLoginNav();
