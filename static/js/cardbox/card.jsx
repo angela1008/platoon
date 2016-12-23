@@ -38,8 +38,8 @@ class Card extends React.Component {
                 onClick={ this.handleCardClicked.bind(this) }>
 
         		{/* <!-- personal image --> */}
-                {/* TODO ajax query pic */}
-        		<span className="material-icons">account_circle</span>
+                {/* ajax query pic */}
+        		<img className="img-responsive img-rounded" style={{"height":"3rem"}} src={ utils.apiUserPhoto + '?user=' + this.props.user.card_user_detail.id } />
         		{/* <!-- personal name --> */}
         		<span className="name">{ this.props.user.card_user_detail.first_name }</span>
         		{/* <!-- receive date --> */}

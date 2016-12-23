@@ -1,6 +1,7 @@
 const apiServer = 'http://127.0.0.1:8000/platoon-api/';
 const apiUserLogin = apiServer + 'login/';
 const apiUserSignup = apiServer + 'signup/';
+const apiUserPhoto = apiServer + 'user-photo/';
 const apiUserDetail = apiServer + 'userdetail';
 const apiAuthVerify = apiServer + 'auth-verify/';
 const apiInterestedUser = apiServer + 'interested-user/';
@@ -84,6 +85,7 @@ function reload() {
 
 exports.apiUserLogin = apiUserLogin;
 exports.apiUserSignup = apiUserSignup;
+exports.apiUserPhoto = apiUserPhoto;
 exports.apiUserDetail = apiUserDetail;
 exports.apiAuthVerify = apiAuthVerify;
 exports.apiInterestedUser = apiInterestedUser;

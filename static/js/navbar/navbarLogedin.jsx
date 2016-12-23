@@ -21,7 +21,7 @@ class NavbarLogedin extends React.Component {
           </a>
           <a href={utils.getUrlByName('personal_card')} >
               <button type="button" className="btn btn-default navbar-btn">
-                  <i className="material-icons">account_circle</i>
+                  <img className="img-responsive img-rounded" style={{"height":"1.5rem"}} src={ utils.apiUserPhoto + '?user=' + ajaxreq.getUserId() } />
               </button>
           </a>
           <a href={utils.getUrlByName('settings')}>

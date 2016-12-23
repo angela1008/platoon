@@ -27,8 +27,9 @@ class PersonalCard extends React.Component {
         						<div className="row">
         							<div className="col-xs-4">
         								<div className="personal-img personal-flex-img">
-                                        {/* <!-- personal image --> */}
-                                        <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" className="img-circle img-fluid" />
+                                        {/* <!-- personal image -->
+                                        <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" className="img-circle img-fluid" /> */}
+                                        <img className="img-responsive img-rounded" style={{"height":"8rem"}} src={ utils.apiUserPhoto + '?user=' + this.props.data.id } />
                                     </div>
         							</div>
         							<div className="col-xs-8">

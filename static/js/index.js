@@ -20,7 +20,7 @@ $(document).ready(function() {
       document.getElementById('react-navbar')
     );
   } catch(err) {
-    console.error('react-navbar');
+    console.error('react-navbar', err);
   }
 
   // Login Modal

@@ -12,6 +12,11 @@ urlpatterns = [
     # url(r'^', include(router.urls)),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
+    # User photo redirect
+    url(r'^user-photo/$',
+    viewCus.UserPic.as_view(),
+    name='user-photo'),
+
     # InterestedUser
     url(r'^interested-user/$',
         viewCus.InterestedUser.as_view(),

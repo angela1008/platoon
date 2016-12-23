@@ -1,4 +1,8 @@
 from django.http import Http404
+from django.shortcuts import redirect
+from django.contrib.auth.models import User
+from django.contrib.staticfiles.templatetags.staticfiles import static
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,6 +12,16 @@ from rest_framework import generics, permissions
 from api import serializers
 from api import models as apiModels
 from api.permissions import IsStaffOrTargetUser
+
+class UserPic(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request):
+        long_user = request.GET.get('user')
+        user = User.objects.get(id=long_user)
+        userExtension = apiModels.UserExtension.objects.get(user=user)
+        url = static(userExtension.photo)
+        return redirect(url)
 
 # User who is interested will send email
 class InterestedUser(APIView):

@@ -55,7 +55,8 @@ class DetailPage extends React.Component {
         				{/* <!-- personal image --> */}
         				<div className="col-xs-4">
         					<div className="personal-flex-img">
-        						<img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" className="img-circle img-fluid" />
+        						{/* <img src="http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg" alt="Responsive image" className="img-circle img-fluid" /> */}
+                    <img className="img-responsive img-rounded" style={{"height":"5rem"}} src={ utils.apiUserPhoto + '?user=' + ajaxreq.getUserId() } />
         					</div>
         				</div>
         				<div className="col-xs-8">

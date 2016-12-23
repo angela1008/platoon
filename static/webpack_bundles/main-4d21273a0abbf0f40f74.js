@@ -56,14 +56,14 @@
 	var InputIdField = __webpack_require__(192);
 	var CardBox = __webpack_require__(193);
 	var DetailPage = __webpack_require__(195);
-	var EditPage = __webpack_require__(196);
+	var EditPage = __webpack_require__(198);
 
 	$(document).ready(function () {
 	  // Navbar
 	  try {
 	    ReactDOM.render(React.createElement(Navbar, null), document.getElementById('react-navbar'));
 	  } catch (err) {
-	    console.error('react-navbar');
+	    console.error('react-navbar', err);
 	  }
 
 	  // Login Modal
@@ -21535,6 +21535,7 @@
 	const apiServer = 'http://127.0.0.1:8000/platoon-api/';
 	const apiUserLogin = apiServer + 'login/';
 	const apiUserSignup = apiServer + 'signup/';
+	const apiUserPhoto = apiServer + 'user-photo/';
 	const apiUserDetail = apiServer + 'userdetail';
 	const apiAuthVerify = apiServer + 'auth-verify/';
 	const apiInterestedUser = apiServer + 'interested-user/';
@@ -21618,6 +21619,7 @@
 
 	exports.apiUserLogin = apiUserLogin;
 	exports.apiUserSignup = apiUserSignup;
+	exports.apiUserPhoto = apiUserPhoto;
 	exports.apiUserDetail = apiUserDetail;
 	exports.apiAuthVerify = apiAuthVerify;
 	exports.apiInterestedUser = apiInterestedUser;
@@ -22238,11 +22240,7 @@
 	                React.createElement(
 	                    'button',
 	                    { type: 'button', className: 'btn btn-default navbar-btn' },
-	                    React.createElement(
-	                        'i',
-	                        { className: 'material-icons' },
-	                        'account_circle'
-	                    )
+	                    React.createElement('img', { className: 'img-responsive img-rounded', style: { "height": "1.5rem" }, src: utils.apiUserPhoto + '?user=' + ajaxreq.getUserId() })
 	                )
 	            ),
 	            React.createElement(
@@ -22538,7 +22536,7 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'personal-img personal-flex-img' },
-	                                        React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', className: 'img-circle img-fluid' })
+	                                        React.createElement('img', { className: 'img-responsive img-rounded', style: { "height": "8rem" }, src: utils.apiUserPhoto + '?user=' + this.props.data.id })
 	                                    )
 	                                ),
 	                                React.createElement(
@@ -22980,11 +22978,7 @@
 	                'data-toggle': 'modal',
 	                'data-target': this.props.personalId,
 	                onClick: this.handleCardClicked.bind(this) },
-	            React.createElement(
-	                'span',
-	                { className: 'material-icons' },
-	                'account_circle'
-	            ),
+	            React.createElement('img', { className: 'img-responsive img-rounded', style: { "height": "3rem" }, src: utils.apiUserPhoto + '?user=' + this.props.user.card_user_detail.id }),
 	            React.createElement(
 	                'span',
 	                { className: 'name' },
@@ -23007,8 +23001,8 @@
 	var ReactDOM = __webpack_require__(32);
 	var utils = __webpack_require__(178);
 	var ajaxreq = __webpack_require__(179);
-	var DetailCard = __webpack_require__(197);
-	var DetailExtends = __webpack_require__(198);
+	var DetailCard = __webpack_require__(196);
+	var DetailExtends = __webpack_require__(197);
 
 	module.exports = class DetailPage extends React.Component {
 
@@ -23061,7 +23055,7 @@
 	              React.createElement(
 	                'div',
 	                { className: 'personal-flex-img' },
-	                React.createElement('img', { src: 'http://www.bctowing.com/wp-content/themes/bctowing/img/default-user.jpg', alt: 'Responsive image', className: 'img-circle img-fluid' })
+	                React.createElement('img', { className: 'img-responsive img-rounded', style: { "height": "5rem" }, src: utils.apiUserPhoto + '?user=' + ajaxreq.getUserId() })
 	              )
 	            ),
 	            React.createElement(
@@ -23080,6 +23074,165 @@
 
 /***/ },
 /* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class DetailCard extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        { className: 'exchange-card-finish-text' },
+	        this.props.user.first_name
+	      ),
+	      React.createElement(
+	        'h6',
+	        { className: 'exchange-card-finish-text' },
+	        this.props.user.email
+	      ),
+	      React.createElement(
+	        'h6',
+	        { className: 'exchange-card-finish-text' },
+	        utils.handleArrayNameToStringLine(this.props.userskill)
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+
+	module.exports = class DetailExtends extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  render() {
+	    return React.createElement(
+	      'tbody',
+	      null,
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Languages'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayNameToStringLine(this.props.userlanguage)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Company'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayTitleToStringLine(this.props.userexperiences)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Collections'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayNameToStringLine(this.props.usercollection)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Education'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          this.props.userextension ? this.props.userextension.education : ''
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Certifications'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayNameToStringLine(this.props.usercertification)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Experiences'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayTitleToStringLine(this.props.userexperiences)
+	        )
+	      ),
+	      React.createElement(
+	        'tr',
+	        null,
+	        React.createElement(
+	          'td',
+	          { className: 'title-column' },
+	          'Want to do'
+	        ),
+	        React.createElement(
+	          'td',
+	          { className: 'description-column' },
+	          utils.handleArrayTitleToStringLine(this.props.userwanttodo)
+	        )
+	      )
+	    );
+	  }
+	};
+
+/***/ },
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -23482,165 +23635,6 @@
 	            null,
 	            'Add New One'
 	          )
-	        )
-	      )
-	    );
-	  }
-	};
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var utils = __webpack_require__(178);
-	var ajaxreq = __webpack_require__(179);
-
-	module.exports = class DetailCard extends React.Component {
-
-	  constructor(props) {
-	    super(props);
-	  }
-
-	  render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h3',
-	        { className: 'exchange-card-finish-text' },
-	        this.props.user.first_name
-	      ),
-	      React.createElement(
-	        'h6',
-	        { className: 'exchange-card-finish-text' },
-	        this.props.user.email
-	      ),
-	      React.createElement(
-	        'h6',
-	        { className: 'exchange-card-finish-text' },
-	        utils.handleArrayNameToStringLine(this.props.userskill)
-	      )
-	    );
-	  }
-	};
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(32);
-	var utils = __webpack_require__(178);
-	var ajaxreq = __webpack_require__(179);
-
-	module.exports = class DetailExtends extends React.Component {
-
-	  constructor(props) {
-	    super(props);
-	  }
-
-	  render() {
-	    return React.createElement(
-	      'tbody',
-	      null,
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Languages'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          utils.handleArrayNameToStringLine(this.props.userlanguage)
-	        )
-	      ),
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Company'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          utils.handleArrayTitleToStringLine(this.props.userexperiences)
-	        )
-	      ),
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Collections'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          utils.handleArrayNameToStringLine(this.props.usercollection)
-	        )
-	      ),
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Education'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          this.props.userextension ? this.props.userextension.education : ''
-	        )
-	      ),
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Certifications'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          utils.handleArrayNameToStringLine(this.props.usercertification)
-	        )
-	      ),
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Experiences'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          utils.handleArrayTitleToStringLine(this.props.userexperiences)
-	        )
-	      ),
-	      React.createElement(
-	        'tr',
-	        null,
-	        React.createElement(
-	          'td',
-	          { className: 'title-column' },
-	          'Want to do'
-	        ),
-	        React.createElement(
-	          'td',
-	          { className: 'description-column' },
-	          utils.handleArrayTitleToStringLine(this.props.userwanttodo)
 	        )
 	      )
 	    );
