@@ -6,9 +6,14 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
-function getUserData() {
-  var userData = cookie.load('ud');
-  return userData;
+function getUserEmail() {
+  var userData = cookie.load('em');
+  return decodeURI(userData);
+}
+
+function getUserName() {
+  var userData = cookie.load('un');
+  return decodeURI(userData);
 }
 
 function getUserId() {
@@ -68,4 +73,5 @@ var post = function(url, data, success, error) {
 exports.get = get;
 exports.post = post;
 exports.getUserId = getUserId;
-exports.getUserData = getUserData;
+exports.getUserName = getUserName;
+exports.getUserEmail = getUserEmail;

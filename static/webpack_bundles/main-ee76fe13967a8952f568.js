@@ -51,6 +51,7 @@
 	var Navbar = __webpack_require__(182);
 	var LoginModal = __webpack_require__(185);
 	var SignupModal = __webpack_require__(186);
+	var ShowPersonalCardButton = __webpack_require__(194);
 	var GenQrCodeButton = __webpack_require__(187);
 	var InputIdField = __webpack_require__(191);
 	var CardBox = __webpack_require__(192);
@@ -75,6 +76,13 @@
 	    ReactDOM.render(React.createElement(SignupModal, null), document.getElementById('react-signup-modal'));
 	  } catch (err) {
 	    console.error('id "react-signup-modal" not found');
+	  }
+
+	  // personal-card-show-personal-card
+	  try {
+	    ReactDOM.render(React.createElement(ShowPersonalCardButton, null), document.getElementById('react-show-personal-card'));
+	  } catch (e) {
+	    console.error('id "react-show-personal-card" not found');
 	  }
 
 	  // Exchange Button for gen id
@@ -21596,9 +21604,14 @@
 	  );
 	}
 
-	function getUserData() {
-	  var userData = cookie.load('ud');
-	  return userData;
+	function getUserEmail() {
+	  var userData = cookie.load('em');
+	  return decodeURI(userData);
+	}
+
+	function getUserName() {
+	  var userData = cookie.load('un');
+	  return decodeURI(userData);
 	}
 
 	function getUserId() {
@@ -21658,7 +21671,8 @@
 	exports.get = get;
 	exports.post = post;
 	exports.getUserId = getUserId;
-	exports.getUserData = getUserData;
+	exports.getUserName = getUserName;
+	exports.getUserEmail = getUserEmail;
 
 /***/ },
 /* 180 */
@@ -22877,6 +22891,57 @@
 	            )
 	        );
 	    }
+	};
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(32);
+	var utils = __webpack_require__(178);
+	var ajaxreq = __webpack_require__(179);
+	var PersonalCard = __webpack_require__(190);
+
+	module.exports = class ShowPersonalCardButton extends React.Component {
+
+	  constructor(props) {
+	    super(props);
+	  }
+
+	  handleClicked() {
+	    var userid = ajaxreq.getUserId();
+	    var username = ajaxreq.getUserName();
+	    var useremail = ajaxreq.getUserEmail();
+	    var data = {
+	      id: userid,
+	      first_name: username,
+	      email: useremail
+	    };
+	    console.log(data);
+	    ReactDOM.render(React.createElement(PersonalCard, {
+	      id: 'personal-card-show-card-modal',
+	      data: data }), document.getElementById('personal-card-dialog'));
+	    utils.openModal('personal-card-show-card-modal');
+	  }
+
+	  render() {
+	    // render the post
+	    return React.createElement(
+	      'div',
+	      { onClick: this.handleClicked, className: 'list-group-item', 'data-toggle': 'modal', 'data-target': '#personal-card-show-card-modal' },
+	      React.createElement(
+	        'span',
+	        { className: 'material-icons' },
+	        'contact_mail'
+	      ),
+	      React.createElement(
+	        'span',
+	        { className: 'item-text' },
+	        'Show Card View'
+	      )
+	    );
+	  }
 	};
 
 /***/ }
