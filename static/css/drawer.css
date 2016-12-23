@@ -1,0 +1,35 @@
+.drawer-layout {
+  padding: 0;
+}
+.drawer-text-size {
+  font-size: 1.5rem;
+}
+.drawer-head-text {
+  font-size: 1.5rem;
+  float: left;
+}
+.drawer-flex-head {
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+a.drawer-a-style {
+  color: #484848;
+  text-decoration: none;
+}
+.style-unuse {
+  color: #aaa7a7;
+}
+
+@media screen and (min-width: 768px) {
+  .drawer-layout-width-768 {
+    display: none;
+  }
+  .drawer-layout {
+    padding: 0 1rem;
+  }
+}

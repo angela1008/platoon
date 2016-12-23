@@ -42,51 +42,47 @@ h6{
   padding: 2rem 0;
   color: #ffffff;
 }
-.signup-title-text {
-  font-size: 32px;
+
+/* Sign In and Sign Up*/
+.signin-title-text, .signup-title-text {
+  font-size: 2rem;
   text-align: center;
+  margin: 2rem;
 }
-.signup-button-text {
+.signin-button-text, .signup-button-text {
   color: #737373;
-  font-size: 32px;
+  font-size: 1.5rem;
 }
 .signup-button{
+  margin: 4rem 0 0 0;
   width: 100%;
 }
-.signin-title-text {
-  font-size: 32px;
-  text-align: center;
-}
-.signin-button-text {
-  color: #737373;
-  font-size: 32px;
-}
-.signin-button {
-  width: 100%;
-}
-.signin-align-center {
-  text-align: center;
-}
-.drawer-layout {
-  padding-left: 10px; 
-  padding-right: 10px;
-  max-width: 420px;
-}
-.drawer-text-size {
-  font-size: 20px;
-}
-.drawer-head-text {
-  size: 20px;
-  float: left;
-}
-.drawer-flex-head {
-  height: 100%;
+.sign-layout {
+  height: 50vh;
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+
+.signin-button {
+  width: 100%;
+}
+.signin-align-center {
+  text-align: center;
+}
+.forgot-passsword-text {
+  margin: 1rem;
+	color: #d6d2d2;
+	text-align: center;
+}
+.create-new-account-text {
+  margin: 1rem 0 4rem 0;
+  cursor: pointer;
+	color: #484848;
+	text-align: center;
 }
 /*.signin-signinup-dialog-flex {
   height: 100%;
@@ -97,8 +93,3 @@ h6{
   -webkit-justify-content: center;
   justify-content: center;
 }*/
-@media screen and (min-width: 768px) {
-  .drawer-layout-width-768px {
-    display: none;
-  }
-}
