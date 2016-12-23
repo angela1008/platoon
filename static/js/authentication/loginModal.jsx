@@ -31,14 +31,14 @@ class LoginModal extends React.Component {
       <div className="modal fade" id="signin-modal" role="dialog">
         <div className="modal-dialog modal-xs signin-signinup-dialog-flex">
           <div className="modal-content">
-            <div className="modal-body row">
+            <div className="modal-body row sign-layout">
               <div className="col-xs-1"></div>
               <div className="col-xs-10">
                 <h3 className="signin-align-center signin-title-text">Platoon<br/>Sign In</h3><br/>
                 <input type="email" className="form-control" id="input-email" placeholder="Email" /><br/>
                 <input type="password" className="form-control" id="input-password" placeholder="Password" />
-                <h6 className="forgot-passsword-text" className="signin-align-center">forget password?</h6>
-                <h6  className="create-new-account-text" className="signin-align-center">Creat New Account!</h6>
+                <h6 className="forgot-passsword-text signin-align-center">forget password?</h6>
+                <h6 className="create-new-account-text signin-align-center" data-toggle="modal" data-target="#signup-modal">Creat New Account!</h6>
                 <button className="btn btn-raised btn-lg signin-button" onClick={ this.handleSubmitClick.bind(this) }>
                   <h3 className="signin-button-text">SIGN IN</h3>
                 </button>

@@ -32,13 +32,13 @@ class SignupModal extends React.Component {
       <div className="modal fade" id="signup-modal" role="dialog">
         <div className="modal-dialog modal-xs signin-signinup-dialog-flex">
           <div className="modal-content">
-            <div className="modal-body row">
+            <div className="modal-body row sign-layout">
               <div className="col-xs-1"></div>
               <div className="col-xs-10">
                 <h3 className="signin-align-center signup-title-text">Platoon<br/>Sign Up</h3><br/>
-                <input type="text" className="form-control" id="signup-name" placeholder="Name" /><br/>
-                <input type="email" className="form-control" id="signup-email" placeholder="Email" /><br/>
-                <input type="password" className="form-control" id="signup-password" placeholder="Password" />
+                <input type="text" className="form-control input-sign" id="signup-name" placeholder="Name" /><br/>
+                <input type="email" className="form-control input-sign" id="signup-email" placeholder="Email" /><br/>
+                <input type="password" className="form-control input-sign" id="signup-password" placeholder="Password" />
                 <button className="btn btn-raised btn-lg signup-button" onClick={ this.handleSubmitClick.bind(this) }>
                   <h3 className="signup-button-text">SIGN UP</h3>
                 </button>
