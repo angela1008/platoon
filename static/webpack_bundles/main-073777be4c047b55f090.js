@@ -22301,7 +22301,7 @@
 	          { className: 'modal-content' },
 	          React.createElement(
 	            'div',
-	            { className: 'modal-body row' },
+	            { className: 'modal-body row sign-layout' },
 	            React.createElement('div', { className: 'col-xs-1' }),
 	            React.createElement(
 	              'div',
@@ -22319,12 +22319,12 @@
 	              React.createElement('input', { type: 'password', className: 'form-control', id: 'input-password', placeholder: 'Password' }),
 	              React.createElement(
 	                'h6',
-	                { className: 'forgot-passsword-text', className: 'signin-align-center' },
+	                { className: 'forgot-passsword-text signin-align-center' },
 	                'forget password?'
 	              ),
 	              React.createElement(
 	                'h6',
-	                { className: 'create-new-account-text', className: 'signin-align-center' },
+	                { className: 'create-new-account-text signin-align-center', 'data-toggle': 'modal', 'data-target': '#signup-modal' },
 	                'Creat New Account!'
 	              ),
 	              React.createElement(
@@ -22387,7 +22387,7 @@
 	          { className: 'modal-content' },
 	          React.createElement(
 	            'div',
-	            { className: 'modal-body row' },
+	            { className: 'modal-body row sign-layout' },
 	            React.createElement('div', { className: 'col-xs-1' }),
 	            React.createElement(
 	              'div',
@@ -22400,11 +22400,11 @@
 	                'Sign Up'
 	              ),
 	              React.createElement('br', null),
-	              React.createElement('input', { type: 'text', className: 'form-control', id: 'signup-name', placeholder: 'Name' }),
+	              React.createElement('input', { type: 'text', className: 'form-control input-sign', id: 'signup-name', placeholder: 'Name' }),
 	              React.createElement('br', null),
-	              React.createElement('input', { type: 'email', className: 'form-control', id: 'signup-email', placeholder: 'Email' }),
+	              React.createElement('input', { type: 'email', className: 'form-control input-sign', id: 'signup-email', placeholder: 'Email' }),
 	              React.createElement('br', null),
-	              React.createElement('input', { type: 'password', className: 'form-control', id: 'signup-password', placeholder: 'Password' }),
+	              React.createElement('input', { type: 'password', className: 'form-control input-sign', id: 'signup-password', placeholder: 'Password' }),
 	              React.createElement(
 	                'button',
 	                { className: 'btn btn-raised btn-lg signup-button', onClick: this.handleSubmitClick.bind(this) },

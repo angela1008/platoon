@@ -94,8 +94,8 @@ class Login(APIView):
             response = Response(res)
             response.set_cookie('access_token', token)
             response.set_cookie('uid', user.id)
-            response.set_cookie('un', token.user.first_name)
-            response.set_cookie('em', token.user.email)
+            response.set_cookie('un', user.first_name)
+            response.set_cookie('em', user.email)
             return response
         else:
             res = {
@@ -139,8 +139,8 @@ class SignUp(APIView):
             response = Response(res)
             response.set_cookie('access_token', token)
             response.set_cookie('uid', user.id)
-            response.set_cookie('un', token.user.first_name)
-            response.set_cookie('em', token.user.email)
+            response.set_cookie('un', user.first_name)
+            response.set_cookie('em', user.email)
             return response
         else:
             res = {
